@@ -23,8 +23,6 @@
     IDPSquareViewController *viewController = [IDPSquareViewController new];
     window.rootViewController = viewController;
     
-    window.backgroundColor = [UIColor lightGrayColor];
-    
     [window makeKeyAndVisible];
     
     return YES;

@@ -34,8 +34,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view = self.mainView;
 }
 
 - (void)didReceiveMemoryWarning {
