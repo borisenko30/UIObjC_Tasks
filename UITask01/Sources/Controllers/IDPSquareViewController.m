@@ -34,6 +34,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view = self.mainView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +43,7 @@
 }
 
 - (IBAction)onTouch:(UIButton *)sender {
-    [self.mainView start];
+    self.mainView.running = !self.mainView.running;
 }
 
 

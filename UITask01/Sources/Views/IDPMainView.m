@@ -22,7 +22,33 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
 @implementation IDPMainView
 
 #pragma mark -
+#pragma mark Accessors
+
+- (void)setRunning:(BOOL)running {
+    if (running == _running) {
+        return;
+    }
+    
+    _running = running;
+    
+    if (running) {
+        [self start];
+    } else {
+        [self stop];
+    }
+}
+
+#pragma mark -
 #pragma mark Public
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.square = [IDPSquare new];
+}
+
+#pragma mark -
+#pragma mark Private
 
 - (void)moveSquareToPosition:(IDPSquarePosition)position {
     [self moveSquareToPosition:position animated:NO completionHandler:nil];
@@ -47,12 +73,15 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
                          square.frame = rectangle;
                      }
                      completion:handler];
-    //[UIView animate]
 }
 
 - (void)move {
     IDPSquare *square = self.square;
     IDPCompletionHandler handler = ^(BOOL finished) {
+        if (!self.running) {
+            return;
+        }
+        
         [self move];
         
         if (square.position == IDPLeftBottom) {
@@ -66,12 +95,12 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
 }
 
 - (void)start {
-    self.square = [IDPSquare new];
-    
     [self move];
 }
-#pragma mark -
-#pragma mark Private
+
+- (void)stop {
+    self.running = NO;
+}
 
 - (CGPoint)pointWithPosition:(IDPSquarePosition)position {
     CGRect frame = self.frame;

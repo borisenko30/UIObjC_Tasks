@@ -11,8 +11,7 @@
 @class IDPSquareView;
 
 @interface IDPMainView : UIView
-@property (nonatomic, strong) IBOutlet IDPSquareView *squareView;
-
-- (void)start;
+@property (nonatomic, strong) IBOutlet IDPSquareView    *squareView;
+@property (nonatomic, assign) BOOL                      running;
 
 @end
