@@ -84,23 +84,38 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
                      completion:handler];
 }
 
-- (void)moveSquare {
+- (IDPSquarePosition)nextPosition {
     IDPSquare *square = self.square;
+    
+    if (square.position == IDPLeftBottom) {
+        return IDPLeftTop;
+    } else {
+        return square.position + 1;
+    }
+}
+
+- (void)setPosition:(IDPSquarePosition)position {
+    IDPSquare *square = self.square;
+    
+    if (position == square.position) {
+        return;
+    }
+    
+    square.position = position;
+}
+
+- (void)moveSquare {
+    __block IDPSquarePosition position = [self nextPosition];
+    
     IDPCompletionHandler handler = ^(BOOL finished) {
         if (!self.running) {
             return;
         }
-        
+        [self setPosition:position];
         [self moveSquare];
-        
-        if (square.position == IDPLeftBottom) {
-            square.position = IDPLeftTop;
-        } else {
-            square.position++;
-        }
     };
     
-    [self moveSquareToPosition:square.position animated:YES completionHandler:handler];
+    [self moveSquareToPosition:position animated:YES completionHandler:handler];
 }
 
 - (void)start {
