@@ -11,23 +11,11 @@
 #import "IDPMainView.h"
 #import "IDPSquareView.h"
 
-@interface IDPSquareViewController ()
-@property (nonatomic, strong) IDPMainView *mainView;
+#import "IDPMacro.h"
 
-@end
+IDPViewController(IDPSquareViewController, mainView, IDPMainView)
 
 @implementation IDPSquareViewController
-
-#pragma mark -
-#pragma mark Accessors
-
-- (IDPMainView *)mainView {
-    if ([self isViewLoaded] && [self.view isKindOfClass:[IDPMainView class]]) {
-        return (IDPMainView *)self.view;
-    }
-    
-    return nil;
-}
 
 #pragma mark -
 #pragma mark Public
