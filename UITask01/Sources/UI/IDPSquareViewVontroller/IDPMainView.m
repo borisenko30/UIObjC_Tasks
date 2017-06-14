@@ -89,13 +89,15 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
 - (void)moveSquare {
     __block IDPSquarePosition position = [self nextPosition];
   
+    __weak IDPMainView *weakSelf = self;
+    
     [self moveSquareToPosition:position animated:YES completionHandler:^(BOOL finished) {
-        if (!self.running) {
+        if (!weakSelf.running) {
             return;
         }
-
-        self.square.position = position;
-        [self moveSquare];
+  
+        weakSelf.square.position = position;
+        [weakSelf moveSquare];
     }];
 }
 
