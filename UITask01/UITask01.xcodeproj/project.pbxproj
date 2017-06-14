@@ -12,11 +12,20 @@
 		5630DFCA1EEE64F60048DF18 /* IDPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630DFC41EEE64F60048DF18 /* IDPAppDelegate.m */; };
 		5630DFCB1EEE64F60048DF18 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630DFC51EEE64F60048DF18 /* Info.plist */; };
 		5630DFCC1EEE64F60048DF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630DFC61EEE64F60048DF18 /* main.m */; };
-		566BDDE81EF033EF0061FF53 /* IDPSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BDDDD1EF033EF0061FF53 /* IDPSquare.m */; };
-		566BDDE91EF033EF0061FF53 /* IDPMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BDDE11EF033EF0061FF53 /* IDPMainView.m */; };
-		566BDDEA1EF033EF0061FF53 /* IDPSquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BDDE31EF033EF0061FF53 /* IDPSquareView.m */; };
-		566BDDEB1EF033EF0061FF53 /* IDPSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BDDE51EF033EF0061FF53 /* IDPSquareViewController.m */; };
-		566BDDEC1EF033EF0061FF53 /* IDPSquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566BDDE61EF033EF0061FF53 /* IDPSquareViewController.xib */; };
+		565510901EF177C4001098B7 /* IDPTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655106E1EF177C4001098B7 /* IDPTableViewCell.m */; };
+		565510911EF177C4001098B7 /* IDPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510721EF177C4001098B7 /* IDPRandom.m */; };
+		565510921EF177C4001098B7 /* NSString+IDPRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510741EF177C4001098B7 /* NSString+IDPRandom.m */; };
+		565510931EF177C4001098B7 /* IDPSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510781EF177C4001098B7 /* IDPSquare.m */; };
+		565510941EF177C4001098B7 /* IDPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655107B1EF177C4001098B7 /* IDPUser.m */; };
+		565510951EF177C4001098B7 /* IDPMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655107F1EF177C4001098B7 /* IDPMainView.m */; };
+		565510961EF177C4001098B7 /* IDPSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510811EF177C4001098B7 /* IDPSquareViewController.m */; };
+		565510971EF177C4001098B7 /* IDPSquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565510821EF177C4001098B7 /* IDPSquareViewController.xib */; };
+		565510981EF177C4001098B7 /* IDPSquareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510851EF177C4001098B7 /* IDPSquareView.m */; };
+		565510991EF177C4001098B7 /* IDPUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510881EF177C4001098B7 /* IDPUsersView.m */; };
+		5655109A1EF177C4001098B7 /* IDPUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655108A1EF177C4001098B7 /* IDPUsersViewController.m */; };
+		5655109B1EF177C4001098B7 /* IDPUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5655108B1EF177C4001098B7 /* IDPUsersViewController.xib */; };
+		5655109C1EF177C4001098B7 /* IDPUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655108E1EF177C4001098B7 /* IDPUserCell.m */; };
+		5655109D1EF177C4001098B7 /* IDPUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5655108F1EF177C4001098B7 /* IDPUserCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,16 +36,32 @@
 		5630DFC41EEE64F60048DF18 /* IDPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAppDelegate.m; sourceTree = "<group>"; };
 		5630DFC51EEE64F60048DF18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5630DFC61EEE64F60048DF18 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		566BDDDC1EF033EF0061FF53 /* IDPSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquare.h; sourceTree = "<group>"; };
-		566BDDDD1EF033EF0061FF53 /* IDPSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSquare.m; sourceTree = "<group>"; };
-		566BDDE01EF033EF0061FF53 /* IDPMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMainView.h; sourceTree = "<group>"; };
-		566BDDE11EF033EF0061FF53 /* IDPMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMainView.m; sourceTree = "<group>"; };
-		566BDDE21EF033EF0061FF53 /* IDPSquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquareView.h; sourceTree = "<group>"; };
-		566BDDE31EF033EF0061FF53 /* IDPSquareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSquareView.m; sourceTree = "<group>"; };
-		566BDDE41EF033EF0061FF53 /* IDPSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquareViewController.h; sourceTree = "<group>"; };
-		566BDDE51EF033EF0061FF53 /* IDPSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSquareViewController.m; sourceTree = "<group>"; };
-		566BDDE61EF033EF0061FF53 /* IDPSquareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPSquareViewController.xib; sourceTree = "<group>"; };
-		566BDDED1EF0344C0061FF53 /* IDPMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IDPMacro.h; sourceTree = "<group>"; };
+		5655106D1EF177C4001098B7 /* IDPTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTableViewCell.h; sourceTree = "<group>"; };
+		5655106E1EF177C4001098B7 /* IDPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTableViewCell.m; sourceTree = "<group>"; };
+		5655106F1EF177C4001098B7 /* IDPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMacro.h; sourceTree = "<group>"; };
+		565510711EF177C4001098B7 /* IDPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPRandom.h; sourceTree = "<group>"; };
+		565510721EF177C4001098B7 /* IDPRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPRandom.m; sourceTree = "<group>"; };
+		565510731EF177C4001098B7 /* NSString+IDPRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IDPRandom.h"; sourceTree = "<group>"; };
+		565510741EF177C4001098B7 /* NSString+IDPRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IDPRandom.m"; sourceTree = "<group>"; };
+		565510771EF177C4001098B7 /* IDPSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquare.h; sourceTree = "<group>"; };
+		565510781EF177C4001098B7 /* IDPSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSquare.m; sourceTree = "<group>"; };
+		5655107A1EF177C4001098B7 /* IDPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUser.h; sourceTree = "<group>"; };
+		5655107B1EF177C4001098B7 /* IDPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUser.m; sourceTree = "<group>"; };
+		5655107E1EF177C4001098B7 /* IDPMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMainView.h; sourceTree = "<group>"; };
+		5655107F1EF177C4001098B7 /* IDPMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMainView.m; sourceTree = "<group>"; };
+		565510801EF177C4001098B7 /* IDPSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquareViewController.h; sourceTree = "<group>"; };
+		565510811EF177C4001098B7 /* IDPSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSquareViewController.m; sourceTree = "<group>"; };
+		565510821EF177C4001098B7 /* IDPSquareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPSquareViewController.xib; sourceTree = "<group>"; };
+		565510841EF177C4001098B7 /* IDPSquareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquareView.h; sourceTree = "<group>"; };
+		565510851EF177C4001098B7 /* IDPSquareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSquareView.m; sourceTree = "<group>"; };
+		565510871EF177C4001098B7 /* IDPUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUsersView.h; sourceTree = "<group>"; };
+		565510881EF177C4001098B7 /* IDPUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUsersView.m; sourceTree = "<group>"; };
+		565510891EF177C4001098B7 /* IDPUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUsersViewController.h; sourceTree = "<group>"; };
+		5655108A1EF177C4001098B7 /* IDPUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUsersViewController.m; sourceTree = "<group>"; };
+		5655108B1EF177C4001098B7 /* IDPUsersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPUsersViewController.xib; sourceTree = "<group>"; };
+		5655108D1EF177C4001098B7 /* IDPUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUserCell.h; sourceTree = "<group>"; };
+		5655108E1EF177C4001098B7 /* IDPUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUserCell.m; sourceTree = "<group>"; };
+		5655108F1EF177C4001098B7 /* IDPUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPUserCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +78,7 @@
 		5630DF951EEE64750048DF18 = {
 			isa = PBXGroup;
 			children = (
-				566BDDD81EF033EF0061FF53 /* Sources */,
+				565510691EF177C4001098B7 /* Sources */,
 				5630DFB81EEE64F60048DF18 /* Resources */,
 				5630DFC21EEE64F60048DF18 /* UITask01 */,
 				5630DF9F1EEE64750048DF18 /* Products */,
@@ -88,61 +113,133 @@
 			path = UITask01;
 			sourceTree = "<group>";
 		};
-		566BDDD81EF033EF0061FF53 /* Sources */ = {
+		565510691EF177C4001098B7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				566BDDD91EF033EF0061FF53 /* Library */,
-				566BDDDA1EF033EF0061FF53 /* Models */,
-				566BDDDE1EF033EF0061FF53 /* UI */,
+				5655106A1EF177C4001098B7 /* Library */,
+				565510751EF177C4001098B7 /* Models */,
+				5655107C1EF177C4001098B7 /* UI */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		566BDDD91EF033EF0061FF53 /* Library */ = {
+		5655106A1EF177C4001098B7 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				566BDDED1EF0344C0061FF53 /* IDPMacro.h */,
+				5655106B1EF177C4001098B7 /* Classes */,
+				5655106F1EF177C4001098B7 /* IDPMacro.h */,
+				565510701EF177C4001098B7 /* IDPRandomString */,
 			);
 			path = Library;
 			sourceTree = "<group>";
 		};
-		566BDDDA1EF033EF0061FF53 /* Models */ = {
+		5655106B1EF177C4001098B7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				566BDDDB1EF033EF0061FF53 /* IDPSquare */,
+				5655106C1EF177C4001098B7 /* IDPTableViewCell */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		5655106C1EF177C4001098B7 /* IDPTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5655106D1EF177C4001098B7 /* IDPTableViewCell.h */,
+				5655106E1EF177C4001098B7 /* IDPTableViewCell.m */,
+			);
+			path = IDPTableViewCell;
+			sourceTree = "<group>";
+		};
+		565510701EF177C4001098B7 /* IDPRandomString */ = {
+			isa = PBXGroup;
+			children = (
+				565510711EF177C4001098B7 /* IDPRandom.h */,
+				565510721EF177C4001098B7 /* IDPRandom.m */,
+				565510731EF177C4001098B7 /* NSString+IDPRandom.h */,
+				565510741EF177C4001098B7 /* NSString+IDPRandom.m */,
+			);
+			path = IDPRandomString;
+			sourceTree = "<group>";
+		};
+		565510751EF177C4001098B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				565510761EF177C4001098B7 /* IDPSquare */,
+				565510791EF177C4001098B7 /* IDPUser */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		566BDDDB1EF033EF0061FF53 /* IDPSquare */ = {
+		565510761EF177C4001098B7 /* IDPSquare */ = {
 			isa = PBXGroup;
 			children = (
-				566BDDDC1EF033EF0061FF53 /* IDPSquare.h */,
-				566BDDDD1EF033EF0061FF53 /* IDPSquare.m */,
+				565510771EF177C4001098B7 /* IDPSquare.h */,
+				565510781EF177C4001098B7 /* IDPSquare.m */,
 			);
 			path = IDPSquare;
 			sourceTree = "<group>";
 		};
-		566BDDDE1EF033EF0061FF53 /* UI */ = {
+		565510791EF177C4001098B7 /* IDPUser */ = {
 			isa = PBXGroup;
 			children = (
-				566BDDDF1EF033EF0061FF53 /* IDPSquareViewVontroller */,
+				5655107A1EF177C4001098B7 /* IDPUser.h */,
+				5655107B1EF177C4001098B7 /* IDPUser.m */,
+			);
+			path = IDPUser;
+			sourceTree = "<group>";
+		};
+		5655107C1EF177C4001098B7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				5655107D1EF177C4001098B7 /* IDPSquareViewVontroller */,
+				565510861EF177C4001098B7 /* IDPUsersViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		566BDDDF1EF033EF0061FF53 /* IDPSquareViewVontroller */ = {
+		5655107D1EF177C4001098B7 /* IDPSquareViewVontroller */ = {
 			isa = PBXGroup;
 			children = (
-				566BDDE01EF033EF0061FF53 /* IDPMainView.h */,
-				566BDDE11EF033EF0061FF53 /* IDPMainView.m */,
-				566BDDE21EF033EF0061FF53 /* IDPSquareView.h */,
-				566BDDE31EF033EF0061FF53 /* IDPSquareView.m */,
-				566BDDE41EF033EF0061FF53 /* IDPSquareViewController.h */,
-				566BDDE51EF033EF0061FF53 /* IDPSquareViewController.m */,
-				566BDDE61EF033EF0061FF53 /* IDPSquareViewController.xib */,
+				5655107E1EF177C4001098B7 /* IDPMainView.h */,
+				5655107F1EF177C4001098B7 /* IDPMainView.m */,
+				565510801EF177C4001098B7 /* IDPSquareViewController.h */,
+				565510811EF177C4001098B7 /* IDPSquareViewController.m */,
+				565510821EF177C4001098B7 /* IDPSquareViewController.xib */,
+				565510831EF177C4001098B7 /* Views */,
 			);
 			path = IDPSquareViewVontroller;
+			sourceTree = "<group>";
+		};
+		565510831EF177C4001098B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				565510841EF177C4001098B7 /* IDPSquareView.h */,
+				565510851EF177C4001098B7 /* IDPSquareView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		565510861EF177C4001098B7 /* IDPUsersViewController */ = {
+			isa = PBXGroup;
+			children = (
+				565510871EF177C4001098B7 /* IDPUsersView.h */,
+				565510881EF177C4001098B7 /* IDPUsersView.m */,
+				565510891EF177C4001098B7 /* IDPUsersViewController.h */,
+				5655108A1EF177C4001098B7 /* IDPUsersViewController.m */,
+				5655108B1EF177C4001098B7 /* IDPUsersViewController.xib */,
+				5655108C1EF177C4001098B7 /* Views */,
+			);
+			path = IDPUsersViewController;
+			sourceTree = "<group>";
+		};
+		5655108C1EF177C4001098B7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5655108D1EF177C4001098B7 /* IDPUserCell.h */,
+				5655108E1EF177C4001098B7 /* IDPUserCell.m */,
+				5655108F1EF177C4001098B7 /* IDPUserCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,9 +301,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5630DFCB1EEE64F60048DF18 /* Info.plist in Resources */,
-				566BDDEC1EF033EF0061FF53 /* IDPSquareViewController.xib in Resources */,
+				565510971EF177C4001098B7 /* IDPSquareViewController.xib in Resources */,
+				5655109D1EF177C4001098B7 /* IDPUserCell.xib in Resources */,
 				5630DFC71EEE64F60048DF18 /* Assets.xcassets in Resources */,
 				5630DFC81EEE64F60048DF18 /* LaunchScreen.storyboard in Resources */,
+				5655109B1EF177C4001098B7 /* IDPUsersViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,11 +316,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				565510941EF177C4001098B7 /* IDPUser.m in Sources */,
+				5655109A1EF177C4001098B7 /* IDPUsersViewController.m in Sources */,
+				5655109C1EF177C4001098B7 /* IDPUserCell.m in Sources */,
+				565510981EF177C4001098B7 /* IDPSquareView.m in Sources */,
+				565510921EF177C4001098B7 /* NSString+IDPRandom.m in Sources */,
+				565510991EF177C4001098B7 /* IDPUsersView.m in Sources */,
+				565510911EF177C4001098B7 /* IDPRandom.m in Sources */,
+				565510961EF177C4001098B7 /* IDPSquareViewController.m in Sources */,
+				565510901EF177C4001098B7 /* IDPTableViewCell.m in Sources */,
 				5630DFCC1EEE64F60048DF18 /* main.m in Sources */,
-				566BDDEA1EF033EF0061FF53 /* IDPSquareView.m in Sources */,
-				566BDDE91EF033EF0061FF53 /* IDPMainView.m in Sources */,
-				566BDDEB1EF033EF0061FF53 /* IDPSquareViewController.m in Sources */,
-				566BDDE81EF033EF0061FF53 /* IDPSquare.m in Sources */,
+				565510951EF177C4001098B7 /* IDPMainView.m in Sources */,
+				565510931EF177C4001098B7 /* IDPSquare.m in Sources */,
 				5630DFCA1EEE64F60048DF18 /* IDPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

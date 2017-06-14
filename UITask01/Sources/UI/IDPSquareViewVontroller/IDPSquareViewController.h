@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class IDPMainView;
-
 @interface IDPSquareViewController : UIViewController
 
 @end

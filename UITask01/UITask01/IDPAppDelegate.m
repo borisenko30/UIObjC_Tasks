@@ -9,6 +9,8 @@
 #import "IDPAppDelegate.h"
 
 #import "IDPSquareViewController.h"
+#import "IDPUsersViewController.h"
+#import "IDPUser.h"
 
 @interface IDPAppDelegate ()
 
@@ -19,8 +21,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = window;
+
+    // Task 01
+    //IDPSquareViewController *viewController = [IDPSquareViewController new];
     
-    IDPSquareViewController *viewController = [IDPSquareViewController new];
+    // Task 02
+    IDPUsersViewController *viewController = [IDPUsersViewController new];
+    viewController.user = [IDPUser new];
+    
     window.rootViewController = viewController;
     
     [window makeKeyAndVisible];
