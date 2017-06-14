@@ -29,7 +29,7 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
 - (void)stop;
 
 - (IDPSquarePosition)nextPosition;
-- (void)setPosition:(IDPSquarePosition)position;
+
 - (CGPoint)pointWithPosition:(IDPSquarePosition)position;
 
 @end
@@ -88,16 +88,15 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
 
 - (void)moveSquare {
     __block IDPSquarePosition position = [self nextPosition];
-    
-    IDPCompletionHandler handler = ^(BOOL finished) {
+  
+    [self moveSquareToPosition:position animated:YES completionHandler:^(BOOL finished) {
         if (!self.running) {
             return;
         }
-        [self setPosition:position];
+
+        self.square.position = position;
         [self moveSquare];
-    };
-    
-    [self moveSquareToPosition:position animated:YES completionHandler:handler];
+    }];
 }
 
 - (void)start {
@@ -116,16 +115,6 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
     } else {
         return square.position + 1;
     }
-}
-
-- (void)setPosition:(IDPSquarePosition)position {
-    IDPSquare *square = self.square;
-    
-    if (position == square.position) {
-        return;
-    }
-    
-    square.position = position;
 }
 
 - (CGPoint)pointWithPosition:(IDPSquarePosition)position {
