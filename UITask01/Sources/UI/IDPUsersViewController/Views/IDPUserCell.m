@@ -30,6 +30,7 @@
 
 - (void)fillWithUser:(IDPUser *)user {
     self.nameLabel.text = self.user.name;
+    self.imageView.image = self.user.image;
 }
 
 @end

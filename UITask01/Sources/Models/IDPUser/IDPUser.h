@@ -6,9 +6,10 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface IDPUser : NSObject
-@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSString    *name;
+@property (nonatomic, readonly) UIImage     *image;
 
 @end

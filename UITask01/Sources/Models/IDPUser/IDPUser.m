@@ -17,11 +17,19 @@
 
 @implementation IDPUser
 
+@dynamic image;
+
 - (instancetype)init {
     self = [super init];
     self.name = [NSString randomString];
     
     return self;
+}
+
+- (UIImage *)image {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"image" ofType:@"jpg"];
+    
+    return [UIImage imageWithContentsOfFile:path];
 }
 
 @end

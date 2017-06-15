@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface IDPSquareView : UIView
+@property (nonatomic, assign) BOOL running;
 
 @end

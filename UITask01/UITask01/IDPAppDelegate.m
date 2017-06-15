@@ -29,6 +29,12 @@
     IDPUsersViewController *viewController = [IDPUsersViewController new];
     viewController.user = [IDPUser new];
     
+    // Task03
+    // Task04
+    // Task05
+    // Task06
+    // Task07
+        
     window.rootViewController = viewController;
     
     [window makeKeyAndVisible];

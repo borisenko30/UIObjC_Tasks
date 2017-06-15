@@ -12,6 +12,6 @@
 
 @interface IDPMainView : UIView
 @property (nonatomic, strong) IBOutlet IDPSquareView    *squareView;
-@property (nonatomic, assign) BOOL                      running;
+@property (nonatomic, strong) IBOutlet UIButton         *button;
 
 @end

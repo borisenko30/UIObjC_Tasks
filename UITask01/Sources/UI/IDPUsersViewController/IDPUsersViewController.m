@@ -10,8 +10,11 @@
 
 #import "IDPUsersView.h"
 #import "IDPUser.h"
+#import "IDPUserCell.h"
 
 #import "IDPMacro.h"
+
+#import "UINib+IDPExtension.h"
 
 IDPViewController(IDPUsersViewController, usersView, IDPUsersView)
 
@@ -42,14 +45,14 @@ IDPViewController(IDPUsersViewController, usersView, IDPUsersView)
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString * const IDPCellName = @"cell";
+    NSString *cellClass = NSStringFromClass([IDPUserCell class]);
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:IDPCellName];
+    IDPUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:IDPCellName];
+        cell = [UINib objectWithClass:[IDPUserCell class]];
     }
-    cell.textLabel.text = self.user.name;
+    
+    cell.user = [IDPUser new];
     
     return cell;
 }
