@@ -98,7 +98,9 @@
     
     operation.completionBlock = ^{
         IDPStrongify(self)
-        self.state = self.image ? IDPImageModelLoaded : IDPImageModelFailedLoading;
+        @synchronized (self) {
+            self.state = self.image ? IDPImageModelLoaded : IDPImageModelFailedLoading;
+        }
     };
     
     return operation;

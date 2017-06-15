@@ -37,18 +37,21 @@
 
 // you should only call this method after you called weakify for the same variable
 #define IDPStrongify(variable) \
-    __strong __typeof(variable) variable = __IDPWeakified_##variable;
+    _Pragma("clang diagnostic push") \
+    _Pragma("clang diagnostic ignored \"-Wshadow\"");\
+    __strong __typeof(variable) variable = __IDPWeakified_##variable \
+    _Pragma("clang diagnostic pop");
 
 #define IDPEmptyResult
 
 #define IDPStrongifyAndReturnIfNil(variable) \
-    IDPStrongifyAndReturnResultIfNil(variable, IDPEmptyResult) \
+    IDPStrongifyAndReturnResultIfNil(variable, IDPEmptyResult)
 
 #define IDPStrongifyAndReturnNilIfNil(variable) \
-    IDPStrongifyAndReturnResultIfNil(variable, nil) \
+    IDPStrongifyAndReturnResultIfNil(variable, nil)
 
 #define IDPStrongifyAndReturnResultIfNil(variable, result) \
-    IDPStrongify(variable) \
+    IDPStrongify(variable); \
     if (!variable) { \
         return result; \
     }
