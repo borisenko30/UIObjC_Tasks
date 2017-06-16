@@ -62,9 +62,9 @@
 
 - (void)addHandler:(id)handler {
     @synchronized (self) {
+        [handler addObserver:self];
         [self.handlersQueue pushObject:handler];
         [self.mutableHandlers addObject:handler];
-        [handler addObserver:self];
     }
 }
 
