@@ -9,11 +9,14 @@
 #import <Foundation/Foundation.h>
 
 typedef void(^IDPBlock)();
+typedef BOOL(^IDPRunBlock)();
 
 extern void IDPDispatchOnMainQueue(IDPBlock block);
 
 // dipatch async queue on time interval
-extern void IDPDispatchAsyncInBackgroundOnInterval(NSTimeInterval interval, IDPBlock block);
+extern void IDPDispatchAsyncInBackgroundWithInterval(NSTimeInterval interval,
+                                                     IDPBlock block,
+                                                     IDPRunBlock running);
 
 // dispatch asynchronous queues
 extern void IDPDispatchAsyncInBackground(IDPBlock block);

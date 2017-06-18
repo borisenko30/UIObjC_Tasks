@@ -23,6 +23,8 @@ IDPStaticConstant(NSTimeInterval, IDPTimerInterval, 1.0f)
 @interface IDPCarDispatcher ()
 @property (nonatomic, retain) IDPEnterprise     *enterprise;
 
+- (void)addCars;
+
 @end
 
 @implementation IDPCarDispatcher
@@ -54,31 +56,14 @@ IDPStaticConstant(NSTimeInterval, IDPTimerInterval, 1.0f)
     _running = running;
     
     if (running) {
-        [self start];
+        IDPDispatchAsyncInBackgroundWithInterval(IDPTimerInterval,
+                                                 ^{ [self addCars]; },
+                                                 ^BOOL(){ return self.running; });
     }
 }
 
 #pragma mark -
 #pragma mark Private
-
-- (void)start {
-    IDPDispatchAsyncInBackgroundOnInterval(IDPTimerInterval, ^(void){
-        [self startInBackground];
-        if (self.running) {
-            [self start];
-        }
-    });
-}
-
-- (void)startInBackground {
-    IDPDispatchAsyncInBackground(^{
-        [self addCars];
-    });
-}
-
-- (void)stop {
-    self.running = NO;
-}
 
 - (void)addCars {
     [self.enterprise washCars:[IDPCar objectsWithCount:IDPCarsQuantity]];
