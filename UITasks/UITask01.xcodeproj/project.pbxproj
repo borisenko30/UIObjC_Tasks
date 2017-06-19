@@ -21,9 +21,6 @@
 		5617776D1EF2812D001C16B7 /* IDPSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 561777681EF2812D001C16B7 /* IDPSquare.m */; };
 		5617776E1EF2812D001C16B7 /* IDPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617776B1EF2812D001C16B7 /* IDPUser.m */; };
 		561777721EF28FA4001C16B7 /* IDPImageModelDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 561777711EF28FA4001C16B7 /* IDPImageModelDispatcher.m */; };
-		5630DFCA1EEE64F60048DF18 /* IDPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630DFC41EEE64F60048DF18 /* IDPAppDelegate.m */; };
-		5630DFCB1EEE64F60048DF18 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5630DFC51EEE64F60048DF18 /* Info.plist */; };
-		5630DFCC1EEE64F60048DF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630DFC61EEE64F60048DF18 /* main.m */; };
 		564B5CCE1EF3B86500C4D048 /* IDPImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 564B5CCD1EF3B86500C4D048 /* IDPImageView.m */; };
 		565510951EF177C4001098B7 /* IDPMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655107F1EF177C4001098B7 /* IDPMainView.m */; };
 		565510961EF177C4001098B7 /* IDPSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510811EF177C4001098B7 /* IDPSquareViewController.m */; };
@@ -34,6 +31,9 @@
 		5655109B1EF177C4001098B7 /* IDPUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5655108B1EF177C4001098B7 /* IDPUsersViewController.xib */; };
 		5655109C1EF177C4001098B7 /* IDPUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655108E1EF177C4001098B7 /* IDPUserCell.m */; };
 		5655109D1EF177C4001098B7 /* IDPUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5655108F1EF177C4001098B7 /* IDPUserCell.xib */; };
+		566BCD721EF7A42C002531C4 /* IDPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BCD6F1EF7A42C002531C4 /* IDPAppDelegate.m */; };
+		566BCD731EF7A42C002531C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 566BCD701EF7A42C002531C4 /* Info.plist */; };
+		566BCD741EF7A42C002531C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BCD711EF7A42C002531C4 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,17 +59,13 @@
 		5617775A1EF27750001C16B7 /* IDPTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTableViewCell.m; sourceTree = "<group>"; };
 		561777641EF2812D001C16B7 /* IDPImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageModel.h; sourceTree = "<group>"; };
 		561777651EF2812D001C16B7 /* IDPImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageModel.m; sourceTree = "<group>"; };
-		561777671EF2812D001C16B7 /* IDPSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquare.h; sourceTree = "<group>"; };
+		561777671EF2812D001C16B7 /* IDPSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = IDPSquare.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		561777681EF2812D001C16B7 /* IDPSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSquare.m; sourceTree = "<group>"; };
 		5617776A1EF2812D001C16B7 /* IDPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUser.h; sourceTree = "<group>"; };
 		5617776B1EF2812D001C16B7 /* IDPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUser.m; sourceTree = "<group>"; };
 		561777701EF28FA4001C16B7 /* IDPImageModelDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageModelDispatcher.h; sourceTree = "<group>"; };
 		561777711EF28FA4001C16B7 /* IDPImageModelDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageModelDispatcher.m; sourceTree = "<group>"; };
 		5630DF9E1EEE64750048DF18 /* UITask01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UITask01.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5630DFC31EEE64F60048DF18 /* IDPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPAppDelegate.h; sourceTree = "<group>"; };
-		5630DFC41EEE64F60048DF18 /* IDPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAppDelegate.m; sourceTree = "<group>"; };
-		5630DFC51EEE64F60048DF18 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5630DFC61EEE64F60048DF18 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		564B5CCC1EF3B86500C4D048 /* IDPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageView.h; sourceTree = "<group>"; };
 		564B5CCD1EF3B86500C4D048 /* IDPImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageView.m; sourceTree = "<group>"; };
 		5655107E1EF177C4001098B7 /* IDPMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMainView.h; sourceTree = "<group>"; };
@@ -87,6 +83,10 @@
 		5655108D1EF177C4001098B7 /* IDPUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUserCell.h; sourceTree = "<group>"; };
 		5655108E1EF177C4001098B7 /* IDPUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUserCell.m; sourceTree = "<group>"; };
 		5655108F1EF177C4001098B7 /* IDPUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPUserCell.xib; sourceTree = "<group>"; };
+		566BCD6E1EF7A42C002531C4 /* IDPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPAppDelegate.h; sourceTree = "<group>"; };
+		566BCD6F1EF7A42C002531C4 /* IDPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAppDelegate.m; sourceTree = "<group>"; };
+		566BCD701EF7A42C002531C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		566BCD711EF7A42C002531C4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,9 +234,9 @@
 		5630DF951EEE64750048DF18 = {
 			isa = PBXGroup;
 			children = (
+				566BCD6D1EF7A42C002531C4 /* Main */,
 				561777441EF270E8001C16B7 /* Resources */,
 				565510691EF177C4001098B7 /* Sources */,
-				5630DFC21EEE64F60048DF18 /* UITask01 */,
 				5630DF9F1EEE64750048DF18 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -247,17 +247,6 @@
 				5630DF9E1EEE64750048DF18 /* UITask01.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		5630DFC21EEE64F60048DF18 /* UITask01 */ = {
-			isa = PBXGroup;
-			children = (
-				5630DFC31EEE64F60048DF18 /* IDPAppDelegate.h */,
-				5630DFC41EEE64F60048DF18 /* IDPAppDelegate.m */,
-				5630DFC51EEE64F60048DF18 /* Info.plist */,
-				5630DFC61EEE64F60048DF18 /* main.m */,
-			);
-			path = UITask01;
 			sourceTree = "<group>";
 		};
 		564B5CCA1EF3B82E00C4D048 /* Views */ = {
@@ -341,6 +330,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		566BCD6D1EF7A42C002531C4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				566BCD6E1EF7A42C002531C4 /* IDPAppDelegate.h */,
+				566BCD6F1EF7A42C002531C4 /* IDPAppDelegate.m */,
+				566BCD701EF7A42C002531C4 /* Info.plist */,
+				566BCD711EF7A42C002531C4 /* main.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,13 +399,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5630DFCB1EEE64F60048DF18 /* Info.plist in Resources */,
 				565510971EF177C4001098B7 /* IDPSquareViewController.xib in Resources */,
 				5655109D1EF177C4001098B7 /* IDPUserCell.xib in Resources */,
 				5617774B1EF270E8001C16B7 /* LaunchScreen.storyboard in Resources */,
 				5617774C1EF270E8001C16B7 /* image.jpg in Resources */,
 				5655109B1EF177C4001098B7 /* IDPUsersViewController.xib in Resources */,
 				5617774A1EF270E8001C16B7 /* Assets.xcassets in Resources */,
+				566BCD731EF7A42C002531C4 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,16 +426,16 @@
 				561777721EF28FA4001C16B7 /* IDPImageModelDispatcher.m in Sources */,
 				5617775C1EF27750001C16B7 /* IDPObservableObject.m in Sources */,
 				565510981EF177C4001098B7 /* IDPSquareView.m in Sources */,
+				566BCD741EF7A42C002531C4 /* main.m in Sources */,
 				565510991EF177C4001098B7 /* IDPUsersView.m in Sources */,
 				565510961EF177C4001098B7 /* IDPSquareViewController.m in Sources */,
+				566BCD721EF7A42C002531C4 /* IDPAppDelegate.m in Sources */,
 				564B5CCE1EF3B86500C4D048 /* IDPImageView.m in Sources */,
-				5630DFCC1EEE64F60048DF18 /* main.m in Sources */,
 				561777371EF26581001C16B7 /* NSString+IDPRandom.m in Sources */,
 				565510951EF177C4001098B7 /* IDPMainView.m in Sources */,
 				5617773B1EF265DA001C16B7 /* UINib+IDPExtension.m in Sources */,
 				5617776C1EF2812D001C16B7 /* IDPImageModel.m in Sources */,
 				5617775E1EF27750001C16B7 /* IDPTableViewCell.m in Sources */,
-				5630DFCA1EEE64F60048DF18 /* IDPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,7 +545,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = UITask01/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Main/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IDP.UITask01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,7 +556,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = UITask01/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Main/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IDP.UITask01;
 				PRODUCT_NAME = "$(TARGET_NAME)";

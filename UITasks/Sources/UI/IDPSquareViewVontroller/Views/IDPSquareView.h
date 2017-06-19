@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+#import "IDPSquare.h"
+
+typedef void(^IDPCompletionHandler)(BOOL finished);
+
 @interface IDPSquareView : UIView
 @property (nonatomic, assign) BOOL running;
+
+- (IDPSquarePosition)squarePosition;
+
+- (void)setSquarePosition:(IDPSquarePosition)position;
+- (void)setSquarePosition:(IDPSquarePosition)position animated:(BOOL)animated;
+- (void)setSquarePosition:(IDPSquarePosition)position
+                 animated:(BOOL)animated
+        completionHandler:(IDPCompletionHandler)handler;
+
+- (IDPSquarePosition)nextPosition;
 
 @end

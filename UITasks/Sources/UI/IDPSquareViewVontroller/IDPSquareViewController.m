@@ -13,7 +13,7 @@
 
 #import "IDPMacro.h"
 
-IDPViewController(IDPSquareViewController, mainView, IDPMainView)
+IDPViewControllerBaseViewProperty(IDPSquareViewController, mainView, IDPMainView)
 
 static NSString * const IDPStartButtonTitle = @"Start";
 static NSString * const IDPStopButtonTitle  = @"Stop";
@@ -31,11 +31,19 @@ static NSString * const IDPStopButtonTitle  = @"Stop";
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)onTouch:(UIButton *)sender {
+#pragma mark -
+#pragma mark Private
+
+- (IBAction)onTouchStart:(UIButton *)sender {
     IDPSquareView *squareView = self.mainView.squareView;
     squareView.running = !squareView.running;
     [self.mainView.button setTitle:squareView.running ? IDPStopButtonTitle : IDPStartButtonTitle
                           forState:UIControlStateNormal];
+}
+
+- (IBAction)onTouchNext:(UIButton *)sender {
+    IDPSquareView *squareView = self.mainView.squareView;
+    [squareView setSquarePosition:[squareView nextPosition]];
 }
 
 @end

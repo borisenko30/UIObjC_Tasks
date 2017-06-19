@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSUInteger, IDPSquarePosition) {
-    IDPLeftTop,
-    IDPRightTop,
-    IDPRightBottom,
-    IDPLeftBottom,
+    IDPSquarePositionLeftTop,
+    IDPSquarePositionRightTop,
+    IDPSquarePositionRightBottom,
+    IDPSquarePositionLeftBottom,
     IDPSquarePositionCount
 };
 
 @interface IDPSquare : NSObject
 @property (nonatomic, assign) IDPSquarePosition position;
+
+- (IDPSquarePosition)nextPosition;
 
 @end

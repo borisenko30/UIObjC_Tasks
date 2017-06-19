@@ -10,4 +10,11 @@
 
 @implementation IDPSquare
 
+- (IDPSquarePosition)nextPosition {
+    IDPSquarePosition position = self.position;
+    position = (position + 1) % IDPSquarePositionCount;
+
+    return position;
+}
+
 @end

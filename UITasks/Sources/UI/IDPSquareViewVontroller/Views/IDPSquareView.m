@@ -9,24 +9,15 @@
 #import "IDPSquareView.h"
 #import "IDPSquare.h"
 
-static const CGFloat IDPAnimationDuration = 2.0f;
+#import "IDPMacro.h"
 
-typedef void(^IDPCompletionHandler)(BOOL finished);
+static const CGFloat IDPAnimationDuration = 2.0f;
 
 @interface IDPSquareView ()
 @property (nonatomic, strong) IDPSquare *square;
 
-- (void)moveSquareToPosition:(IDPSquarePosition)position;
-- (void)moveSquareToPosition:(IDPSquarePosition)position animated:(BOOL)animated;
-- (void)moveSquareToPosition:(IDPSquarePosition)position
-                    animated:(BOOL)animated
-           completionHandler:(IDPCompletionHandler)handler;
-
-- (void)moveSquare;
-
-- (IDPSquarePosition)nextPosition;
-
-- (CGPoint)pointWithPosition:(IDPSquarePosition)position;
+- (void)moveSquareInLoop;
+- (CGPoint)centerPointWithPosition:(IDPSquarePosition)position;
 
 @end
 
@@ -43,8 +34,12 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
     _running = running;
     
     if (running) {
-        [self moveSquare];
+        [self moveSquareInLoop];
     }
+}
+
+- (IDPSquarePosition)squarePosition {
+    return self.square.position;
 }
 
 #pragma mark -
@@ -57,69 +52,78 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
 }
 
 #pragma mark -
-#pragma mark Private
+#pragma mark Public
 
-- (void)moveSquareToPosition:(IDPSquarePosition)position {
-    [self moveSquareToPosition:position animated:NO completionHandler:nil];
+- (void)setSquarePosition:(IDPSquarePosition)position {
+    [self setSquarePosition:position animated:NO completionHandler:nil];
 }
-- (void)moveSquareToPosition:(IDPSquarePosition)position animated:(BOOL)animated {
-    [self moveSquareToPosition:position animated:animated completionHandler:nil];
+- (void)setSquarePosition:(IDPSquarePosition)position animated:(BOOL)animated {
+    [self setSquarePosition:position animated:animated completionHandler:nil];
 }
 
-- (void)moveSquareToPosition:(IDPSquarePosition)position
-                    animated:(BOOL)animated
-           completionHandler:(IDPCompletionHandler)handler
+- (void)setSquarePosition:(IDPSquarePosition)position
+                 animated:(BOOL)animated
+        completionHandler:(IDPCompletionHandler)handler
 {
-    __weak IDPSquareView *weakSelf = self;
+    IDPWeakify(self)
     [UIView animateWithDuration:animated ? IDPAnimationDuration : 0
                      animations:^{
-                         weakSelf.center = [weakSelf pointWithPosition:position];
+                         IDPStrongify(self)
+                         self.center = [self centerPointWithPosition:position];
                      }
-                     completion:handler];
-}
-
-- (void)moveSquare {
-    __block IDPSquarePosition position = [self nextPosition];
-    
-    __weak IDPSquareView *weakSelf = self;
-    
-    [self moveSquareToPosition:position animated:YES completionHandler:^(BOOL finished) {
-        if (!weakSelf.running) {
-            return;
-        }
-        
-        weakSelf.square.position = position;
-        [weakSelf moveSquare];
-    }];
+                     completion:^(BOOL finished){
+                         IDPStrongify(self)
+                         self.square.position = position;
+                         
+                         if (handler) {
+                             handler(finished);
+                         }
+                     }];
 }
 
 - (IDPSquarePosition)nextPosition {
-    IDPSquare *square = self.square;
-    return (square.position + 1) % IDPSquarePositionCount;
+    return [self.square nextPosition];
 }
 
-- (CGPoint)pointWithPosition:(IDPSquarePosition)position {
-    CGRect frame = self.frame;
-    CGRect superViewFrame = [self.superview convertRect:self.superview.bounds toView:nil];
+#pragma mark -
+#pragma mark Private
+
+- (void)moveSquareInLoop {
+    __block IDPSquarePosition position = [self nextPosition];
     
-    CGFloat squareMidWidth = CGRectGetWidth(frame) / 2;
-    CGFloat squareMidHeight = CGRectGetHeight(frame) / 2;  
+    IDPWeakify(self)
+    [self setSquarePosition:position animated:YES completionHandler:^(BOOL finished) {
+        IDPStrongify(self)
+        if (!self.running) {
+            return;
+        }
+        
+        [self moveSquareInLoop];
+    }];
+}
+
+- (CGPoint)centerPointWithPosition:(IDPSquarePosition)position {
+    CGRect bounds = self.bounds;
+    CGRect superViewBounds = [self.superview convertRect:self.superview.bounds toView:nil];
+    
+    CGFloat squareMidWidth = CGRectGetMidX(bounds);
+    CGFloat squareMidHeight = CGRectGetMidY(bounds);
     
     CGPoint point = CGPointMake(squareMidWidth, squareMidHeight);
-    CGPoint bottomRight = CGPointMake(CGRectGetWidth(superViewFrame) - squareMidWidth,
-                                      CGRectGetHeight(superViewFrame) - squareMidHeight);
+    CGPoint bottomRight = CGPointMake(CGRectGetWidth(superViewBounds) - squareMidWidth,
+                                      CGRectGetHeight(superViewBounds) - squareMidHeight);
     
     switch(position) {
             
-        case IDPRightTop:
+        case IDPSquarePositionRightTop:
             point.x = bottomRight.x;
             break;
             
-        case IDPLeftBottom:
+        case IDPSquarePositionLeftBottom:
             point.y = bottomRight.y;
             break;
             
-        case IDPRightBottom:
+        case IDPSquarePositionRightBottom:
             point = bottomRight;
             break;
             

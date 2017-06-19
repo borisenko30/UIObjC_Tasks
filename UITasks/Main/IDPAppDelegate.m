@@ -23,7 +23,7 @@
     self.window = window;
 
     // Task 01
-    //IDPSquareViewController *viewController = [IDPSquareViewController new];
+//    IDPSquareViewController *viewController = [IDPSquareViewController new];
     
     // Task 02
     IDPUsersViewController *viewController = [IDPUsersViewController new];

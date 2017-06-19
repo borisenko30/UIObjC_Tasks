@@ -33,7 +33,19 @@
                         <color key="titleColor" red="1" green="0.0003347916945731777" blue="0.064124687134121339" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="onTouch:" destination="-1" eventType="touchUpInside" id="jow-sC-rQD"/>
+                        <action selector="onTouchStart:" destination="-1" eventType="touchUpInside" id="jow-sC-rQD"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4PW-1k-VEp">
+                    <rect key="frame" x="120" y="398" width="134" height="64"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="NextStep">
+                        <color key="titleColor" red="1" green="0.00033479169459999999" blue="0.064124687129999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="onTouchNext:" destination="-1" eventType="touchUpInside" id="Als-Mr-8Et"/>
                     </connections>
                 </button>
             </subviews>

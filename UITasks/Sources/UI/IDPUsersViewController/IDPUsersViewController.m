@@ -16,7 +16,7 @@
 
 #import "UINib+IDPExtension.h"
 
-IDPViewController(IDPUsersViewController, usersView, IDPUsersView)
+IDPViewControllerBaseViewProperty(IDPUsersViewController, usersView, IDPUsersView)
 
 @interface IDPUsersViewController ()
 

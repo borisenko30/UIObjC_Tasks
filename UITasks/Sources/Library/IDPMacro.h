@@ -18,13 +18,13 @@
     return nil; \
     }
 
-#define IDPViewController(viewControllerClass, viewName, viewClass) \
-    @interface viewControllerClass (__IDPPrivateBaseView) \
+#define IDPViewControllerBaseViewProperty(viewControllerClass, viewName, viewClass) \
+    @interface viewControllerClass (viewName##propertyName) \
     IDPBaseViewProperty(viewName, viewClass) \
     \
     @end \
     \
-    @implementation viewControllerClass (__IDPPrivateBaseView) \
+    @implementation viewControllerClass (viewName##propertyName) \
     \
     @dynamic viewName;\
     \
@@ -39,7 +39,7 @@
 #define IDPStrongify(variable) \
     _Pragma("clang diagnostic push") \
     _Pragma("clang diagnostic ignored \"-Wshadow\"");\
-    __strong __typeof(variable) variable = __IDPWeakified_##variable \
+    __strong __typeof(variable) variable = __IDPWeakified_##variable; \
     _Pragma("clang diagnostic pop");
 
 #define IDPEmptyResult
@@ -51,7 +51,7 @@
     IDPStrongifyAndReturnResultIfNil(variable, nil)
 
 #define IDPStrongifyAndReturnResultIfNil(variable, result) \
-    IDPStrongify(variable); \
+    IDPStrongify(variable) \
     if (!variable) { \
         return result; \
     }
