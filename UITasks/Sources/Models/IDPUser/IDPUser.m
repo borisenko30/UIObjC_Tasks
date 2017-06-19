@@ -21,12 +21,18 @@
 
 @dynamic imageModel;
 
+#pragma mark -
+#pragma mark Deallocations and initializations
+
 - (instancetype)init {
     self = [super init];
     self.name = [NSString randomString];
     
     return self;
 }
+
+#pragma mark -
+#pragma mark Accessors
 
 - (IDPImageModel *)imageModel {
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"image" withExtension:@"jpg"];

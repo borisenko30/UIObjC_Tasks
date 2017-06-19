@@ -8,8 +8,6 @@
 
 #import "IDPMainTableView.h"
 
-#import "IDPUsersView.h"
-
 @implementation IDPMainTableView
 
 /*

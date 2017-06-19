@@ -1,14 +1,14 @@
 //
-//  UINib+IDPExtension.m
+//  UINib+IDPExtensions.m
 //  UITask01
 //
 //  Created by Student003 on 6/15/17.
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "UINib+IDPExtension.h"
+#import "UINib+IDPExtensions.h"
 
-@implementation UINib (IDPExtension)
+@implementation UINib (IDPExtensions)
 
 + (instancetype)nibWithClass:(Class)viewClass {
     return [self nibWithClass:viewClass bundle:nil];

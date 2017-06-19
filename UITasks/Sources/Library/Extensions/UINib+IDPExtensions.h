@@ -1,5 +1,5 @@
 //
-//  UINib+IDPExtension.h
+//  UINib+IDPExtensions.h
 //  UITask01
 //
 //  Created by Student003 on 6/15/17.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UINib (IDPExtension)
+@interface UINib (IDPExtensions)
 
 + (instancetype)nibWithClass:(Class)viewClass;
 + (instancetype)nibWithClass:(Class)viewClass bundle:(NSBundle *)bundle;

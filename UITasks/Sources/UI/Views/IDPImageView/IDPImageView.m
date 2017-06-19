@@ -124,7 +124,7 @@
         }
     };
     
-    [observer setHandler:handler forState:IDPImageModelUnloaded];
+    [observer setHandler:handler forState:IDPImageModelLoaded];
     [observer setHandler:handler forState:IDPImageModelUnloaded];
     
     handler = ^(IDPBlockObservationController *controller, id userInfo){

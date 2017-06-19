@@ -88,11 +88,9 @@ static const CGFloat IDPAnimationDuration = 2.0f;
 #pragma mark -
 #pragma mark Private
 
-- (void)moveSquareInLoop {
-    __block IDPSquarePosition position = [self nextPosition];
-    
+- (void)moveSquareInLoop {    
     IDPWeakify(self)
-    [self setSquarePosition:position animated:YES completionHandler:^(BOOL finished) {
+    [self setSquarePosition:[self nextPosition] animated:YES completionHandler:^(BOOL finished) {
         IDPStrongify(self)
         if (!self.running) {
             return;

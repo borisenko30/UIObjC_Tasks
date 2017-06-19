@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class IDPUsersView;
+#import "IDPUsersView.h"
 
 @interface IDPMainTableView : UIView
 @property (nonatomic, strong) IBOutlet IDPUsersView *usersView;
