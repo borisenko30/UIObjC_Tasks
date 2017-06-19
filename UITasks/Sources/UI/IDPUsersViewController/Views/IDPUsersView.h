@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#import "IDPUsersTable.h"
+
 @interface IDPUsersView : UITableView
+@property (nonatomic, readonly) IDPUsersTable *table;
 
 @end

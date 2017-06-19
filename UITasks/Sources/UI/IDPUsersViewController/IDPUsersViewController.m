@@ -14,9 +14,9 @@
 
 #import "IDPMacro.h"
 
-#import "UINib+IDPExtension.h"
+#import "UINib+IDPExtensions.h"
 
-IDPViewControllerBaseViewProperty(IDPUsersViewController, usersView, IDPUsersView)
+IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, UIView)
 
 @interface IDPUsersViewController ()
 
@@ -30,7 +30,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, usersView, IDPUsersVie
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.usersView reloadData];
+    [self.mainView.usersView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +41,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, usersView, IDPUsersVie
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return self.usersView.table.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,7 +52,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, usersView, IDPUsersVie
         cell = [UINib objectWithClass:[IDPUserCell class]];
     }
     
-    cell.user = [IDPUser new];
+    cell.user = self.mainView.usersView.table[indexPath.row];
     
     return cell;
 }

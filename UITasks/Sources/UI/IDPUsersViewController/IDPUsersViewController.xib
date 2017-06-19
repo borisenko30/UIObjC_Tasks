@@ -11,19 +11,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IDPUsersViewController">
             <connections>
-                <outlet property="view" destination="a7k-ZB-pm8" id="QWh-yl-6Og"/>
+                <outlet property="view" destination="uZf-EE-TwX" id="ew3-hj-6VL"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="a7k-ZB-pm8" customClass="IDPUsersView">
+        <view contentMode="scaleToFill" id="uZf-EE-TwX" customClass="IDPMainTableView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a7k-ZB-pm8" customClass="IDPUsersView">
+                    <rect key="frame" x="0.0" y="47" width="375" height="620"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="fmo-vO-GOu"/>
+                        <outlet property="delegate" destination="-1" id="zuS-ki-3r1"/>
+                    </connections>
+                </tableView>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csd-wi-0jk">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="Lre-tg-5B3"/>
+                    </items>
+                </navigationBar>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="dataSource" destination="-1" id="GVu-cB-6JP"/>
-                <outlet property="delegate" destination="-1" id="Azt-IL-GFc"/>
+                <outlet property="usersView" destination="a7k-ZB-pm8" id="QPp-a0-HcL"/>
             </connections>
-            <point key="canvasLocation" x="10" y="28"/>
-        </tableView>
+            <point key="canvasLocation" x="-400.5" y="21.5"/>
+        </view>
     </objects>
 </document>

@@ -32,24 +32,7 @@
 
 - (void)fillWithUser:(IDPUser *)user {
     self.nameLabel.text = user.name;
-    
-    
-    self.userImageView.contentImageView.image = user.imageModel.image;
-    NSLog(@"");
-    
-//    static dispatch_once_t onceTocken;
-//    static dispatch_queue_t queue = nil;
-//    dispatch_once(&onceTocken, ^{
-//        queue = dispatch_queue_create("asdf", DISPATCH_QUEUE_SERIAL);
-//    });
-//    
-//    dispatch_async(queue, ^{
-//        UIImage *image = user.imageModel.image;
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            self.userImageView.contentImageView.image = image;
-//        });
-//    });
-    
+    self.userImageView.imageModel = user.imageModel;    
 }
 
 @end

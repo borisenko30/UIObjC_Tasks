@@ -1,14 +1,16 @@
 //
-//  IDPUsersView.m
+//  IDPMainTableView.m
 //  UITask01
 //
-//  Created by Student003 on 6/14/17.
+//  Created by Student003 on 6/19/17.
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
+#import "IDPMainTableView.h"
+
 #import "IDPUsersView.h"
 
-@implementation IDPUsersView
+@implementation IDPMainTableView
 
 /*
 // Only override drawRect: if you perform custom drawing.
