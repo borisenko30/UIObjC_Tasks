@@ -15,7 +15,7 @@
 static const NSUInteger IDPUsersCount = 5;
 
 @interface IDPUsersView ()
-@property (nonatomic, strong) IDPUsersTable *table;
+@property (nonatomic, strong) IDPUsersModel *usersModel;
 @property (nonatomic, strong) IDPBlockObservationController *observer;
 
 @end
@@ -53,21 +53,20 @@ static const NSUInteger IDPUsersCount = 5;
 }
 
 - (void)initModel {
-    self.table = [[IDPUsersTable alloc] initWithUsersWithCount:IDPUsersCount];
+    self.usersModel = [[IDPUsersModel alloc] initWithUsersWithCount:IDPUsersCount];
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setTable:(IDPUsersTable *)table {
-    if (table == _table) {
+- (void)setUsersModel:(IDPUsersModel *)usersModel {
+    if (usersModel == _usersModel) {
         return;
     }
     
-    _table = table;
+    _usersModel = usersModel;
     
-    self.observer = [_table blockObservationControllerWithObserver:self];
-    [self reloadData];
+    self.observer = [_usersModel blockObservationControllerWithObserver:self];
 }
 
 - (void)setObserver:(IDPBlockObservationController *)observer {
@@ -81,8 +80,8 @@ static const NSUInteger IDPUsersCount = 5;
     [observer setHandler:^(IDPBlockObservationController *controller, id userInfo) {
         IDPStrongify(self)
         [self reloadData];
-        self.table.state = IDPUsersTableUnchanged;
-    } forState:IDPUsersTableChanged];
+        self.usersModel.state = IDPUsersModelUnchanged;
+    } forState:IDPUsersModelChanged];
 }
 
 #pragma mark -

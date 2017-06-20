@@ -10,6 +10,6 @@
 
 @interface IDPUserCell (Extensions)
 
-- (IDPUserCell *)reusableCellWithClass:(Class)cellClass;
++ (IDPUserCell *)reusableCellWithClass:(Class)cellClass;
 
 @end

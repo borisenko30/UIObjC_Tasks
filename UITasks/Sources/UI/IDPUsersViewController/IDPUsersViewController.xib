@@ -31,7 +31,7 @@
                 </tableView>
                 <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="csd-wi-0jk">
                     <rect key="frame" x="0.0" y="24" width="375" height="44"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                     <items>
                         <navigationItem id="Lre-tg-5B3">
                             <barButtonItem key="leftBarButtonItem" title="Sort" id="OyH-cy-sNh">

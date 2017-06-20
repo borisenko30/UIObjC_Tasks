@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) IDPUser *user;
 
++ (instancetype)reusableCellWithClass:(Class)cellClass;
+
 - (void)fillWithUser:(IDPUser *)user;
 
 @end

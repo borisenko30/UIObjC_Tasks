@@ -1,21 +1,21 @@
 //
-//  IDPUsersTable.m
+//  IDPUsersModel.m
 //  UITask01
 //
 //  Created by Student003 on 6/19/17.
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPUsersTable.h"
+#import "IDPUsersModel.h"
 
 #import "IDPUser.h"
 
-@interface IDPUsersTable ()
+@interface IDPUsersModel ()
 @property (nonatomic, strong) NSMutableArray *mutableUsers;
 
 @end
 
-@implementation IDPUsersTable
+@implementation IDPUsersModel
 
 @dynamic users;
 @dynamic count;
@@ -56,18 +56,26 @@
 
 - (void)addUser {
     [self.mutableUsers addObject:[IDPUser new]];
-    self.state = IDPUsersTableChanged;
+    self.state = IDPUsersModelChanged;
 }
 
 - (void)removeUser:(IDPUser *)user {
     [self.mutableUsers removeObject:user];
-    self.state = IDPUsersTableChanged;
+    self.state = IDPUsersModelChanged;
+}
+
+- (void)swapUserAtIndex:(NSUInteger)userIndex withUserAtIndex:(NSUInteger)anotherUserIndex {
+    NSMutableArray *users = self.mutableUsers;
+    IDPUser *temporaryUser = users[userIndex];
+    
+    users[userIndex] = users[anotherUserIndex];
+    users[anotherUserIndex] = temporaryUser;
 }
 
 - (void)sortUsers {
     // temporary solution! Should make user object Comparable!!!
     [self.mutableUsers sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
-    self.state = IDPUsersTableChanged;
+    self.state = IDPUsersModelChanged;
 }
 
 - (NSUInteger)count {

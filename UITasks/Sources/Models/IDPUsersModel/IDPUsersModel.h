@@ -1,5 +1,5 @@
 //
-//  IDPUsersTable.h
+//  IDPUsersModel.h
 //  UITask01
 //
 //  Created by Student003 on 6/19/17.
@@ -10,12 +10,12 @@
 
 @class IDPUser;
 
-typedef NS_ENUM(NSUInteger, IDPUsersTableState) {
-    IDPUsersTableUnchanged,
-    IDPUsersTableChanged
+typedef NS_ENUM(NSUInteger, IDPUsersModelState) {
+    IDPUsersModelUnchanged,
+    IDPUsersModelChanged
 };
 
-@interface IDPUsersTable : IDPObservableObject
+@interface IDPUsersModel : IDPObservableObject
 @property (nonatomic, readonly, copy)   NSArray     *users;
 @property (nonatomic, readonly)         NSUInteger  count;
 
@@ -23,6 +23,8 @@ typedef NS_ENUM(NSUInteger, IDPUsersTableState) {
 
 - (void)addUser;
 - (void)removeUser:(IDPUser *) user;
+
+- (void)swapUserAtIndex:(NSUInteger)userIndex withUserAtIndex:(NSUInteger)anotherUserIndex;
 
 - (void)sortUsers;
 
