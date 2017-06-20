@@ -10,6 +10,8 @@
 
 #import "IDPUser.h"
 
+static NSString * const IDPFileName = @"model.plist";
+
 @interface IDPUsersModel ()
 @property (nonatomic, strong) NSMutableArray *mutableUsers;
 
@@ -28,18 +30,7 @@
 }
 
 - (instancetype)init {
-    self = [self initWithUsersWithCount:0];
-    
-    return self;
-}
-
-- (instancetype)initWithUsersWithCount:(NSUInteger)count {
     self = [super init];
-    
-    self.mutableUsers = [NSMutableArray array];
-    for (int i = 0; i < count; i++) {
-        [self.mutableUsers addObject:[IDPUser new]];
-    }
     
     return self;
 }
@@ -82,15 +73,37 @@
     return self.mutableUsers.count;
 }
 
-#pragma mark -
-#pragma mark Private
-
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return self.mutableUsers[index];
 }
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
     
+}
+
+- (void)saveModel {
+    NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
+    
+    BOOL saved = [NSKeyedArchiver archiveRootObject:self.mutableUsers toFile:url.path];
+    if (saved) {
+        NSLog(@"file was saved...");
+    } else {
+        NSLog(@"failed to save the file!");
+    }
+}
+
+- (void)loadModel {
+    NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
+    self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+    self.state = IDPUsersModelChanged;
+    NSLog(@"loaded model");
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

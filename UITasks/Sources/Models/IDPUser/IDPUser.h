@@ -10,7 +10,7 @@
 
 @class IDPImageModel;
 
-@interface IDPUser : NSObject
+@interface IDPUser : NSObject <NSCoding>
 @property (nonatomic, readonly) NSString        *name;
 @property (nonatomic, readonly) IDPImageModel   *imageModel;
 
