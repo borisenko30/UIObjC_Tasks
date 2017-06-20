@@ -8,6 +8,8 @@
 
 #import "IDPTableViewCell.h"
 
+#import "UINib+IDPExtensions.h"
+
 @implementation IDPTableViewCell
 
 #pragma mark -

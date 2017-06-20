@@ -17,6 +17,7 @@
 #import "IDPMacro.h"
 
 #import "UINib+IDPExtensions.h"
+#import "UITableView+IDPExtensions.h"
 
 IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTableView)
 
@@ -63,12 +64,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *cellClass = NSStringFromClass([IDPUserCell class]);
-    
-    IDPUserCell *cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
-    if (!cell) {
-        cell = [UINib objectWithClass:[IDPUserCell class]];
-    }
+    IDPUserCell *cell = (IDPUserCell *)[tableView safeReusableCellWithClass:[IDPUserCell class]];
     
     cell.user = self.mainView.usersView.usersModel[indexPath.row];
     
