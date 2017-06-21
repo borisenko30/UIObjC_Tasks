@@ -19,8 +19,6 @@ typedef NS_ENUM(NSUInteger, IDPUsersModelState) {
 @property (nonatomic, readonly, copy)   NSArray     *users;
 @property (nonatomic, readonly)         NSUInteger  count;
 
-- (instancetype)initWithUsersWithCount:(NSUInteger)count;
-
 - (void)addUser;
 - (void)removeUser:(IDPUser *) user;
 
@@ -32,5 +30,8 @@ typedef NS_ENUM(NSUInteger, IDPUsersModelState) {
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
+
+- (void)saveModel;
+- (void)loadModel;
 
 @end

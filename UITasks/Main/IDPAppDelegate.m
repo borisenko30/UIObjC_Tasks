@@ -10,12 +10,15 @@
 
 #import "IDPSquareViewController.h"
 #import "IDPUsersViewController.h"
+
+#import "IDPUsersModel.h"
 #import "IDPUser.h"
 
 #import "UIWindow+IDPExtensions.h"
 #import "UIViewController+IDPExtensions.h"
 
 @interface IDPAppDelegate ()
+@property (nonatomic, strong) IDPUsersViewController *controller;
 
 @end
 
@@ -30,7 +33,6 @@
     
     // Task 02
     IDPUsersViewController *viewController = [IDPUsersViewController defaultViewController];
-    viewController.user = [IDPUser new];
     
     // Task03
     // Task04
@@ -39,8 +41,11 @@
     // Task07
         
     window.rootViewController = viewController;
+    self.controller = viewController;
     
     [window makeKeyAndVisible];
+    
+    [self.controller loadModel];
     
     return YES;
 }
@@ -50,7 +55,7 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-
+    [self.controller saveModel];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -62,7 +67,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-
+    [self.controller saveModel];
 }
 
 @end

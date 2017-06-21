@@ -56,6 +56,14 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
     [view setEditing:self.canEdit animated:YES];
 }
 
+- (void)saveModel {
+    [self.mainView.usersView.usersModel saveModel];
+}
+
+- (void)loadModel {
+    [self.mainView.usersView.usersModel loadModel];
+}
+
 #pragma mark -
 #pragma mark UITableViewDataSource
 

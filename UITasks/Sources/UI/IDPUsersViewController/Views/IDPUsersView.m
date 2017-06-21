@@ -12,8 +12,6 @@
 
 #import "IDPMacro.h"
 
-static const NSUInteger IDPUsersCount = 5;
-
 @interface IDPUsersView ()
 @property (nonatomic, strong) IDPUsersModel *usersModel;
 @property (nonatomic, strong) IDPBlockObservationController *observer;
@@ -53,7 +51,7 @@ static const NSUInteger IDPUsersCount = 5;
 }
 
 - (void)initModel {
-    self.usersModel = [[IDPUsersModel alloc] initWithUsersWithCount:IDPUsersCount];
+    self.usersModel = [IDPUsersModel new];
 }
 
 #pragma mark -

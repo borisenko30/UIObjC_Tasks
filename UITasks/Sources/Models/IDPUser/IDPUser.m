@@ -12,6 +12,8 @@
 
 #import "NSString+IDPRandom.h"
 
+static NSString * const IDPUserName = @"IDPUserName";
+
 @interface IDPUser ()
 @property (nonatomic, strong) NSString *name;
 
@@ -38,6 +40,20 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"image" withExtension:@"jpg"];
     
     return [IDPImageModel imageWithURL:url];
+}
+
+#pragma mark -
+#pragma mark NSCoding methods
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:IDPUserName];
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    self.name = [aDecoder decodeObjectForKey:IDPUserName];
+    
+    return self;
 }
 
 @end
