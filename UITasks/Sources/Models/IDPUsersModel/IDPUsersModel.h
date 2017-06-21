@@ -11,8 +11,10 @@
 @class IDPUser;
 
 typedef NS_ENUM(NSUInteger, IDPUsersModelState) {
-    IDPUsersModelUnchanged,
-    IDPUsersModelChanged
+    IDPUsersModelIdle,
+    IDPUsersModelDidChange,
+    IDPUsersModelDidBeginLoading,
+    IDPUsersModelDidLoad
 };
 
 @interface IDPUsersModel : IDPObservableObject
@@ -31,7 +33,7 @@ typedef NS_ENUM(NSUInteger, IDPUsersModelState) {
 - (id)objectAtIndexedSubscript:(NSUInteger)index;
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index;
 
-- (void)saveModel;
-- (void)loadModel;
+- (void)saveUsers;
+- (void)loadUsers;
 
 @end

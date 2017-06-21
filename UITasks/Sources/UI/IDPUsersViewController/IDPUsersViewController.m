@@ -35,17 +35,22 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
     [super viewDidLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self loadModel];
+    [self.mainView.usersView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (IBAction)onTouchSort:(id)sender {
-    IDPUsersView *view = self.mainView.usersView;
+    IDPMainTableView *view = self.mainView;
     [view.usersModel sortUsers];
 }
 
 - (IBAction)onTouchAdd:(id)sender {
-    IDPUsersView *view = self.mainView.usersView;
+    IDPMainTableView *view = self.mainView;
     [view.usersModel addUser];
 }
 
@@ -57,43 +62,43 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 }
 
 - (void)saveModel {
-    [self.mainView.usersView.usersModel saveModel];
+    [self.mainView.usersModel saveUsers];
 }
 
 - (void)loadModel {
-    [self.mainView.usersView.usersModel loadModel];
+    [self.mainView.usersModel loadUsers];
 }
 
 #pragma mark -
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.mainView.usersView.usersModel.count;
+    return self.mainView.usersModel.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     IDPUserCell *cell = (IDPUserCell *)[tableView safeReusableCellWithClass:[IDPUserCell class]];
     
-    cell.user = self.mainView.usersView.usersModel[indexPath.row];
+    cell.user = self.mainView.usersModel[indexPath.row];
     
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return self.canEdit;
 }
 
 - (void) tableView:(UITableView *)tableView
 moveRowAtIndexPath:(nonnull NSIndexPath *)sourceIndexPath
        toIndexPath:(nonnull NSIndexPath *)destinationIndexPath
 {
-    IDPUsersModel *model = self.mainView.usersView.usersModel;
+    IDPUsersModel *model = self.mainView.usersModel;
     [model swapUserAtIndex:sourceIndexPath.row withUserAtIndex:destinationIndexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        IDPUsersView *view = self.mainView.usersView;
+        IDPMainTableView *view = self.mainView;
         [view.usersModel removeUser:view.usersModel[indexPath.row]];
     }
 }

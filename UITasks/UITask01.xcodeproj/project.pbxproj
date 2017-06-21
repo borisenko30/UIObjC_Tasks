@@ -26,6 +26,8 @@
 		564403921EF91716007B8829 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 564403911EF91716007B8829 /* UIWindow+IDPExtensions.m */; };
 		564403951EF9181C007B8829 /* UIViewController+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 564403941EF9181C007B8829 /* UIViewController+IDPExtensions.m */; };
 		564B5CCE1EF3B86500C4D048 /* IDPImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 564B5CCD1EF3B86500C4D048 /* IDPImageView.m */; };
+		564B7A891EFA5E7C00FD46A0 /* IDPPreLaunchUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 564B7A881EFA5E7C00FD46A0 /* IDPPreLaunchUsersView.m */; };
+		564B7A8B1EFA7CE400FD46A0 /* IDPPreLaunchUsersView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 564B7A8A1EFA7CE400FD46A0 /* IDPPreLaunchUsersView.xib */; };
 		565510951EF177C4001098B7 /* IDPMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5655107F1EF177C4001098B7 /* IDPMainView.m */; };
 		565510961EF177C4001098B7 /* IDPSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565510811EF177C4001098B7 /* IDPSquareViewController.m */; };
 		565510971EF177C4001098B7 /* IDPSquareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565510821EF177C4001098B7 /* IDPSquareViewController.xib */; };
@@ -81,6 +83,9 @@
 		564403941EF9181C007B8829 /* UIViewController+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+IDPExtensions.m"; sourceTree = "<group>"; };
 		564B5CCC1EF3B86500C4D048 /* IDPImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPImageView.h; sourceTree = "<group>"; };
 		564B5CCD1EF3B86500C4D048 /* IDPImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPImageView.m; sourceTree = "<group>"; };
+		564B7A871EFA5E7C00FD46A0 /* IDPPreLaunchUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPPreLaunchUsersView.h; sourceTree = "<group>"; };
+		564B7A881EFA5E7C00FD46A0 /* IDPPreLaunchUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPPreLaunchUsersView.m; sourceTree = "<group>"; };
+		564B7A8A1EFA7CE400FD46A0 /* IDPPreLaunchUsersView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPPreLaunchUsersView.xib; sourceTree = "<group>"; };
 		5655107E1EF177C4001098B7 /* IDPMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMainView.h; sourceTree = "<group>"; };
 		5655107F1EF177C4001098B7 /* IDPMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMainView.m; sourceTree = "<group>"; };
 		565510801EF177C4001098B7 /* IDPSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSquareViewController.h; sourceTree = "<group>"; };
@@ -370,6 +375,9 @@
 				566BCD881EF7F3AC002531C4 /* IDPUserCell.xib */,
 				566BCD891EF7F3AC002531C4 /* IDPUsersView.h */,
 				566BCD8A1EF7F3AC002531C4 /* IDPUsersView.m */,
+				564B7A871EFA5E7C00FD46A0 /* IDPPreLaunchUsersView.h */,
+				564B7A881EFA5E7C00FD46A0 /* IDPPreLaunchUsersView.m */,
+				564B7A8A1EFA7CE400FD46A0 /* IDPPreLaunchUsersView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -438,6 +446,7 @@
 				5617774C1EF270E8001C16B7 /* image.jpg in Resources */,
 				5617774A1EF270E8001C16B7 /* Assets.xcassets in Resources */,
 				566BCD8F1EF7F3AC002531C4 /* IDPUserCell.xib in Resources */,
+				564B7A8B1EFA7CE400FD46A0 /* IDPPreLaunchUsersView.xib in Resources */,
 				566BCD731EF7A42C002531C4 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +482,7 @@
 				5644038F1EF91379007B8829 /* UITableView+IDPExtensions.m in Sources */,
 				5644038C1EF8FA1A007B8829 /* IDPUsersModel.m in Sources */,
 				5617776C1EF2812D001C16B7 /* IDPImageModel.m in Sources */,
+				564B7A891EFA5E7C00FD46A0 /* IDPPreLaunchUsersView.m in Sources */,
 				5617775E1EF27750001C16B7 /* IDPTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

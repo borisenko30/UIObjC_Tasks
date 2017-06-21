@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IDPPreLaunchUsersView : UIImageView
+@interface IDPPreLaunchUsersView : UIView
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
+
+- (void)modelDidBeginLoading;
+- (void)modelDidLoad;
 
 @end

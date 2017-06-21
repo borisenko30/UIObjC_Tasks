@@ -10,12 +10,17 @@
 
 @implementation IDPPreLaunchUsersView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+#pragma mark -
+#pragma mark Public
+
+- (void)modelDidBeginLoading {
+    [self.activityIndicator startAnimating];
+    NSLog(@"start animation");
 }
-*/
+
+- (void)modelDidLoad {
+    [self.activityIndicator stopAnimating];
+    NSLog(@"stop animation");
+}
 
 @end
