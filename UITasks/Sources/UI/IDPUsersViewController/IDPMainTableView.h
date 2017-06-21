@@ -10,7 +10,15 @@
 
 #import "IDPUsersView.h"
 
+#import "IDPPreLaunchUsersView.h"
+
+@class IDPUsersModel;
+
 @interface IDPMainTableView : UIView
-@property (nonatomic, strong) IBOutlet IDPUsersView *usersView;
+@property (nonatomic, strong) IBOutlet IDPUsersView    *usersView;
+@property (nonatomic, strong) IDPPreLaunchUsersView    *preLaunchUsersView;
+
+@property (nonatomic, readonly) IDPUsersModel *usersModel;
+
 
 @end

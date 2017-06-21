@@ -136,5 +136,4 @@
     [observer setHandler:handler forState:IDPImageModelFailedLoading];
 }
 
-
 @end

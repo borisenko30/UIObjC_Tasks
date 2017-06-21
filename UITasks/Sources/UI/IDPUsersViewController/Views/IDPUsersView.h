@@ -11,6 +11,5 @@
 #import "IDPUsersModel.h"
 
 @interface IDPUsersView : UITableView
-@property (nonatomic, readonly) IDPUsersModel *usersModel;
 
 @end

@@ -31,6 +31,7 @@ static NSString * const IDPFileName = @"model.plist";
 
 - (instancetype)init {
     self = [super init];
+    self.mutableUsers = [NSMutableArray array];
     
     return self;
 }
@@ -47,12 +48,12 @@ static NSString * const IDPFileName = @"model.plist";
 
 - (void)addUser {
     [self.mutableUsers addObject:[IDPUser new]];
-    self.state = IDPUsersModelChanged;
+    self.state = IDPUsersModelDidChange;
 }
 
 - (void)removeUser:(IDPUser *)user {
     [self.mutableUsers removeObject:user];
-    self.state = IDPUsersModelChanged;
+    self.state = IDPUsersModelDidChange;
 }
 
 - (void)swapUserAtIndex:(NSUInteger)userIndex withUserAtIndex:(NSUInteger)anotherUserIndex {
@@ -66,7 +67,7 @@ static NSString * const IDPFileName = @"model.plist";
 - (void)sortUsers {
     // temporary solution! Should make user object Comparable!!!
     [self.mutableUsers sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
-    self.state = IDPUsersModelChanged;
+    self.state = IDPUsersModelDidChange;
 }
 
 - (NSUInteger)count {
@@ -81,7 +82,7 @@ static NSString * const IDPFileName = @"model.plist";
     
 }
 
-- (void)saveModel {
+- (void)saveUsers {
     NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
     
     BOOL saved = [NSKeyedArchiver archiveRootObject:self.mutableUsers toFile:url.path];
@@ -92,11 +93,25 @@ static NSString * const IDPFileName = @"model.plist";
     }
 }
 
-- (void)loadModel {
+- (void)loadUsers {
     NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
-    self.mutableUsers = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
-    self.state = IDPUsersModelChanged;
+    
+    NSLog(@"start loading");
+    
+    self.state = IDPUsersModelDidBeginLoading;
+    sleep(1);
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
+        NSMutableArray *users = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+        if (users) {
+            self.mutableUsers = users;
+        }
+    });
+
+    self.state = IDPUsersModelDidLoad;
+    
     NSLog(@"loaded model");
+    
+    
 }
 
 #pragma mark -
