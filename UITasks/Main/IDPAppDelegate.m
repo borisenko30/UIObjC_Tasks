@@ -33,7 +33,6 @@
     
     // Task 02
     IDPUsersViewController *viewController = [IDPUsersViewController defaultViewController];
-    viewController.user = [IDPUser new];
     
     // Task03
     // Task04

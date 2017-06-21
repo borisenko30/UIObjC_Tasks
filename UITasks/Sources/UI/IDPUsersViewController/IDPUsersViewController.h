@@ -12,7 +12,6 @@
 @class IDPUsersModel;
 
 @interface IDPUsersViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) IDPUser *user;
 
 - (void)saveModel;
 - (void)loadModel;
