@@ -10,15 +10,12 @@
 
 #import "IDPUsersModel.h"
 
-#import "IDPBlockObservationController.h"
-
 #import "UINib+IDPExtensions.h"
 
 #import "IDPMacro.h"
 
 @interface IDPMainTableView ()
 @property (nonatomic, strong) IDPUsersModel *usersModel;
-@property (nonatomic, strong) IDPBlockObservationController *observer;
 
 @end
 
@@ -26,6 +23,11 @@
 
 #pragma mark -
 #pragma mark Deallocations and initializations
+
+- (void)dealloc {
+    // set to nil to remove observer
+    self.usersModel = nil;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -64,50 +66,31 @@
         return;
     }
     
+    [_usersModel removeObserver:self];
+    
     _usersModel = usersModel;
     
-    self.observer = [_usersModel blockObservationControllerWithObserver:self];
-}
-
-- (void)setObserver:(IDPBlockObservationController *)observer {
-    if (observer == _observer) {
-        return;
-    }
-    
-    _observer = observer;
-    
-    IDPWeakify(self)
-    IDPStateChangeHandler handler = ^(IDPBlockObservationController *controller, id userInfo) {
-        IDPStrongify(self)
-        [self.usersView reloadData];
-        self.usersModel.state = IDPUsersModelIdle;
-    };
-    
-    [observer setHandler:handler forState:IDPUsersModelDidChange];
-    
-    handler = ^(IDPBlockObservationController *controller, id userInfo) {
-        IDPStrongify(self)
-        self.preLaunchUsersView.hidden = NO;
-        [self.preLaunchUsersView modelDidBeginLoading];
-        self.usersModel.state = IDPUsersModelIdle;
-    };
-    
-    [observer setHandler:handler forState:IDPUsersModelDidBeginLoading];
-    
-    
-    handler = ^(IDPBlockObservationController *controller, id userInfo) {
-        IDPStrongify(self)
-        self.preLaunchUsersView.hidden = YES;
-        [self.preLaunchUsersView modelDidLoad];
-        self.usersModel.state = IDPUsersModelIdle;
-    };
-    
-    [observer setHandler:handler forState:IDPUsersModelDidLoad];
-    
+    [_usersModel addObserver:self];
 }
 
 #pragma mark -
-#pragma mark Public
+#pragma mark ModelObserver methods
 
+- (void)modelDidChange:(id)model {
+    [self.usersView reloadData];
+    //temporary stub - should use transient states
+    self.usersModel.state = IDPModelDidUnload;
+}
+
+- (void)modelWillLoad:(id)model {
+    self.preLaunchUsersView.hidden = NO;
+    [self.preLaunchUsersView startLoadingAnimation];
+}
+
+- (void)modelDidLoad:(id)model {
+    self.preLaunchUsersView.hidden = YES;
+    [self.preLaunchUsersView stopLoadingAnimation];
+    [self.usersView reloadData];
+}
 
 @end

@@ -11,6 +11,7 @@
 #import "IDPUser.h"
 
 static NSString * const IDPFileName = @"model.plist";
+static NSString * const IDPUserKey  = @"name";
 
 @interface IDPUsersModel ()
 @property (nonatomic, strong) NSMutableArray *mutableUsers;
@@ -48,12 +49,12 @@ static NSString * const IDPFileName = @"model.plist";
 
 - (void)addUser {
     [self.mutableUsers addObject:[IDPUser new]];
-    self.state = IDPUsersModelDidChange;
+    self.state = IDPModelDidChange;
 }
 
 - (void)removeUser:(IDPUser *)user {
     [self.mutableUsers removeObject:user];
-    self.state = IDPUsersModelDidChange;
+    self.state = IDPModelDidChange;
 }
 
 - (void)swapUserAtIndex:(NSUInteger)userIndex withUserAtIndex:(NSUInteger)anotherUserIndex {
@@ -66,8 +67,8 @@ static NSString * const IDPFileName = @"model.plist";
 
 - (void)sortUsers {
     // temporary solution! Should make user object Comparable!!!
-    [self.mutableUsers sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
-    self.state = IDPUsersModelDidChange;
+    [self.mutableUsers sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:IDPUserKey ascending:YES]]];
+    self.state = IDPModelDidChange;
 }
 
 - (NSUInteger)count {
@@ -98,20 +99,43 @@ static NSString * const IDPFileName = @"model.plist";
     
     NSLog(@"start loading");
     
-    self.state = IDPUsersModelDidBeginLoading;
-    sleep(1);
+    self.state = IDPModelWillLoad;
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
         NSMutableArray *users = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
         if (users) {
             self.mutableUsers = users;
         }
-    });
 
-    self.state = IDPUsersModelDidLoad;
+        self.state = IDPModelDidLoad;
+        NSLog(@"loaded model");
+    });
     
-    NSLog(@"loaded model");
     
-    
+}
+
+- (void)clearUsers {
+    self.mutableUsers = [NSMutableArray array];
+}
+
+#pragma mark -
+#pragma mark Observable object methods
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPModelDidLoad:
+            return @selector(modelDidLoad:);
+        case IDPModelDidUnload:
+            return @selector(modelDidUnload:);
+        case IDPModelDidFailLoading:
+            return @selector(modelDidFailLoading:);
+        case IDPModelDidChange:
+            return @selector(modelDidChange:);
+        case IDPModelWillLoad:
+            return @selector(modelWillLoad:);
+            
+        default:
+            return [super selectorForState:state];
+    }
 }
 
 #pragma mark -

@@ -9,8 +9,6 @@
 #import "IDPUserCell.h"
 
 #import "IDPUser.h"
-#import "IDPImageView.h"
-#import "IDPImageModel.h"
 
 @implementation IDPUserCell
 
@@ -32,7 +30,7 @@
 
 - (void)fillWithUser:(IDPUser *)user {
     self.nameLabel.text = user.name;
-    self.userImageView.imageModel = user.imageModel;    
+    self.userImageView.image = user.image;
 }
 
 @end

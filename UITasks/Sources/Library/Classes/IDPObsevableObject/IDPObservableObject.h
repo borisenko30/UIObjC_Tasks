@@ -1,25 +1,27 @@
 //
 //  IDPObservableObject.h
-//  IDPThirdTask
+//  Task06_Observer_Objc
 //
-//  Created by Student004 on 5/25/17.
-//  Copyright © 2017 Student004. All rights reserved.
+//  Created by Student003 on 5/26/17.
+//  Copyright © 2017 Student003. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@class IDPBlockObservationController;
-
 @interface IDPObservableObject : NSObject
-@property (nonatomic, assign)       NSUInteger     state;
+@property (nonatomic, assign)   NSUInteger  state;
+@property (nonatomic, readonly) NSSet       *observers;
 
-- (void)setState:(NSUInteger)state withObject:(id)object;
+- (void)addObserver:(id)observer;
+- (void)removeObserver:(id)observer;
 
-- (IDPBlockObservationController *)blockObservationControllerWithObserver:(id)observer;
+- (void)addObservers:(NSArray *)observers;
+- (void)removeObservers:(NSArray *)observers;
 
-// these methods are called in subclasses
-// you should never call these methods directly from outside subclasses
-- (void)notifyOfStateChange:(NSUInteger)state;
-- (void)notifyOfStateChange:(NSUInteger)state withObject:(id)object;
+// should be overriden in subclasses
+- (SEL)selectorForState:(NSUInteger)state;
+
+- (void)notifyOfState:(NSUInteger)state;
+- (void)notifyOfState:(NSUInteger)state withObject:(id)object;
 
 @end

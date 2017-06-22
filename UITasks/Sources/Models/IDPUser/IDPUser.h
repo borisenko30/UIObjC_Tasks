@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class IDPImageModel;
-
 @interface IDPUser : NSObject <NSCoding>
 @property (nonatomic, readonly) NSString        *name;
-@property (nonatomic, readonly) IDPImageModel   *imageModel;
+@property (nonatomic, strong) NSURL           *imageURL;
+@property (nonatomic, readonly) UIImage         *image;
 
 @end

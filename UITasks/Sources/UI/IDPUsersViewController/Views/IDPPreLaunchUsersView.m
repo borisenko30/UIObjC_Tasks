@@ -13,12 +13,12 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)modelDidBeginLoading {
+- (void)startLoadingAnimation {
     [self.activityIndicator startAnimating];
     NSLog(@"start animation");
 }
 
-- (void)modelDidLoad {
+- (void)stopLoadingAnimation {
     [self.activityIndicator stopAnimating];
     NSLog(@"stop animation");
 }

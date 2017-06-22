@@ -1,124 +1,117 @@
 //
 //  IDPObservableObject.m
-//  IDPThirdTask
+//  Task06_Observer_Objc
 //
-//  Created by Student004 on 5/25/17.
-//  Copyright © 2017 Student004. All rights reserved.
+//  Created by Student003 on 5/26/17.
+//  Copyright © 2017 Student003. All rights reserved.
 //
 
 #import "IDPObservableObject.h"
 
-#import "IDPBlockObservationController.h"
-
-#import "IDPObservableObject+IDPPrivate.h"
-#import "IDPObservationController+IDPPrivate.h"
-
-typedef void(^IDPControllerNotificationBlock)(IDPObservationController *controller);
-
 @interface IDPObservableObject ()
-@property (nonatomic, retain)     NSHashTable  *observationControllerHashTable;
-
-- (void)notifyOfStateChange:(NSUInteger)state
-                withHandler:(IDPControllerNotificationBlock)handler;
-
-- (id)observationControllerWithClass:(Class)class
-                            observer:(id)observer;
+@property (nonatomic, retain) NSHashTable *mutableObservers;
 
 @end
 
 @implementation IDPObservableObject
 
-@synthesize state = _state;
+@dynamic observers;
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)dealloc {
-    self.observationControllerHashTable = nil;
-}
+#pragma mark Deallocations and initializations
 
 - (instancetype)init {
     self = [super init];
-    self.observationControllerHashTable = [NSHashTable weakObjectsHashTable];
-     
+    self.mutableObservers = [NSHashTable weakObjectsHashTable];
+    
     return self;
 }
 
 #pragma mark -
 #pragma mark Accessors
 
-- (NSSet *)observerSet {
-    return [self.observationControllerHashTable setRepresentation];
-}
-
 - (void)setState:(NSUInteger)state {
-    if (_state != state) {
-        _state = state;
-        
-        [self notifyOfStateChange:state];
+    @synchronized (self) {
+        if (_state != state) {
+            _state = state;
+            
+            [self notifyOfState:state];
+        }
     }
 }
 
-- (void)setState:(NSUInteger)state withObject:(id)object {
-    if (_state != state) {
-        _state = state;
-        
-        [self notifyOfStateChange:state
-                       withObject:object];
+- (NSSet *)observers {
+    @synchronized (self) {
+        return [self.mutableObservers copy];
     }
 }
 
 #pragma mark -
-#pragma mark Public Methods
+#pragma mark Public
 
-- (IDPBlockObservationController *)blockObservationControllerWithObserver:(id)observer {
-    return [self observationControllerWithClass:[IDPBlockObservationController class]
-                                       observer:observer];
-}
-
-#pragma mark -
-#pragma mark Private Methods
-
-- (id)observationControllerWithClass:(Class)class observer:(id)observer {
-    IDPObservationController *result = [class observationControllerWithObserver:observer
-                                                               observableObject:self];
-    
-    [self.observationControllerHashTable addObject:result];
-    
-    return result;
-}
-
-- (void)invalidateController:(IDPObservationController *)controller {
-    [self.observationControllerHashTable removeObject:controller];
-}
-
-- (void)notifyOfStateChange:(NSUInteger)state {
-    [self notifyOfStateChange:state
-                  withHandler:^(IDPObservationController *controller){
-                      [controller notifyWithState:state];
-                  }];
-}
-
-- (void)notifyOfStateChange:(NSUInteger)state
-                 withObject:(id)object
-{
-    [self notifyOfStateChange:state
-                  withHandler:^(IDPObservationController *controller){
-                      [controller notifyWithState:state
-                                           object:object];
-                  }];
-}
-
-- (void)notifyOfStateChange:(NSUInteger)state
-                withHandler:(IDPControllerNotificationBlock)handler
-{
-    if (!handler) {
+- (void)addObserver:(id)observer {
+    if (!observer) {
         return;
     }
     
-    NSHashTable *controllers = self.observationControllerHashTable;
-    for (IDPObservationController *controller in controllers) {
-        handler(controller);
+    @synchronized (self) {
+        [self.mutableObservers addObject:observer];
+    }
+}
+
+- (void)removeObserver:(id)observer {
+    if (!observer) {
+        return;
+    }
+    
+    @synchronized (self) {
+        [self.mutableObservers removeObject:observer];
+    }
+}
+
+- (void)addObservers:(NSArray *)observers {
+    @synchronized (self) {
+        for (id observer in observers) {
+            [self addObserver:observer];
+        }
+    }
+}
+
+- (void)removeObservers:(NSArray *)observers {
+    @synchronized (self) {
+        for (id observer in observers) {
+            [self removeObserver:observer];
+        }
+    }
+}
+
+- (SEL)selectorForState:(NSUInteger)state {
+    return NULL;
+}
+
+- (void)notifyOfState:(NSUInteger)state {
+    [self notifyOfStateWithSelector:[self selectorForState:state]];
+}
+
+- (void)notifyOfState:(NSUInteger)state withObject:(id)object {
+    [self notifyOfStateWithSelector:[self selectorForState:state] withObject:object];
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)notifyOfStateWithSelector:(SEL)selector {
+    [self notifyOfStateWithSelector:selector withObject:self];
+}
+
+- (void)notifyOfStateWithSelector:(SEL)selector withObject:(id)object{
+    @synchronized (object) {
+        NSSet *observers = self.observers;
+        for (id observer in observers) {
+            if ([observer respondsToSelector:selector]) {
+                [observer performSelector:selector withObject:object];
+            }
+        }
     }
 }
 

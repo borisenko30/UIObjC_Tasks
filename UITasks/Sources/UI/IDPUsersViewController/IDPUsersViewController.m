@@ -37,7 +37,6 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 
 - (void)viewDidAppear:(BOOL)animated {
     [self loadModel];
-    [self.mainView.usersView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

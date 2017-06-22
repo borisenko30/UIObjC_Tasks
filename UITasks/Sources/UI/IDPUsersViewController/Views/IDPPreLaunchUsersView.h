@@ -11,7 +11,7 @@
 @interface IDPPreLaunchUsersView : UIView
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-- (void)modelDidBeginLoading;
-- (void)modelDidLoad;
+- (void)startLoadingAnimation;
+- (void)stopLoadingAnimation;
 
 @end

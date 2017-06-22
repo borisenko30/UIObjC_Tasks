@@ -8,20 +8,21 @@
 
 #import "IDPUser.h"
 
-#import "IDPImageModel.h"
-
 #import "NSString+IDPRandom.h"
 
-static NSString * const IDPUserName = @"IDPUserName";
+static NSString * const IDPUserName         = @"IDPUserName";
+static NSString * const IDPImageName        = @"image";
+static NSString * const IDPImageExtension   = @"jpg";
 
 @interface IDPUser ()
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString  *name;
+//@property (nonatomic, strong) NSURL     *imageURL;
 
 @end
 
 @implementation IDPUser
 
-@dynamic imageModel;
+@dynamic image;
 
 #pragma mark -
 #pragma mark Deallocations and initializations
@@ -36,10 +37,10 @@ static NSString * const IDPUserName = @"IDPUserName";
 #pragma mark -
 #pragma mark Accessors
 
-- (IDPImageModel *)imageModel {
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"image" withExtension:@"jpg"];
+- (UIImage *)image {
+    self.imageURL = [[NSBundle mainBundle] URLForResource:IDPImageName withExtension:IDPImageExtension];
     
-    return [IDPImageModel imageWithURL:url];
+    return [UIImage imageWithContentsOfFile:[self.imageURL path]];
 }
 
 #pragma mark -
@@ -47,11 +48,13 @@ static NSString * const IDPUserName = @"IDPUserName";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:IDPUserName];
+    [aCoder encodeObject:self.imageURL forKey:IDPImageName];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     self.name = [aDecoder decodeObjectForKey:IDPUserName];
+    self.imageURL = [aDecoder decodeObjectForKey:IDPImageName];
     
     return self;
 }

@@ -14,7 +14,19 @@
 
 @class IDPUsersModel;
 
-@interface IDPMainTableView : UIView
+@protocol IDPModelObserver <NSObject>
+
+@optional
+- (void)modelDidLoad:(id)model;
+- (void)modelDidUnload:(id)model;
+- (void)modelDidFailLoading:(id)model;
+- (void)modelDidChange:(id)model;
+- (void)modelWillLoad:(id)model;
+
+@end
+
+
+@interface IDPMainTableView : UIView <IDPModelObserver>
 @property (nonatomic, strong) IBOutlet IDPUsersView    *usersView;
 @property (nonatomic, strong) IDPPreLaunchUsersView    *preLaunchUsersView;
 
