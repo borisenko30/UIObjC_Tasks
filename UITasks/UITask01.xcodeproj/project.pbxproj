@@ -18,6 +18,11 @@
 		5617776D1EF2812D001C16B7 /* IDPSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 561777681EF2812D001C16B7 /* IDPSquare.m */; };
 		5617776E1EF2812D001C16B7 /* IDPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617776B1EF2812D001C16B7 /* IDPUser.m */; };
 		564010241EFBAFB20003FC8A /* IDPGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 564010231EFBAFB20003FC8A /* IDPGCD.m */; };
+		564010271EFC06D70003FC8A /* IDPObservableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564010261EFC06D70003FC8A /* IDPObservableModel.m */; };
+		564267BA1EFCF098002DB666 /* IDPModificationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564267B91EFCF098002DB666 /* IDPModificationModel.m */; };
+		564267BD1EFCF0C7002DB666 /* IDPInsertionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564267BC1EFCF0C7002DB666 /* IDPInsertionModel.m */; };
+		564267C01EFCF0D7002DB666 /* IDPDeletionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564267BF1EFCF0D7002DB666 /* IDPDeletionModel.m */; };
+		564267C31EFD2CE6002DB666 /* IDPMovementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564267C21EFD2CE6002DB666 /* IDPMovementModel.m */; };
 		5644038C1EF8FA1A007B8829 /* IDPUsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5644038B1EF8FA1A007B8829 /* IDPUsersModel.m */; };
 		5644038F1EF91379007B8829 /* UITableView+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5644038E1EF91379007B8829 /* UITableView+IDPExtensions.m */; };
 		564403921EF91716007B8829 /* UIWindow+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 564403911EF91716007B8829 /* UIWindow+IDPExtensions.m */; };
@@ -61,6 +66,16 @@
 		5630DF9E1EEE64750048DF18 /* UITask01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UITask01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		564010221EFBAFB20003FC8A /* IDPGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPGCD.h; path = "../../../../../UIObjC_Tasks 2/Task09_ObjC/Task09_ObjC/Sources/Dispatcher/IDPGCD.h"; sourceTree = "<group>"; };
 		564010231EFBAFB20003FC8A /* IDPGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPGCD.m; path = "../../../../../UIObjC_Tasks 2/Task09_ObjC/Task09_ObjC/Sources/Dispatcher/IDPGCD.m"; sourceTree = "<group>"; };
+		564010251EFC06D70003FC8A /* IDPObservableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableModel.h; sourceTree = "<group>"; };
+		564010261EFC06D70003FC8A /* IDPObservableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableModel.m; sourceTree = "<group>"; };
+		564267B81EFCF098002DB666 /* IDPModificationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModificationModel.h; sourceTree = "<group>"; };
+		564267B91EFCF098002DB666 /* IDPModificationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPModificationModel.m; sourceTree = "<group>"; };
+		564267BB1EFCF0C7002DB666 /* IDPInsertionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPInsertionModel.h; sourceTree = "<group>"; };
+		564267BC1EFCF0C7002DB666 /* IDPInsertionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPInsertionModel.m; sourceTree = "<group>"; };
+		564267BE1EFCF0D7002DB666 /* IDPDeletionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPDeletionModel.h; sourceTree = "<group>"; };
+		564267BF1EFCF0D7002DB666 /* IDPDeletionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPDeletionModel.m; sourceTree = "<group>"; };
+		564267C11EFD2CE6002DB666 /* IDPMovementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMovementModel.h; sourceTree = "<group>"; };
+		564267C21EFD2CE6002DB666 /* IDPMovementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMovementModel.m; sourceTree = "<group>"; };
 		5644038A1EF8FA1A007B8829 /* IDPUsersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUsersModel.h; sourceTree = "<group>"; };
 		5644038B1EF8FA1A007B8829 /* IDPUsersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUsersModel.m; sourceTree = "<group>"; };
 		5644038D1EF91379007B8829 /* UITableView+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+IDPExtensions.h"; sourceTree = "<group>"; };
@@ -186,6 +201,7 @@
 		561777621EF2812D001C16B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				564267B61EFCF06B002DB666 /* IDPModificationModel */,
 				564403891EF8FA1A007B8829 /* IDPUsersModel */,
 				561777661EF2812D001C16B7 /* IDPSquare */,
 				561777691EF2812D001C16B7 /* IDPUser */,
@@ -233,6 +249,8 @@
 		564010201EFBAAB60003FC8A /* IDPObservableModel */ = {
 			isa = PBXGroup;
 			children = (
+				564010251EFC06D70003FC8A /* IDPObservableModel.h */,
+				564010261EFC06D70003FC8A /* IDPObservableModel.m */,
 			);
 			path = IDPObservableModel;
 			sourceTree = "<group>";
@@ -244,6 +262,29 @@
 				564010231EFBAFB20003FC8A /* IDPGCD.m */,
 			);
 			path = GCD;
+			sourceTree = "<group>";
+		};
+		564267B61EFCF06B002DB666 /* IDPModificationModel */ = {
+			isa = PBXGroup;
+			children = (
+				564267B71EFCF06B002DB666 /* Private */,
+				564267B81EFCF098002DB666 /* IDPModificationModel.h */,
+				564267B91EFCF098002DB666 /* IDPModificationModel.m */,
+			);
+			path = IDPModificationModel;
+			sourceTree = "<group>";
+		};
+		564267B71EFCF06B002DB666 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				564267BB1EFCF0C7002DB666 /* IDPInsertionModel.h */,
+				564267BC1EFCF0C7002DB666 /* IDPInsertionModel.m */,
+				564267BE1EFCF0D7002DB666 /* IDPDeletionModel.h */,
+				564267BF1EFCF0D7002DB666 /* IDPDeletionModel.m */,
+				564267C11EFD2CE6002DB666 /* IDPMovementModel.h */,
+				564267C21EFD2CE6002DB666 /* IDPMovementModel.m */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 		564403891EF8FA1A007B8829 /* IDPUsersModel */ = {
@@ -419,6 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				564403951EF9181C007B8829 /* UIViewController+IDPExtensions.m in Sources */,
+				564010271EFC06D70003FC8A /* IDPObservableModel.m in Sources */,
 				5617776D1EF2812D001C16B7 /* IDPSquare.m in Sources */,
 				566BCD901EF7F3AC002531C4 /* IDPUsersView.m in Sources */,
 				561777381EF26581001C16B7 /* IDPRandom.m in Sources */,
@@ -430,10 +472,14 @@
 				566BCD741EF7A42C002531C4 /* main.m in Sources */,
 				565510961EF177C4001098B7 /* IDPSquareViewController.m in Sources */,
 				564010241EFBAFB20003FC8A /* IDPGCD.m in Sources */,
+				564267BA1EFCF098002DB666 /* IDPModificationModel.m in Sources */,
 				566BCD721EF7A42C002531C4 /* IDPAppDelegate.m in Sources */,
+				564267C31EFD2CE6002DB666 /* IDPMovementModel.m in Sources */,
 				566BCD8C1EF7F3AC002531C4 /* IDPUsersViewController.m in Sources */,
 				561777371EF26581001C16B7 /* NSString+IDPRandom.m in Sources */,
+				564267C01EFCF0D7002DB666 /* IDPDeletionModel.m in Sources */,
 				564403921EF91716007B8829 /* UIWindow+IDPExtensions.m in Sources */,
+				564267BD1EFCF0C7002DB666 /* IDPInsertionModel.m in Sources */,
 				565510951EF177C4001098B7 /* IDPMainView.m in Sources */,
 				5617773B1EF265DA001C16B7 /* UINib+IDPExtensions.m in Sources */,
 				5644038F1EF91379007B8829 /* UITableView+IDPExtensions.m in Sources */,

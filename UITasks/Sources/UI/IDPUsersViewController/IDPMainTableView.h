@@ -17,11 +17,11 @@
 @protocol IDPModelObserver <NSObject>
 
 @optional
-- (void)modelDidLoad:(id)model;
-- (void)modelDidUnload:(id)model;
-- (void)modelDidFailLoading:(id)model;
-- (void)modelDidChange:(id)model;
-- (void)modelWillLoad:(id)model;
+- (void)modelDidLoad;
+- (void)modelDidUnload;
+- (void)modelDidFailLoading;
+- (void)modelDidChange:(id)model withModificationModel:(id)modification;
+- (void)modelWillLoad;
 
 @end
 

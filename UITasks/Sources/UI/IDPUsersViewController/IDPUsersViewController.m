@@ -50,7 +50,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 
 - (IBAction)onTouchAdd:(id)sender {
     IDPMainTableView *view = self.mainView;
-    [view.usersModel addUser];
+    [view.usersModel addUser:[IDPUser new]];
 }
 
 - (IBAction)onTouchEdit:(id)sender {

@@ -8,7 +8,11 @@
 
 #import "IDPUsersModel.h"
 
+#import "IDPModificationModel.h"
+
 #import "IDPUser.h"
+
+#import "IDPMacro.h"
 
 static NSString * const IDPFileName = @"model.plist";
 static NSString * const IDPUserKey  = @"name";
@@ -47,21 +51,31 @@ static NSString * const IDPUserKey  = @"name";
 #pragma mark -
 #pragma mark Public
 
-- (void)addUser {
-    [self.mutableUsers addObject:[IDPUser new]];
-    self.state = IDPModelDidChange;
+- (void)addUser:(IDPUser *)user {
+    [self.mutableUsers addObject:user];
+    
+    NSUInteger index = [self indexOfUser:user];
+    
+    IDPModificationModel *model = [IDPModificationModel insertionModelWithIndex:index];
+    
+    [self notifyOfState:IDPModelDidChange withObject:model];
 }
 
 - (void)removeUser:(IDPUser *)user {
+    NSUInteger index = [self indexOfUser:user];
+    
     [self.mutableUsers removeObject:user];
-    self.state = IDPModelDidChange;
+    
+    IDPModificationModel *model = [IDPModificationModel deletionModelWithIndex:index];
+    
+    [self notifyOfState:IDPModelDidChange withObject:model];
 }
 
-- (void)swapUserAtIndex:(NSUInteger)userIndex withUserAtIndex:(NSUInteger)anotherUserIndex {
+- (void)swapUserAtIndex:(NSUInteger)indexOfUser withUserAtIndex:(NSUInteger)anotherUserIndex {
     NSMutableArray *users = self.mutableUsers;
-    IDPUser *temporaryUser = users[userIndex];
+    IDPUser *temporaryUser = users[indexOfUser];
     
-    users[userIndex] = users[anotherUserIndex];
+    users[indexOfUser] = users[anotherUserIndex];
     users[anotherUserIndex] = temporaryUser;
 }
 
@@ -75,12 +89,12 @@ static NSString * const IDPUserKey  = @"name";
     return self.mutableUsers.count;
 }
 
-- (id)objectAtIndexedSubscript:(NSUInteger)index {
-    return self.mutableUsers[index];
+- (NSUInteger)indexOfUser:(IDPUser *)user {
+    return [self.mutableUsers indexOfObject:user];
 }
 
-- (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
-    
+- (id)objectAtIndexedSubscript:(NSUInteger)index {
+    return self.mutableUsers[index];
 }
 
 - (void)saveUsers {
@@ -95,26 +109,28 @@ static NSString * const IDPUserKey  = @"name";
 }
 
 - (void)loadUsers {
+    if (self.mutableUsers.count > 0) {
+        self.state = IDPModelDidLoad;
+        
+        return;
+    }
+    
     NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
     
     NSLog(@"start loading");
-    
     self.state = IDPModelWillLoad;
+    
+    IDPWeakify(self)
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), ^{
-        NSMutableArray *users = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
-        if (users) {
-            self.mutableUsers = users;
+        IDPStrongify(self)
+        NSMutableArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+        if (objects) {
+            self.mutableUsers = objects;
         }
 
         self.state = IDPModelDidLoad;
         NSLog(@"loaded model");
     });
-    
-    
-}
-
-- (void)clearUsers {
-    self.mutableUsers = [NSMutableArray array];
 }
 
 #pragma mark -
@@ -123,15 +139,15 @@ static NSString * const IDPUserKey  = @"name";
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case IDPModelDidLoad:
-            return @selector(modelDidLoad:);
+            return @selector(modelDidLoad);
         case IDPModelDidUnload:
-            return @selector(modelDidUnload:);
+            return @selector(modelDidUnload);
         case IDPModelDidFailLoading:
-            return @selector(modelDidFailLoading:);
+            return @selector(modelDidFailLoading);
         case IDPModelDidChange:
-            return @selector(modelDidChange:);
+            return @selector(modelDidChange:withModificationModel:);
         case IDPModelWillLoad:
-            return @selector(modelWillLoad:);
+            return @selector(modelWillLoad);
             
         default:
             return [super selectorForState:state];

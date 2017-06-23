@@ -10,6 +10,8 @@
 
 #import "IDPUsersModel.h"
 
+#import "IDPModificationModel.h"
+
 #import "UINib+IDPExtensions.h"
 
 #import "IDPMacro.h"
@@ -76,18 +78,16 @@
 #pragma mark -
 #pragma mark ModelObserver methods
 
-- (void)modelDidChange:(id)model {
-    [self.usersView reloadData];
-    //temporary stub - should use transient states
-    self.usersModel.state = IDPModelDidUnload;
+- (void)modelDidChange:(id)model withModificationModel:(id)modification {
+    [modification applyToTableView:self.usersView];
 }
 
-- (void)modelWillLoad:(id)model {
+- (void)modelWillLoad {
     self.preLaunchUsersView.hidden = NO;
     [self.preLaunchUsersView startLoadingAnimation];
 }
 
-- (void)modelDidLoad:(id)model {
+- (void)modelDidLoad {
     self.preLaunchUsersView.hidden = YES;
     [self.preLaunchUsersView stopLoadingAnimation];
     [self.usersView reloadData];

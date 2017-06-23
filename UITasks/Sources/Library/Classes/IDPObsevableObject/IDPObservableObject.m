@@ -101,7 +101,7 @@
 #pragma mark Private
 
 - (void)notifyOfStateWithSelector:(SEL)selector {
-    [self notifyOfStateWithSelector:selector withObject:self];
+    [self notifyOfStateWithSelector:selector withObject:nil];
 }
 
 - (void)notifyOfStateWithSelector:(SEL)selector withObject:(id)object{
@@ -109,7 +109,7 @@
         NSSet *observers = self.observers;
         for (id observer in observers) {
             if ([observer respondsToSelector:selector]) {
-                [observer performSelector:selector withObject:object];
+                [observer performSelector:selector withObject:self withObject:object];
             }
         }
     }
