@@ -14,4 +14,6 @@
 @property (nonatomic, strong) IBOutlet IDPSquareView    *squareView;
 @property (nonatomic, strong) IBOutlet UIButton         *button;
 
+- (void)run;
+
 @end

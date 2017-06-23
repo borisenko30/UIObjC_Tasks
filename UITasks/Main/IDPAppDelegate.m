@@ -45,8 +45,6 @@
     
     [window makeKeyAndVisible];
     
-    //[self.controller loadModel];
-    
     return YES;
 }
 

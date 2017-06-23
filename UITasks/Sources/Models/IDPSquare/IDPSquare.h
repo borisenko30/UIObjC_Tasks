@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, IDPSquarePosition) {
 
 @interface IDPSquare : NSObject
 @property (nonatomic, assign) IDPSquarePosition position;
+@property (nonatomic, assign) BOOL              animating;
 
 - (IDPSquarePosition)nextPosition;
 

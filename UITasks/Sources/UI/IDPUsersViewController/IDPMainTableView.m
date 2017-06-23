@@ -54,7 +54,7 @@
 
 - (void)initMain {
     self.usersModel = [IDPUsersModel new];
-    IDPPreLaunchUsersView *preLaunchUsersView = [UINib objectWithClass:[IDPPreLaunchUsersView class]];
+    IDPPreLaunchView *preLaunchUsersView = [UINib objectWithClass:[IDPPreLaunchView class]];
     
     self.preLaunchUsersView = preLaunchUsersView;
     [self addSubview:preLaunchUsersView];

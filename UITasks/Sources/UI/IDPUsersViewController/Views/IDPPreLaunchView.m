@@ -1,14 +1,14 @@
 //
-//  IDPPreLaunchUsersView.m
+//  IDPPreLaunchView.m
 //  UITask01
 //
 //  Created by Student003 on 6/21/17.
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPPreLaunchUsersView.h"
+#import "IDPPreLaunchView.h"
 
-@implementation IDPPreLaunchUsersView
+@implementation IDPPreLaunchView
 
 #pragma mark -
 #pragma mark Public

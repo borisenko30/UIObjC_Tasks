@@ -15,9 +15,6 @@
 
 IDPViewControllerBaseViewProperty(IDPSquareViewController, mainView, IDPMainView)
 
-static NSString * const IDPStartButtonTitle = @"Start";
-static NSString * const IDPStopButtonTitle  = @"Stop";
-
 @implementation IDPSquareViewController
 
 #pragma mark -
@@ -35,15 +32,11 @@ static NSString * const IDPStopButtonTitle  = @"Stop";
 #pragma mark Private
 
 - (IBAction)onTouchStart:(UIButton *)sender {
-    IDPSquareView *squareView = self.mainView.squareView;
-    squareView.running = !squareView.running;
-    [self.mainView.button setTitle:squareView.running ? IDPStopButtonTitle : IDPStartButtonTitle
-                          forState:UIControlStateNormal];
+    [self.mainView run];
 }
 
 - (IBAction)onTouchNext:(UIButton *)sender {
-    IDPSquareView *squareView = self.mainView.squareView;
-    [squareView setSquarePosition:[squareView nextPosition]];
+    [self.mainView.squareView moveSquareToNextPosition];
 }
 
 @end

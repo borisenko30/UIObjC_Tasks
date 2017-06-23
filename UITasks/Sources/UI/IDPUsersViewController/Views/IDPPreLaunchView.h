@@ -1,5 +1,5 @@
 //
-//  IDPPreLaunchUsersView.h
+//  IDPPreLaunchView.h
 //  UITask01
 //
 //  Created by Student003 on 6/21/17.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IDPPreLaunchUsersView : UIView
+@interface IDPPreLaunchView : UIView
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 - (void)startLoadingAnimation;

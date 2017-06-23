@@ -15,7 +15,8 @@
 
 - (instancetype)initWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex; {
     self = [super init];
-    self.index = index;
+    self.index = sourceIndex;
+    self.destinationIndex = destinationIndex;
     
     return self;
 }

@@ -31,9 +31,11 @@ static const CGFloat IDPAnimationDuration = 2.0f;
         return;
     }
     
+    IDPSquare *square = self.square;
+    
     _running = running;
     
-    if (running) {
+    if (running && !square.animating) {
         [self moveSquareInLoop];
     }
 }
@@ -69,10 +71,12 @@ static const CGFloat IDPAnimationDuration = 2.0f;
     [UIView animateWithDuration:animated ? IDPAnimationDuration : 0
                      animations:^{
                          IDPStrongify(self)
+                         self.square.animating = YES;
                          self.center = [self centerPointWithPosition:position];
                      }
                      completion:^(BOOL finished){
                          IDPStrongify(self)
+                         self.square.animating = NO;
                          self.square.position = position;
                          
                          if (handler) {
@@ -83,6 +87,14 @@ static const CGFloat IDPAnimationDuration = 2.0f;
 
 - (IDPSquarePosition)nextPosition {
     return [self.square nextPosition];
+}
+
+- (void)moveSquareToNextPosition {
+    if (self.square.animating) {
+        return;
+    }
+    
+    [self setSquarePosition:[self nextPosition] animated:YES];
 }
 
 #pragma mark -

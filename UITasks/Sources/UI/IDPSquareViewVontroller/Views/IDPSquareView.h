@@ -25,4 +25,6 @@ typedef void(^IDPCompletionHandler)(BOOL finished);
 
 - (IDPSquarePosition)nextPosition;
 
+- (void)moveSquareToNextPosition;
+
 @end
