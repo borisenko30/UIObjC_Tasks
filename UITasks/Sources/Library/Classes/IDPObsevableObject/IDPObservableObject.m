@@ -10,6 +10,7 @@
 
 @interface IDPObservableObject ()
 @property (nonatomic, retain) NSHashTable *mutableObservers;
+@property (nonatomic, assign) BOOL        shouldNotify;
 
 @end
 
@@ -23,6 +24,7 @@
 - (instancetype)init {
     self = [super init];
     self.mutableObservers = [NSHashTable weakObjectsHashTable];
+    self.shouldNotify = YES;
     
     return self;
 }
@@ -35,7 +37,9 @@
         if (_state != state) {
             _state = state;
             
-            [self notifyOfState:state];
+            if (self.shouldNotify) {
+                [self notifyOfState:state];
+            }
         }
     }
 }
@@ -97,6 +101,13 @@
     [self notifyOfStateWithSelector:[self selectorForState:state] withObject:object];
 }
 
+- (void)performBlock:(void(^)())block shouldNotify:(BOOL)shouldNotify {
+    BOOL doesNotify = self.shouldNotify;
+    self.shouldNotify = shouldNotify;
+    block();
+    self.shouldNotify = doesNotify;
+}
+
 #pragma mark -
 #pragma mark Private
 
@@ -105,6 +116,10 @@
 }
 
 - (void)notifyOfStateWithSelector:(SEL)selector withObject:(id)object{
+    if (!self.shouldNotify) {
+        return;
+    }
+    
     @synchronized (object) {
         NSSet *observers = self.observers;
         for (id observer in observers) {

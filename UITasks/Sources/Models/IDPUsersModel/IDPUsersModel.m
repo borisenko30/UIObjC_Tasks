@@ -19,7 +19,6 @@
 static NSString * const IDPFileName = @"model.plist";
 
 @interface IDPUsersModel ()
-@property (nonatomic, strong) NSMutableArray *mutableObjects;
 
 - (NSURL *)applicationDocumentsDirectory;
 
@@ -30,7 +29,7 @@ static NSString * const IDPFileName = @"model.plist";
 - (void)saveUsers {
     NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
     
-    BOOL saved = [NSKeyedArchiver archiveRootObject:self.mutableObjects toFile:url.path];
+    BOOL saved = [NSKeyedArchiver archiveRootObject:self.objects toFile:url.path];
     if (saved) {
         NSLog(@"file was saved...");
     } else {
@@ -49,7 +48,7 @@ static NSString * const IDPFileName = @"model.plist";
         IDPStrongify(self)
         NSMutableArray *objects = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
 
-        [self.mutableObjects addObjectsFromArray:objects];
+        [self addObjects:objects];
         
         IDPDispatchOnMainQueue(^{
             self.state = IDPModelDidLoad;

@@ -1,5 +1,5 @@
 //
-//  IDPObservableModel.h
+//  IDPArrayModel.h
 //  UITask01
 //
 //  Created by Student003 on 6/22/17.
@@ -18,18 +18,19 @@ typedef NS_ENUM(NSUInteger, IDPModelState) {
     IDPModelWillLoad
 };
 
-@interface IDPObservableModel : IDPObservableObject
+@interface IDPArrayModel : IDPObservableObject
 @property (nonatomic, readonly, copy)   NSArray     *objects;
 @property (nonatomic, readonly)         NSUInteger  count;
 
 - (void)addObject:(id)object;
 - (void)removeObject:(id)object;
 
+- (void)addObjects:(NSArray *)objects;
+- (void)removeObjects:(NSArray *)objects;
+
 - (void)moveObject:(id)object toIndex:(NSUInteger)index;
 
 - (void)swapObjectAtIndex:(NSUInteger)indexOfObject withObjectAtIndex:(NSUInteger)anotherObjectIndex;
-
-//- (void)sortUsers;
 
 - (NSUInteger)count;
 - (NSUInteger)indexOfObject:(id)object;

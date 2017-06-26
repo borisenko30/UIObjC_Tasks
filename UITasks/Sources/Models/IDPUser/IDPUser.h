@@ -10,7 +10,7 @@
 
 @interface IDPUser : NSObject <NSCoding>
 @property (nonatomic, readonly) NSString        *name;
-@property (nonatomic, strong) NSURL           *imageURL;
+@property (nonatomic, readonly) NSString        *imageName;
 @property (nonatomic, readonly) UIImage         *image;
 
 @end

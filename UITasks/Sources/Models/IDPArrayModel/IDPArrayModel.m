@@ -1,25 +1,25 @@
 //
-//  IDPObservableModel.m
+//  IDPArrayModel.m
 //  UITask01
 //
 //  Created by Student003 on 6/22/17.
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPObservableModel.h"
+#import "IDPArrayModel.h"
 
 #import "IDPModificationModel.h"
 
+#import "NSMutableArray+IDPExtensions.h"
+
 #import "IDPMacro.h"
 
-//static NSString * const IDPUserKey  = @"name";
-
-@interface IDPObservableModel ()
+@interface IDPArrayModel ()
 @property (nonatomic, strong) NSMutableArray *mutableObjects;
 
 @end
 
-@implementation IDPObservableModel
+@implementation IDPArrayModel
 
 @dynamic objects;
 @dynamic count;
@@ -68,11 +68,26 @@
     [self notifyOfState:IDPModelDidChange withObject:model];
 }
 
+- (void)addObjects:(NSArray *)objects {
+    [self performBlock:^{
+        for (id object in objects) {
+            [self addObject:object];
+        }
+    } shouldNotify:NO];
+}
+
+- (void)removeObjects:(NSArray *)objects {
+    [self performBlock:^{
+        for (id object in objects) {
+            [self removeObject:object];
+        }
+    } shouldNotify:NO];
+}
+
 - (void)moveObject:(id)object toIndex:(NSUInteger)index {
     NSUInteger sourceIndex = [self indexOfObject:object];
     
-    [self.mutableObjects removeObject:object];
-    [self.mutableObjects insertObject:object atIndex:index];
+    [self.mutableObjects moveObject:object toIndex:index];
     
     IDPModificationModel *model = [IDPModificationModel movementModelWithSourceIndex:sourceIndex destinationIndex:index];
     
@@ -86,12 +101,6 @@
     objects[indexOfObject] = objects[anotherObjectIndex];
     objects[anotherObjectIndex] = temporaryObject;
 }
-
-//- (void)sortUsers {
-//    // temporary solution! Should make user object Comparable!!!
-//    [self.mutableObjects sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:IDPUserKey ascending:YES]]];
-//    self.state = IDPModelDidChange;
-//}
 
 - (NSUInteger)count {
     return self.mutableObjects.count;

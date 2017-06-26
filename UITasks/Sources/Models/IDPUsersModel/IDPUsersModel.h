@@ -6,9 +6,9 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPObservableModel.h"
+#import "IDPArrayModel.h"
 
-@interface IDPUsersModel : IDPObservableModel
+@interface IDPUsersModel : IDPArrayModel
 
 - (void)saveUsers;
 - (void)loadUsers;

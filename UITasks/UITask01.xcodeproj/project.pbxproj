@@ -18,7 +18,6 @@
 		5617776D1EF2812D001C16B7 /* IDPSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 561777681EF2812D001C16B7 /* IDPSquare.m */; };
 		5617776E1EF2812D001C16B7 /* IDPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5617776B1EF2812D001C16B7 /* IDPUser.m */; };
 		564010241EFBAFB20003FC8A /* IDPGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 564010231EFBAFB20003FC8A /* IDPGCD.m */; };
-		564010271EFC06D70003FC8A /* IDPObservableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 564010261EFC06D70003FC8A /* IDPObservableModel.m */; };
 		564267C61EFD4C7D002DB666 /* UIButton+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 564267C51EFD4C7D002DB666 /* UIButton+IDPExtensions.m */; };
 		5644038C1EF8FA1A007B8829 /* IDPUsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5644038B1EF8FA1A007B8829 /* IDPUsersModel.m */; };
 		5644038F1EF91379007B8829 /* UITableView+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5644038E1EF91379007B8829 /* UITableView+IDPExtensions.m */; };
@@ -36,6 +35,9 @@
 		5660C5691F01155600073B22 /* IDPDeletionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5660C5621F01155600073B22 /* IDPDeletionModel.m */; };
 		5660C56A1F01155600073B22 /* IDPInsertionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5660C5641F01155600073B22 /* IDPInsertionModel.m */; };
 		5660C56B1F01155600073B22 /* IDPMovementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5660C5661F01155600073B22 /* IDPMovementModel.m */; };
+		5660C56E1F0134B000073B22 /* NSMutableArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5660C56D1F0134B000073B22 /* NSMutableArray+IDPExtensions.m */; };
+		5660C5721F0147A400073B22 /* IDPArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5660C5711F0147A400073B22 /* IDPArrayModel.m */; };
+		5660C5751F01492200073B22 /* NSBundle+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5660C5741F01492200073B22 /* NSBundle+IDPExtensions.m */; };
 		566BCD721EF7A42C002531C4 /* IDPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BCD6F1EF7A42C002531C4 /* IDPAppDelegate.m */; };
 		566BCD731EF7A42C002531C4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 566BCD701EF7A42C002531C4 /* Info.plist */; };
 		566BCD741EF7A42C002531C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BCD711EF7A42C002531C4 /* main.m */; };
@@ -69,8 +71,6 @@
 		5630DF9E1EEE64750048DF18 /* UITask01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UITask01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		564010221EFBAFB20003FC8A /* IDPGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IDPGCD.h; path = "../../../../../UIObjC_Tasks 2/Task09_ObjC/Task09_ObjC/Sources/Dispatcher/IDPGCD.h"; sourceTree = "<group>"; };
 		564010231EFBAFB20003FC8A /* IDPGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IDPGCD.m; path = "../../../../../UIObjC_Tasks 2/Task09_ObjC/Task09_ObjC/Sources/Dispatcher/IDPGCD.m"; sourceTree = "<group>"; };
-		564010251EFC06D70003FC8A /* IDPObservableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableModel.h; sourceTree = "<group>"; };
-		564010261EFC06D70003FC8A /* IDPObservableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableModel.m; sourceTree = "<group>"; };
 		564267C41EFD4C7D002DB666 /* UIButton+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+IDPExtensions.h"; sourceTree = "<group>"; };
 		564267C51EFD4C7D002DB666 /* UIButton+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+IDPExtensions.m"; sourceTree = "<group>"; };
 		5644038A1EF8FA1A007B8829 /* IDPUsersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUsersModel.h; sourceTree = "<group>"; };
@@ -104,6 +104,12 @@
 		5660C5641F01155600073B22 /* IDPInsertionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPInsertionModel.m; sourceTree = "<group>"; };
 		5660C5651F01155600073B22 /* IDPMovementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPMovementModel.h; sourceTree = "<group>"; };
 		5660C5661F01155600073B22 /* IDPMovementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPMovementModel.m; sourceTree = "<group>"; };
+		5660C56C1F0134B000073B22 /* NSMutableArray+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+IDPExtensions.h"; sourceTree = "<group>"; };
+		5660C56D1F0134B000073B22 /* NSMutableArray+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+IDPExtensions.m"; sourceTree = "<group>"; };
+		5660C5701F0147A400073B22 /* IDPArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayModel.h; sourceTree = "<group>"; };
+		5660C5711F0147A400073B22 /* IDPArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayModel.m; sourceTree = "<group>"; };
+		5660C5731F01492200073B22 /* NSBundle+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+IDPExtensions.h"; sourceTree = "<group>"; };
+		5660C5741F01492200073B22 /* NSBundle+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+IDPExtensions.m"; sourceTree = "<group>"; };
 		566BCD6E1EF7A42C002531C4 /* IDPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPAppDelegate.h; sourceTree = "<group>"; };
 		566BCD6F1EF7A42C002531C4 /* IDPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPAppDelegate.m; sourceTree = "<group>"; };
 		566BCD701EF7A42C002531C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,6 +168,10 @@
 				564267C51EFD4C7D002DB666 /* UIButton+IDPExtensions.m */,
 				5660C5571F0114DD00073B22 /* NSArray+IDPExtensions.h */,
 				5660C5581F0114DD00073B22 /* NSArray+IDPExtensions.m */,
+				5660C56C1F0134B000073B22 /* NSMutableArray+IDPExtensions.h */,
+				5660C56D1F0134B000073B22 /* NSMutableArray+IDPExtensions.m */,
+				5660C5731F01492200073B22 /* NSBundle+IDPExtensions.h */,
+				5660C5741F01492200073B22 /* NSBundle+IDPExtensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -187,7 +197,6 @@
 		5617774D1EF27750001C16B7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				564010201EFBAAB60003FC8A /* IDPObservableModel */,
 				5617774E1EF27750001C16B7 /* IDPObsevableObject */,
 				561777581EF27750001C16B7 /* IDPTableViewCell */,
 			);
@@ -215,6 +224,7 @@
 		561777621EF2812D001C16B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5660C56F1F0147A400073B22 /* IDPArrayModel */,
 				5660C55A1F01155600073B22 /* IDPModificationModel */,
 				564403891EF8FA1A007B8829 /* IDPUsersModel */,
 				561777661EF2812D001C16B7 /* IDPSquare */,
@@ -258,15 +268,6 @@
 				5630DF9E1EEE64750048DF18 /* UITask01.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		564010201EFBAAB60003FC8A /* IDPObservableModel */ = {
-			isa = PBXGroup;
-			children = (
-				564010251EFC06D70003FC8A /* IDPObservableModel.h */,
-				564010261EFC06D70003FC8A /* IDPObservableModel.m */,
-			);
-			path = IDPObservableModel;
 			sourceTree = "<group>";
 		};
 		564010211EFBAFA80003FC8A /* GCD */ = {
@@ -359,6 +360,15 @@
 				5660C5661F01155600073B22 /* IDPMovementModel.m */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		5660C56F1F0147A400073B22 /* IDPArrayModel */ = {
+			isa = PBXGroup;
+			children = (
+				5660C5701F0147A400073B22 /* IDPArrayModel.h */,
+				5660C5711F0147A400073B22 /* IDPArrayModel.m */,
+			);
+			path = IDPArrayModel;
 			sourceTree = "<group>";
 		};
 		566BCD6D1EF7A42C002531C4 /* Main */ = {
@@ -476,11 +486,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5660C56E1F0134B000073B22 /* NSMutableArray+IDPExtensions.m in Sources */,
+				5660C5721F0147A400073B22 /* IDPArrayModel.m in Sources */,
 				564403951EF9181C007B8829 /* UIViewController+IDPExtensions.m in Sources */,
 				5660C5681F01155600073B22 /* IDPModificationModel.m in Sources */,
 				564267C61EFD4C7D002DB666 /* UIButton+IDPExtensions.m in Sources */,
-				564010271EFC06D70003FC8A /* IDPObservableModel.m in Sources */,
 				5617776D1EF2812D001C16B7 /* IDPSquare.m in Sources */,
+				5660C5751F01492200073B22 /* NSBundle+IDPExtensions.m in Sources */,
 				566BCD901EF7F3AC002531C4 /* IDPUsersView.m in Sources */,
 				561777381EF26581001C16B7 /* IDPRandom.m in Sources */,
 				566BCD8B1EF7F3AC002531C4 /* IDPMainTableView.m in Sources */,

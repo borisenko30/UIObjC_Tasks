@@ -43,11 +43,6 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
     [super didReceiveMemoryWarning];
 }
 
-- (IBAction)onTouchSort:(id)sender {
-    IDPMainTableView *view = self.mainView;
-//    [view.usersModel sortUsers];
-}
-
 - (IBAction)onTouchAdd:(id)sender {
     IDPMainTableView *view = self.mainView;
     [view.usersModel addObject:[IDPUser new]];

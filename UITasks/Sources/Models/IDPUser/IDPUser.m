@@ -16,7 +16,7 @@ static NSString * const IDPImageExtension   = @"jpg";
 
 @interface IDPUser ()
 @property (nonatomic, strong) NSString  *name;
-//@property (nonatomic, strong) NSURL     *imageURL;
+@property (nonatomic, strong) NSString  *imageName;
 
 @end
 
@@ -30,6 +30,7 @@ static NSString * const IDPImageExtension   = @"jpg";
 - (instancetype)init {
     self = [super init];
     self.name = [NSString randomString];
+    self.imageName = IDPImageName;
     
     return self;
 }
@@ -38,9 +39,9 @@ static NSString * const IDPImageExtension   = @"jpg";
 #pragma mark Accessors
 
 - (UIImage *)image {
-    self.imageURL = [[NSBundle mainBundle] URLForResource:IDPImageName withExtension:IDPImageExtension];
+    NSURL *imageURL = [[NSBundle mainBundle] URLForResource:IDPImageName withExtension:IDPImageExtension];
     
-    return [UIImage imageWithContentsOfFile:[self.imageURL path]];
+    return [UIImage imageWithContentsOfFile:[imageURL path]];
 }
 
 #pragma mark -
@@ -48,13 +49,13 @@ static NSString * const IDPImageExtension   = @"jpg";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.name forKey:IDPUserName];
-    [aCoder encodeObject:self.imageURL forKey:IDPImageName];
+    [aCoder encodeObject:self.imageName forKey:IDPImageName];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     self.name = [aDecoder decodeObjectForKey:IDPUserName];
-    self.imageURL = [aDecoder decodeObjectForKey:IDPImageName];
+    self.imageName = [aDecoder decodeObjectForKey:IDPImageName];
     
     return self;
 }
