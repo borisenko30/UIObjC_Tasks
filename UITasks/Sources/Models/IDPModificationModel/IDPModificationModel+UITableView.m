@@ -65,5 +65,11 @@
 
 @implementation IDPMovementModel (UITableView)
 
+- (void)applyToTableView:(UITableView *)table section:(NSUInteger)section animation:(UITableViewRowAnimation)animation {
+    NSIndexPath *sourcePath = [NSIndexPath indexPathForRow:self.index inSection:section];
+    NSIndexPath *destinationPath = [NSIndexPath indexPathForRow:self.destinationIndex inSection:section];
+    
+    [table moveRowAtIndexPath:sourcePath toIndexPath:destinationPath];
+}
 
 @end

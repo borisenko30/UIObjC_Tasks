@@ -50,7 +50,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 
 - (IBAction)onTouchAdd:(id)sender {
     IDPMainTableView *view = self.mainView;
-    [view.usersModel addUser:[IDPUser new]];
+    [view.usersModel addObject:[IDPUser new]];
 }
 
 - (IBAction)onTouchEdit:(id)sender {
@@ -92,14 +92,13 @@ moveRowAtIndexPath:(nonnull NSIndexPath *)sourceIndexPath
        toIndexPath:(nonnull NSIndexPath *)destinationIndexPath
 {
     IDPUsersModel *model = self.mainView.usersModel;
-    //[model swapUserAtIndex:sourceIndexPath.row withUserAtIndex:destinationIndexPath.row];
-    [model moveUser:model[sourceIndexPath.row] toIndex:destinationIndexPath.row];
+    [model moveObject:model[sourceIndexPath.row] toIndex:destinationIndexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         IDPMainTableView *view = self.mainView;
-        [view.usersModel removeUser:view.usersModel[indexPath.row]];
+        [view.usersModel removeObject:view.usersModel[indexPath.row]];
     }
 }
 

@@ -8,33 +8,7 @@
 
 #import "IDPObservableModel.h"
 
-@class IDPUser;
-
-typedef NS_ENUM(NSUInteger, IDPModelState) {
-    IDPModelDidLoad,
-    IDPModelDidUnload,
-    IDPModelDidFailLoading,
-    IDPModelDidChange,
-    IDPModelWillLoad
-};
-
 @interface IDPUsersModel : IDPObservableModel
-@property (nonatomic, readonly, copy)   NSArray     *users;
-@property (nonatomic, readonly)         NSUInteger  count;
-
-- (void)addUser:(IDPUser *)user;
-- (void)removeUser:(IDPUser *) user;
-
-- (void)moveUser:(IDPUser *)user toIndex:(NSUInteger)index;
-
-- (void)swapUserAtIndex:(NSUInteger)indexOfUser withUserAtIndex:(NSUInteger)anotherUserIndex;
-
-//- (void)sortUsers;
-
-- (NSUInteger)count;
-- (NSUInteger)indexOfUser:(IDPUser *)user;
-
-- (id)objectAtIndexedSubscript:(NSUInteger)index;
 
 - (void)saveUsers;
 - (void)loadUsers;

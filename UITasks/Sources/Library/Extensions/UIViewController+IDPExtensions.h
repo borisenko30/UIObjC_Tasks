@@ -11,5 +11,6 @@
 @interface UIViewController (IDPExtensions)
 
 + (instancetype)defaultViewController;
++ (instancetype)viewControllerWithName:(NSString *)name;
 
 @end

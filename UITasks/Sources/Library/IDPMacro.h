@@ -19,12 +19,12 @@
     }
 
 #define IDPViewControllerBaseViewProperty(viewControllerClass, viewName, viewClass) \
-    @interface viewControllerClass (viewName##propertyName) \
+    @interface viewControllerClass (viewControllerClass##viewName##viewClass) \
     IDPBaseViewProperty(viewName, viewClass) \
     \
     @end \
     \
-    @implementation viewControllerClass (viewName##propertyName) \
+    @implementation viewControllerClass (viewControllerClass##viewName##viewClass) \
     \
     @dynamic viewName;\
     \

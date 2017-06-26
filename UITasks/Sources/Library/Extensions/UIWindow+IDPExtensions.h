@@ -10,6 +10,6 @@
 
 @interface UIWindow (IDPExtensions)
 
-+ (instancetype)screenSizeWindow;
++ (instancetype)window;
 
 @end

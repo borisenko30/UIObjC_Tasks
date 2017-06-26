@@ -11,7 +11,11 @@
 @implementation UIViewController (IDPExtensions)
 
 + (instancetype)defaultViewController {
-    return [[self alloc] initWithNibName:NSStringFromClass([self class]) bundle:nil];
+    return [self viewControllerWithName:NSStringFromClass([self class])];
+}
+
++ (instancetype)viewControllerWithName:(NSString *)name {
+    return [[self alloc] initWithNibName:name bundle:nil];
 }
 
 @end

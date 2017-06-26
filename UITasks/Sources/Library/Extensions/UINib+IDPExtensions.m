@@ -8,6 +8,8 @@
 
 #import "UINib+IDPExtensions.h"
 
+#import "NSArray+IDPExtensions.h"
+
 @implementation UINib (IDPExtensions)
 
 + (instancetype)nibWithClass:(Class)viewClass {
@@ -25,13 +27,7 @@
 + (id)objectWithClass:(Class)objectClass fromNib:(UINib *)nib {
     NSArray *objects = [nib instantiateWithOwner:nil options:nil];
     
-    for (id object in objects) {
-        if ([object isKindOfClass:objectClass]) {
-            return object;
-        }
-    }
-    
-    return nil;
+    return [objects objectWithClass:objectClass];
 }
 
 @end

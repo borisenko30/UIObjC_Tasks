@@ -25,7 +25,7 @@
 @implementation IDPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIWindow *window = [UIWindow screenSizeWindow];
+    UIWindow *window = [UIWindow window];
     self.window = window;
 
     // Task 01

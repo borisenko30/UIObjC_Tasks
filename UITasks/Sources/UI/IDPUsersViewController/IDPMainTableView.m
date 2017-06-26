@@ -17,6 +17,8 @@
 
 #import "IDPMacro.h"
 
+static CGFloat const IDPAnimationDuration = 2.0f;
+
 @interface IDPMainTableView ()
 @property (nonatomic, strong) IDPUsersModel *usersModel;
 
@@ -84,14 +86,17 @@
 }
 
 - (void)modelWillLoad {
-    self.preLaunchUsersView.hidden = NO;
     [self.preLaunchUsersView startLoadingAnimation];
 }
 
 - (void)modelDidLoad {
-    self.preLaunchUsersView.hidden = YES;
-    [self.preLaunchUsersView stopLoadingAnimation];
-    [self.usersView reloadData];
+    IDPPreLaunchView *view = self.preLaunchUsersView;
+    
+    [UIView animateWithDuration:IDPAnimationDuration animations:^{
+        view.alpha = 0;
+        [view stopLoadingAnimation];
+        [self.usersView reloadData];
+    }];
 }
 
 @end
