@@ -71,6 +71,15 @@ static NSString * const IDPUserKey  = @"name";
     [self notifyOfState:IDPModelDidChange withObject:model];
 }
 
+- (void)moveUser:(IDPUser *)user toIndex:(NSUInteger)index {
+    [self removeUser:user];
+    [self.mutableUsers insertObject:user atIndex:index];
+    
+    IDPModificationModel *model = [IDPModificationModel insertionModelWithIndex:index];
+    
+    [self notifyOfState:IDPModelDidChange withObject:model];
+}
+
 - (void)swapUserAtIndex:(NSUInteger)indexOfUser withUserAtIndex:(NSUInteger)anotherUserIndex {
     NSMutableArray *users = self.mutableUsers;
     IDPUser *temporaryUser = users[indexOfUser];
@@ -79,11 +88,11 @@ static NSString * const IDPUserKey  = @"name";
     users[anotherUserIndex] = temporaryUser;
 }
 
-- (void)sortUsers {
-    // temporary solution! Should make user object Comparable!!!
-    [self.mutableUsers sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:IDPUserKey ascending:YES]]];
-    self.state = IDPModelDidChange;
-}
+//- (void)sortUsers {
+//    // temporary solution! Should make user object Comparable!!!
+//    [self.mutableUsers sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:IDPUserKey ascending:YES]]];
+//    self.state = IDPModelDidChange;
+//}
 
 - (NSUInteger)count {
     return self.mutableUsers.count;

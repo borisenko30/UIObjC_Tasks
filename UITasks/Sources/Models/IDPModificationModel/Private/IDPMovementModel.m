@@ -8,6 +8,13 @@
 
 #import "IDPMovementModel.h"
 
+#import "IDPModificationModel+Extension.h"
+
+@interface IDPMovementModel ()
+@property (nonatomic, assign) NSUInteger destinationIndex;
+
+@end
+
 @implementation IDPMovementModel
 
 #pragma mark -
@@ -19,15 +26,6 @@
     self.destinationIndex = destinationIndex;
     
     return self;
-}
-
-#pragma mark -
-#pragma mark Public
-
-- (void)applyToTableView:(UITableView *)table {
-    NSIndexPath *path = [NSIndexPath indexPathForRow:self.index inSection:0];
-    
-    [table insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationTop];
 }
 
 @end

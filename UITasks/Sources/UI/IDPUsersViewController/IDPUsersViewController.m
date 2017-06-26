@@ -45,7 +45,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 
 - (IBAction)onTouchSort:(id)sender {
     IDPMainTableView *view = self.mainView;
-    [view.usersModel sortUsers];
+//    [view.usersModel sortUsers];
 }
 
 - (IBAction)onTouchAdd:(id)sender {
@@ -92,7 +92,8 @@ moveRowAtIndexPath:(nonnull NSIndexPath *)sourceIndexPath
        toIndexPath:(nonnull NSIndexPath *)destinationIndexPath
 {
     IDPUsersModel *model = self.mainView.usersModel;
-    [model swapUserAtIndex:sourceIndexPath.row withUserAtIndex:destinationIndexPath.row];
+    //[model swapUserAtIndex:sourceIndexPath.row withUserAtIndex:destinationIndexPath.row];
+    [model moveUser:model[sourceIndexPath.row] toIndex:destinationIndexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

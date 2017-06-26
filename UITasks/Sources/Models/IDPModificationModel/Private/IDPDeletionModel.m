@@ -8,6 +8,8 @@
 
 #import "IDPDeletionModel.h"
 
+#import "IDPModificationModel+Extension.h"
+
 @implementation IDPDeletionModel
 
 #pragma mark -
@@ -18,15 +20,6 @@
     self.index = index;
     
     return self;
-}
-
-#pragma mark -
-#pragma mark Public
-
-- (void)applyToTableView:(UITableView *)table {
-    NSIndexPath *path = [NSIndexPath indexPathForRow:self.index inSection:0];
-    
-    [table deleteRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end

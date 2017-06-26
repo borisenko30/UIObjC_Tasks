@@ -25,9 +25,11 @@ typedef NS_ENUM(NSUInteger, IDPModelState) {
 - (void)addUser:(IDPUser *)user;
 - (void)removeUser:(IDPUser *) user;
 
+- (void)moveUser:(IDPUser *)user toIndex:(NSUInteger)index;
+
 - (void)swapUserAtIndex:(NSUInteger)indexOfUser withUserAtIndex:(NSUInteger)anotherUserIndex;
 
-- (void)sortUsers;
+//- (void)sortUsers;
 
 - (NSUInteger)count;
 - (NSUInteger)indexOfUser:(IDPUser *)user;

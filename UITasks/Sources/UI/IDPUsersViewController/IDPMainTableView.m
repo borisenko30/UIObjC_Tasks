@@ -11,6 +11,7 @@
 #import "IDPUsersModel.h"
 
 #import "IDPModificationModel.h"
+#import "IDPModificationModel+UITableView.h"
 
 #import "UINib+IDPExtensions.h"
 

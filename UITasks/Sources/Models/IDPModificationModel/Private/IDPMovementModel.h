@@ -9,7 +9,7 @@
 #import "IDPModificationModel.h"
 
 @interface IDPMovementModel : IDPModificationModel
-@property (nonatomic, assign) NSUInteger destinationIndex;
+@property (nonatomic, readonly) NSUInteger destinationIndex;
 
 - (instancetype)initWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
 

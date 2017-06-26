@@ -10,6 +10,9 @@
 
 #import "IDPInsertionModel.h"
 #import "IDPDeletionModel.h"
+#import "IDPMovementModel.h"
+
+#import "IDPModificationModel+Extension.h"
 
 @implementation IDPModificationModel
 
@@ -24,11 +27,8 @@
     return [[IDPDeletionModel alloc] initWithIndex:index];
 }
 
-#pragma mark -
-#pragma mark Public
-
-- (void)applyToTableView:(UITableView *)table {
-    [self doesNotRecognizeSelector:_cmd];
++ (instancetype)movementModelWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex {
+    return [[IDPMovementModel alloc] initWithSourceIndex:sourceIndex destinationIndex:destinationIndex];
 }
 
 @end

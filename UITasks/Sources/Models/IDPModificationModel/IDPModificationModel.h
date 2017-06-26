@@ -12,12 +12,10 @@
 #import "IDPObservableObject.h"
 
 @interface IDPModificationModel : NSObject
-@property (nonatomic, assign) NSUInteger index;
+@property (nonatomic, readonly) NSUInteger index;
 
 + (instancetype)insertionModelWithIndex:(NSUInteger)index;
 + (instancetype)deletionModelWithIndex:(NSUInteger)index;
-
-// This method should be overriden in subclasses
-- (void)applyToTableView:(UITableView *)table;
++ (instancetype)movementModelWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
 
 @end
