@@ -17,12 +17,12 @@ typedef NS_ENUM(NSUInteger, IDPModelState) {
 };
 
 @interface IDPObservableModel : IDPObservableObject
-@property (nonatomic, readonly) id <NSCoding> model;
+//@property (nonatomic, readonly) id <NSCoding> model;
 
 // designated initializer
-- (instancetype)initWithObject:(id <NSCoding>)object;
+//- (instancetype)initWithObject:(id <NSCoding>)object;
 
-- (void)save;
-- (void)load;
+- (void)saveObject:(id <NSCoding>)object;
+- (void)loadedObject;
 
 @end

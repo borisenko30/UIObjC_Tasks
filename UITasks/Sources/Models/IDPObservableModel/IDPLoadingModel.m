@@ -16,7 +16,7 @@
 static NSString * const IDPFileName = @"model.plist";
 
 @interface IDPObservableModel ()
-@property (nonatomic, strong) id <NSCoding> model;
+//@property (nonatomic, strong) id <NSCoding> model;
 
 - (NSURL *)applicationDocumentsDirectory;
 
@@ -27,20 +27,20 @@ static NSString * const IDPFileName = @"model.plist";
 #pragma mark -
 #pragma mark Deallocations and initializations
 
-- (instancetype)initWithObject:(id <NSCoding>)object {
-    self = [super init];
-    self.model = object;
-    
-    return self;
-}
+//- (instancetype)initWithObject:(id <NSCoding>)object {
+//    self = [super init];
+//    self.model = object;
+//    
+//    return self;
+//}
 
 #pragma mark -
 #pragma mark Public
 
-- (void)save {
+- (void)saveObject:(id <NSCoding>)object {
     NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
     
-    BOOL saved = [NSKeyedArchiver archiveRootObject:self.model toFile:url.path];
+    BOOL saved = [NSKeyedArchiver archiveRootObject:object toFile:url.path];
     if (saved) {
         NSLog(@"file was saved...");
     } else {
@@ -48,25 +48,30 @@ static NSString * const IDPFileName = @"model.plist";
     }
 }
 
-- (void)load {
-    NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
-    
-    NSLog(@"start loading");
-    self.state = IDPModelWillLoad;
+- (void)loadedObject {
+    __block id <NSCoding> object;
     
     IDPWeakify(self)
-    IDPDispatchAsyncInBackground(^{
+
+    [self loadBlock:^{
         IDPStrongify(self)
-        NSMutableArray *object = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+        NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
         
-        self.model = object;
+        NSLog(@"start loading");
         
+        self.state = IDPModelWillLoad;
+        
+        object = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+        
+    } completion:^id <NSCoding>(){
         IDPDispatchOnMainQueue(^{
             self.state = IDPModelDidLoad;
         });
         
         NSLog(@"loaded model");
-    });
+        
+        return object;
+    }];
 }
 
 #pragma mark -
@@ -95,6 +100,15 @@ static NSString * const IDPFileName = @"model.plist";
 
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (void)loadBlock:(void(^)())block completion:(id <NSCoding>(^)())completion {
+    IDPDispatchAsyncInBackground(^{
+        block();
+        if (completion) {
+            completion();
+        }
+    });
 }
 
 @end
