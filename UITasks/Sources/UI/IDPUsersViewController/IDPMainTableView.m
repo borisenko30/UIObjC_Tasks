@@ -8,7 +8,7 @@
 
 #import "IDPMainTableView.h"
 
-#import "IDPUsersModel.h"
+#import "IDPArrayModel.h"
 
 #import "IDPModificationModel.h"
 #import "IDPModificationModel+UITableView.h"
@@ -20,7 +20,7 @@
 static CGFloat const IDPAnimationDuration = 2.0f;
 
 @interface IDPMainTableView ()
-@property (nonatomic, strong) IDPUsersModel *usersModel;
+@property (nonatomic, strong) IDPArrayModel *usersModel;
 
 @end
 
@@ -56,7 +56,7 @@ static CGFloat const IDPAnimationDuration = 2.0f;
 }
 
 - (void)initMain {
-    self.usersModel = [IDPUsersModel new];
+    self.usersModel = [IDPArrayModel new];
     IDPPreLaunchView *preLaunchUsersView = [UINib objectWithClass:[IDPPreLaunchView class]];
     
     self.preLaunchUsersView = preLaunchUsersView;
@@ -66,7 +66,7 @@ static CGFloat const IDPAnimationDuration = 2.0f;
 #pragma mark -
 #pragma mark Accessors
 
-- (void)setUsersModel:(IDPUsersModel *)usersModel {
+- (void)setUsersModel:(IDPArrayModel *)usersModel {
     if (usersModel == _usersModel) {
         return;
     }

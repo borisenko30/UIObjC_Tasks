@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class IDPUser;
-@class IDPUsersModel;
-
 @interface IDPUsersViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 - (void)saveModel;

@@ -12,25 +12,13 @@
 
 #import "IDPPreLaunchView.h"
 
-@class IDPUsersModel;
+#import "IDPModelObserver.h"
 
-@protocol IDPModelObserver <NSObject>
-
-@optional
-- (void)modelDidLoad;
-- (void)modelDidUnload;
-- (void)modelDidFailLoading;
-- (void)modelDidChange:(id)model withModificationModel:(id)modification;
-- (void)modelWillLoad;
-
-@end
-
+@class IDPArrayModel;
 
 @interface IDPMainTableView : UIView <IDPModelObserver>
-@property (nonatomic, strong) IBOutlet IDPUsersView    *usersView;
-@property (nonatomic, strong) IDPPreLaunchView    *preLaunchUsersView;
-
-@property (nonatomic, readonly) IDPUsersModel *usersModel;
-
+@property (nonatomic, strong)   IBOutlet IDPUsersView     *usersView;
+@property (nonatomic, strong)   IDPPreLaunchView          *preLaunchUsersView;
+@property (nonatomic, readonly) IDPArrayModel             *usersModel;
 
 @end

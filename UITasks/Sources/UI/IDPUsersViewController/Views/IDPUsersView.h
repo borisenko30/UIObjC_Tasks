@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "IDPUsersModel.h"
-
 @interface IDPUsersView : UITableView
 
 @end

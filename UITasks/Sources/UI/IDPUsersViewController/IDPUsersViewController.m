@@ -10,7 +10,7 @@
 
 #import "IDPMainTableView.h"
 #import "IDPUsersView.h"
-#import "IDPUsersModel.h"
+#import "IDPArrayModel.h"
 #import "IDPUser.h"
 #import "IDPUserCell.h"
 
@@ -56,11 +56,11 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 }
 
 - (void)saveModel {
-    [self.mainView.usersModel saveUsers];
+    [self.mainView.usersModel save];
 }
 
 - (void)loadModel {
-    [self.mainView.usersModel loadUsers];
+    [self.mainView.usersModel load];
 }
 
 #pragma mark -
@@ -86,7 +86,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 moveRowAtIndexPath:(nonnull NSIndexPath *)sourceIndexPath
        toIndexPath:(nonnull NSIndexPath *)destinationIndexPath
 {
-    IDPUsersModel *model = self.mainView.usersModel;
+    IDPArrayModel *model = self.mainView.usersModel;
     [model moveObject:model[sourceIndexPath.row] toIndex:destinationIndexPath.row];
 }
 

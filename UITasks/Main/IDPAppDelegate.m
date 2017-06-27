@@ -11,9 +11,6 @@
 #import "IDPSquareViewController.h"
 #import "IDPUsersViewController.h"
 
-#import "IDPUsersModel.h"
-#import "IDPUser.h"
-
 #import "UIWindow+IDPExtensions.h"
 #import "UIViewController+IDPExtensions.h"
 

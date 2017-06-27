@@ -10,9 +10,9 @@
 
 #import "IDPModificationModel.h"
 
-#import "NSMutableArray+IDPExtensions.h"
+#import "IDPObservableModel+Extension.h"
 
-#import "IDPMacro.h"
+#import "NSMutableArray+IDPExtensions.h"
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong) NSMutableArray *mutableObjects;
@@ -32,8 +32,9 @@
 }
 
 - (instancetype)init {
-    self = [super init];
-    self.mutableObjects = [NSMutableArray array];
+    NSMutableArray *objects = [NSMutableArray array];
+    self.mutableObjects = objects;
+    self = [super initWithObject:objects];
     
     return self;
 }
@@ -43,6 +44,16 @@
 
 - (NSArray *)objects {
     return [self.mutableObjects copy];
+}
+
+//the kostyl epta!
+- (void)setState:(NSUInteger)state {
+    if (state == IDPModelDidLoad) {
+        [self.mutableObjects addObjectsFromArray:(NSMutableArray *)self.model];
+        self.model = self.mutableObjects;
+    }
+    
+    [super setState:state];
 }
 
 #pragma mark -
@@ -96,7 +107,7 @@
 
 - (void)swapObjectAtIndex:(NSUInteger)indexOfObject withObjectAtIndex:(NSUInteger)anotherObjectIndex {
     NSMutableArray *objects = self.mutableObjects;
-    IDPUser *temporaryObject = objects[indexOfObject];
+    id temporaryObject = objects[indexOfObject];
     
     objects[indexOfObject] = objects[anotherObjectIndex];
     objects[anotherObjectIndex] = temporaryObject;

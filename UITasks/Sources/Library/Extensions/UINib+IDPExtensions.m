@@ -7,7 +7,6 @@
 //
 
 #import "UINib+IDPExtensions.h"
-
 #import "NSArray+IDPExtensions.h"
 
 @implementation UINib (IDPExtensions)
@@ -20,14 +19,34 @@
     return [self nibWithNibName:NSStringFromClass(viewClass) bundle:bundle];
 }
 
-+ (id)objectWithClass:(Class)objectClass; {
-    return [self objectWithClass:objectClass fromNib:[self nibWithClass:objectClass]];
++ (id)objectWithClass:(Class)class {
+    return [self objectWithClass:class owner:nil];
 }
 
-+ (id)objectWithClass:(Class)objectClass fromNib:(UINib *)nib {
-    NSArray *objects = [nib instantiateWithOwner:nil options:nil];
++ (id)objectWithClass:(Class)class owner:(id)owner {
+    return [self objectWithClass:class owner:owner options:nil];
+}
++ (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
+    UINib *nib = [UINib nibWithClass:class bundle:nil];
     
-    return [objects objectWithClass:objectClass];
+    return [nib objectWithClass:class owner:owner options:options];
+}
+
+#pragma mark -
+#pragma mark Public
+
+- (id)objectWithClass:(Class)class {
+    return [self objectWithClass:class owner:nil];
+}
+
+- (id)objectWithClass:(Class)class owner:(id)owner {
+    return [self objectWithClass:class owner:owner options:nil];
+}
+
+- (id)objectWithClass:(Class)class owner:(id)owner options:(NSDictionary *)options {
+    NSArray *objects = [self instantiateWithOwner:owner options:options];
+    
+    return [objects objectWithClass:class];
 }
 
 @end

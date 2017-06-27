@@ -10,7 +10,4 @@
 
 @interface IDPUsersModel : IDPArrayModel
 
-- (void)saveUsers;
-- (void)loadUsers;
-
 @end

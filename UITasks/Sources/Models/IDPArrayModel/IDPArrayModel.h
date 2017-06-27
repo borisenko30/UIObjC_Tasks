@@ -6,19 +6,9 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPObservableObject.h"
+#import "IDPObservableModel.h"
 
-@class IDPUser;
-
-typedef NS_ENUM(NSUInteger, IDPModelState) {
-    IDPModelDidLoad,
-    IDPModelDidUnload,
-    IDPModelDidFailLoading,
-    IDPModelDidChange,
-    IDPModelWillLoad
-};
-
-@interface IDPArrayModel : IDPObservableObject
+@interface IDPArrayModel : IDPObservableModel
 @property (nonatomic, readonly, copy)   NSArray     *objects;
 @property (nonatomic, readonly)         NSUInteger  count;
 
