@@ -6,7 +6,7 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-@interface IDPObservableModel ()
+@interface IDPLoadingModel ()
 @property (nonatomic, assign) id <NSCoding> model;
 
 @end

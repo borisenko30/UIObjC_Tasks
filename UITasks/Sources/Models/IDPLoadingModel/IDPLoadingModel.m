@@ -1,5 +1,5 @@
 //
-//  IDPObservableModel.m
+//  IDPLoadingModel.m
 //  UITask01
 //
 //  Created by Student003 on 6/27/17.
@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 
-#import "IDPObservableModel.h"
+#import "IDPLoadingModel.h"
 
 #import "IDPGCD.h"
 
@@ -15,14 +15,14 @@
 
 static NSString * const IDPFileName = @"model.plist";
 
-@interface IDPObservableModel ()
+@interface IDPLoadingModel ()
 //@property (nonatomic, strong) id <NSCoding> model;
 
 - (NSURL *)applicationDocumentsDirectory;
 
 @end
 
-@implementation IDPObservableModel
+@implementation IDPLoadingModel
 
 #pragma mark -
 #pragma mark Deallocations and initializations
@@ -48,12 +48,9 @@ static NSString * const IDPFileName = @"model.plist";
     }
 }
 
-- (void)loadedObject {
-    __block id <NSCoding> object;
-    
+- (void)loadWithCompletion:(void(^)(id <NSCoding>))completion {
     IDPWeakify(self)
-
-    [self loadBlock:^{
+    id <NSCoding>(^block)() = ^id <NSCoding>{
         IDPStrongify(self)
         NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
         
@@ -61,17 +58,21 @@ static NSString * const IDPFileName = @"model.plist";
         
         self.state = IDPModelWillLoad;
         
-        object = [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+    };
+    
+    IDPDispatchAsyncInBackground(^{
+        id result = block();
         
-    } completion:^id <NSCoding>(){
-        IDPDispatchOnMainQueue(^{
-            self.state = IDPModelDidLoad;
-        });
-        
-        NSLog(@"loaded model");
-        
-        return object;
-    }];
+        if (completion) {
+            completion(result);
+            
+            IDPDispatchOnMainQueue(^{
+                self.state = IDPModelDidLoad;
+                NSLog(@"loaded model");
+            });
+        }
+    });
 }
 
 #pragma mark -
@@ -100,15 +101,6 @@ static NSString * const IDPFileName = @"model.plist";
 
 - (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
-- (void)loadBlock:(void(^)())block completion:(id <NSCoding>(^)())completion {
-    IDPDispatchAsyncInBackground(^{
-        block();
-        if (completion) {
-            completion();
-        }
-    });
 }
 
 @end

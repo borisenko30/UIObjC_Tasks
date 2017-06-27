@@ -6,9 +6,9 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPObservableModel.h"
+#import "IDPLoadingModel.h"
 
-@interface IDPArrayModel : IDPObservableModel
+@interface IDPArrayModel : IDPLoadingModel
 @property (nonatomic, readonly, copy)   NSArray     *objects;
 @property (nonatomic, readonly)         NSUInteger  count;
 

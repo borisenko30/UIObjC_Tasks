@@ -10,7 +10,7 @@
 
 #import "IDPModificationModel.h"
 
-#import "IDPObservableModel+Extension.h"
+#import "IDPLoadingModel+Extension.h"
 
 #import "NSMutableArray+IDPExtensions.h"
 
@@ -32,9 +32,8 @@
 }
 
 - (instancetype)init {
-    NSMutableArray *objects = [NSMutableArray array];
-    self.mutableObjects = objects;
-    self = [super initWithObject:objects];
+    self = [super init];
+    self.mutableObjects = [NSMutableArray array];
     
     return self;
 }
@@ -47,14 +46,14 @@
 }
 
 //the kostyl epta!
-- (void)setState:(NSUInteger)state {
-    if (state == IDPModelDidLoad) {
-        [self.mutableObjects addObjectsFromArray:(NSMutableArray *)self.model];
-        self.model = self.mutableObjects;
-    }
-    
-    [super setState:state];
-}
+//- (void)setState:(NSUInteger)state {
+//    if (state == IDPModelDidLoad) {
+//        [self.mutableObjects addObjectsFromArray:(NSMutableArray *)self.model];
+//        self.model = self.mutableObjects;
+//    }
+//    
+//    [super setState:state];
+//}
 
 #pragma mark -
 #pragma mark Public

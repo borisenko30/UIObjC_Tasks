@@ -1,5 +1,5 @@
 //
-//  IDPObservableModel.h
+//  IDPLoadingModel.h
 //  UITask01
 //
 //  Created by Student003 on 6/27/17.
@@ -16,13 +16,13 @@ typedef NS_ENUM(NSUInteger, IDPModelState) {
     IDPModelWillLoad
 };
 
-@interface IDPObservableModel : IDPObservableObject
+@interface IDPLoadingModel : IDPObservableObject
 //@property (nonatomic, readonly) id <NSCoding> model;
 
 // designated initializer
 //- (instancetype)initWithObject:(id <NSCoding>)object;
 
 - (void)saveObject:(id <NSCoding>)object;
-- (void)loadedObject;
+- (void)loadWithCompletion:(void(^)(id <NSCoding>))completion;
 
 @end

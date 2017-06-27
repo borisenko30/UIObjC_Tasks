@@ -46,7 +46,7 @@
 		566BCD8E1EF7F3AC002531C4 /* IDPUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BCD871EF7F3AC002531C4 /* IDPUserCell.m */; };
 		566BCD8F1EF7F3AC002531C4 /* IDPUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566BCD881EF7F3AC002531C4 /* IDPUserCell.xib */; };
 		566BCD901EF7F3AC002531C4 /* IDPUsersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BCD8A1EF7F3AC002531C4 /* IDPUsersView.m */; };
-		567450A61F02530500103897 /* IDPObservableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 567450A51F02530500103897 /* IDPObservableModel.m */; };
+		567450AE1F02A26900103897 /* IDPLoadingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 567450AD1F02A26900103897 /* IDPLoadingModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,10 +122,10 @@
 		566BCD881EF7F3AC002531C4 /* IDPUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPUserCell.xib; sourceTree = "<group>"; };
 		566BCD891EF7F3AC002531C4 /* IDPUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPUsersView.h; sourceTree = "<group>"; };
 		566BCD8A1EF7F3AC002531C4 /* IDPUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPUsersView.m; sourceTree = "<group>"; };
-		567450A41F02530500103897 /* IDPObservableModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPObservableModel.h; sourceTree = "<group>"; };
-		567450A51F02530500103897 /* IDPObservableModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPObservableModel.m; sourceTree = "<group>"; };
-		567450A71F02643000103897 /* IDPObservableModel+Extension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IDPObservableModel+Extension.h"; sourceTree = "<group>"; };
 		567450A91F027A9E00103897 /* IDPModelObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPModelObserver.h; sourceTree = "<group>"; };
+		567450AB1F02A26900103897 /* IDPLoadingModel+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IDPLoadingModel+Extension.h"; sourceTree = "<group>"; };
+		567450AC1F02A26900103897 /* IDPLoadingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPLoadingModel.h; sourceTree = "<group>"; };
+		567450AD1F02A26900103897 /* IDPLoadingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPLoadingModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,7 +227,7 @@
 		561777621EF2812D001C16B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				567450A31F0252D600103897 /* IDPObservableModel */,
+				567450AA1F02A26900103897 /* IDPLoadingModel */,
 				5660C56F1F0147A400073B22 /* IDPArrayModel */,
 				5660C55A1F01155600073B22 /* IDPModificationModel */,
 				561777661EF2812D001C16B7 /* IDPSquare */,
@@ -404,22 +404,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		567450A31F0252D600103897 /* IDPObservableModel */ = {
-			isa = PBXGroup;
-			children = (
-				567450A41F02530500103897 /* IDPObservableModel.h */,
-				567450A51F02530500103897 /* IDPObservableModel.m */,
-				567450A71F02643000103897 /* IDPObservableModel+Extension.h */,
-			);
-			path = IDPObservableModel;
-			sourceTree = "<group>";
-		};
 		567450A81F027A6700103897 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				567450A91F027A9E00103897 /* IDPModelObserver.h */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		567450AA1F02A26900103897 /* IDPLoadingModel */ = {
+			isa = PBXGroup;
+			children = (
+				567450AB1F02A26900103897 /* IDPLoadingModel+Extension.h */,
+				567450AC1F02A26900103897 /* IDPLoadingModel.h */,
+				567450AD1F02A26900103897 /* IDPLoadingModel.m */,
+			);
+			path = IDPLoadingModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -522,11 +522,11 @@
 				566BCD8C1EF7F3AC002531C4 /* IDPUsersViewController.m in Sources */,
 				561777371EF26581001C16B7 /* NSString+IDPRandom.m in Sources */,
 				564403921EF91716007B8829 /* UIWindow+IDPExtensions.m in Sources */,
+				567450AE1F02A26900103897 /* IDPLoadingModel.m in Sources */,
 				565510951EF177C4001098B7 /* IDPMainView.m in Sources */,
 				5617773B1EF265DA001C16B7 /* UINib+IDPExtensions.m in Sources */,
 				5660C5671F01155600073B22 /* IDPModificationModel+UITableView.m in Sources */,
 				5644038F1EF91379007B8829 /* UITableView+IDPExtensions.m in Sources */,
-				567450A61F02530500103897 /* IDPObservableModel.m in Sources */,
 				564B7A891EFA5E7C00FD46A0 /* IDPPreLaunchView.m in Sources */,
 				5617775E1EF27750001C16B7 /* IDPTableViewCell.m in Sources */,
 				5660C5691F01155600073B22 /* IDPDeletionModel.m in Sources */,
