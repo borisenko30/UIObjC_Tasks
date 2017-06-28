@@ -14,7 +14,6 @@
 - (void)modelDidLoad;
 - (void)modelDidUnload;
 - (void)modelDidFailLoading;
-- (void)modelDidChange:(id)model withModificationModel:(id)modification;
 - (void)modelWillLoad;
 
 @end

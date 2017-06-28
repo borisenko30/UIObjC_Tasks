@@ -56,15 +56,11 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 }
 
 - (void)saveModel {
-    IDPArrayModel *model = self.mainView.usersModel;
-    [model saveObject:model.objects];
+    [self.mainView.usersModel save];
 }
 
 - (void)loadModel {
-    IDPArrayModel *model = self.mainView.usersModel;
-    [model loadWithCompletion:^(id<NSCoding> result) {
-        [model addObjects:result];
-    }];
+    [self.mainView.usersModel load];
 }
 
 #pragma mark -

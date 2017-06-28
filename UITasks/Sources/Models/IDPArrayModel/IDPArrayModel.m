@@ -10,12 +10,22 @@
 
 #import "IDPModificationModel.h"
 
-#import "IDPLoadingModel+Extension.h"
-
 #import "NSMutableArray+IDPExtensions.h"
+
+#import "IDPMacro.h"
+
+#import "IDPGCD.h"
+
+static NSString * const IDPFileName = @"arrayModel.plist";
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong) NSMutableArray *mutableObjects;
+
+- (void)saveObject:(id <NSCoding>)object;
+
+- (void)loadWithBlock:(IDPLoadingBlock)block completion:(IDPCompletionBlock)completion;
+
+- (NSURL *)applicationDocumentsDirectory;
 
 @end
 
@@ -45,18 +55,33 @@
     return [self.mutableObjects copy];
 }
 
-//the kostyl epta!
-//- (void)setState:(NSUInteger)state {
-//    if (state == IDPModelDidLoad) {
-//        [self.mutableObjects addObjectsFromArray:(NSMutableArray *)self.model];
-//        self.model = self.mutableObjects;
-//    }
-//    
-//    [super setState:state];
-//}
-
 #pragma mark -
 #pragma mark Public
+
+- (void)save {
+    [self saveObject:self.mutableObjects];
+}
+
+- (void)load {
+    IDPWeakify(self)
+    IDPLoadingBlock block = ^id <NSCoding>{
+        IDPStrongify(self)
+        NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
+        
+        NSLog(@"start loading");
+        
+        self.state = IDPModelWillLoad;
+        
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+    };
+    
+    IDPCompletionBlock completion = ^(id <NSCoding> result) {
+        IDPStrongify(self)
+        [self.mutableObjects addObjectsFromArray:(NSArray *)result];
+    };
+    
+    [self loadWithBlock:block completion:completion];
+}
 
 - (void)addObject:(id)object {
     [self.mutableObjects addObject:object];
@@ -65,7 +90,7 @@
     
     IDPModificationModel *model = [IDPModificationModel insertionModelWithIndex:index];
     
-    [self notifyOfState:IDPModelDidChange withObject:model];
+    [self notifyOfState:IDPArrayModelDidChange withObject:model];
 }
 
 - (void)removeObject:(id)object {
@@ -75,7 +100,7 @@
     
     IDPModificationModel *model = [IDPModificationModel deletionModelWithIndex:index];
     
-    [self notifyOfState:IDPModelDidChange withObject:model];
+    [self notifyOfState:IDPArrayModelDidChange withObject:model];
 }
 
 - (void)addObjects:(NSArray *)objects {
@@ -101,7 +126,7 @@
     
     IDPModificationModel *model = [IDPModificationModel movementModelWithSourceIndex:sourceIndex destinationIndex:index];
     
-    [self notifyOfState:IDPModelDidChange withObject:model];
+    [self notifyOfState:IDPArrayModelDidChange withObject:model];
 }
 
 - (void)swapObjectAtIndex:(NSUInteger)indexOfObject withObjectAtIndex:(NSUInteger)anotherObjectIndex {
@@ -122,6 +147,52 @@
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
     return self.mutableObjects[index];
+}
+
+#pragma mark -
+#pragma mark Observable object methods
+
+- (SEL)selectorForState:(NSUInteger)state {
+    switch (state) {
+        case IDPArrayModelDidChange:
+            return @selector(modelDidChange:withModificationModel:);
+            
+        default:
+            return [super selectorForState:state];
+    }
+}
+
+#pragma mark -
+#pragma mark Private
+
+- (void)saveObject:(id <NSCoding>)object {
+    NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
+    
+    BOOL saved = [NSKeyedArchiver archiveRootObject:object toFile:url.path];
+    if (saved) {
+        NSLog(@"file was saved...");
+    } else {
+        NSLog(@"failed to save the file!");
+    }
+}
+
+- (void)loadWithBlock:(IDPLoadingBlock)block completion:(IDPCompletionBlock)completion {
+    IDPDispatchAsyncInBackground(^{
+        id result = block();
+        
+        if (completion) {
+            completion(result);
+            
+            IDPDispatchOnMainQueue(^{
+                self.state = IDPModelDidLoad;
+                NSLog(@"loaded model");
+            });
+        }
+    });
+}
+
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

@@ -81,10 +81,6 @@ static CGFloat const IDPAnimationDuration = 2.0f;
 #pragma mark -
 #pragma mark ModelObserver methods
 
-- (void)modelDidChange:(id)model withModificationModel:(id)modification {
-    [modification applyToTableView:self.usersView];
-}
-
 - (void)modelWillLoad {
     [self.preLaunchUsersView startLoadingAnimation];
 }
@@ -97,6 +93,13 @@ static CGFloat const IDPAnimationDuration = 2.0f;
         [view stopLoadingAnimation];
         [self.usersView reloadData];
     }];
+}
+
+#pragma mark -
+#pragma mark ArrayModelObserver methods
+
+- (void)arrayModelDidChange:(id)model withModificationModel:(id)modification {
+    [modification applyToTableView:self.usersView];
 }
 
 @end
