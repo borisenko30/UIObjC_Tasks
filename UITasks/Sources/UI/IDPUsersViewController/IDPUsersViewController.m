@@ -30,14 +30,6 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 
 @implementation IDPUsersViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self loadModel];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }

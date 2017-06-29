@@ -70,6 +70,7 @@
     _usersModel = usersModel;
     
     [_usersModel addObserver:self];
+    [_usersModel load];
 }
 
 #pragma mark -
