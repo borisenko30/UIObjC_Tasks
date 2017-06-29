@@ -77,11 +77,11 @@ static CGFloat const IDPAnimationDuration = 2.0f;
 #pragma mark -
 #pragma mark ModelObserver methods
 
-- (void)modelWillLoad {
+- (void)modelWillLoad:(id)model {
     self.animatedLoading = YES;
 }
 
-- (void)modelDidLoad {
+- (void)modelDidLoad:(id)model {
     self.animatedLoading = NO;
     [self.usersView reloadData];
 }

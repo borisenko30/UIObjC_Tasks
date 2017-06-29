@@ -9,7 +9,6 @@
 #import "IDPUsersViewController.h"
 
 #import "IDPMainTableView.h"
-#import "IDPUsersView.h"
 #import "IDPArrayModel.h"
 #import "IDPUser.h"
 #import "IDPUserCell.h"
@@ -49,7 +48,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 }
 
 - (IBAction)onTouchEdit:(id)sender {
-    IDPUsersView *view = self.mainView.usersView;
+    UITableView *view = self.mainView.usersView;
     self.canEdit = !self.canEdit;
      
     [view setEditing:self.canEdit animated:YES];

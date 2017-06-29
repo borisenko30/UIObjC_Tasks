@@ -27,8 +27,6 @@ typedef id <NSCoding>(^IDPLoadingBlock)();
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index;
 
-- (void)swapObjectAtIndex:(NSUInteger)indexOfObject withObjectAtIndex:(NSUInteger)anotherObjectIndex;
-
 - (NSUInteger)count;
 - (NSUInteger)indexOfObject:(id)object;
 

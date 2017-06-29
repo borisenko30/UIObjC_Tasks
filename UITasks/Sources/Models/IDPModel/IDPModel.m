@@ -46,13 +46,13 @@
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case IDPModelDidLoad:
-            return @selector(modelDidLoad);
+            return @selector(modelDidLoad:);
         case IDPModelDidUnload:
-            return @selector(modelDidUnload);
+            return @selector(modelDidUnload:);
         case IDPModelDidFailLoading:
-            return @selector(modelDidFailLoading);
+            return @selector(modelDidFailLoading:);
         case IDPModelWillLoad:
-            return @selector(modelWillLoad);
+            return @selector(modelWillLoad:);
             
         default:
             return [super selectorForState:state];

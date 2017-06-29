@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IDPImageView : UIView
+#import "IDPLoadingViewContainer.h"
+#import "IDPModelObserver.h"
+
+@class IDPImageModel;
+
+@interface IDPImageView : IDPLoadingViewContainer<IDPModelObserver>
+@property (nonatomic, strong)   UIImageView     *contentImageView;
+
+@property (nonatomic, strong)   IDPImageModel   *imageModel;
 
 @end

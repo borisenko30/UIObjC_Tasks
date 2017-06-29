@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "IDPUsersView.h"
-
-//#import "IDPPreLaunchView.h"
 #import "IDPLoadingViewContainer.h"
 
 #import "IDPModelObserver.h"
@@ -19,8 +16,7 @@
 @class IDPArrayModel;
 
 @interface IDPMainTableView : IDPLoadingViewContainer <IDPArrayModelObserver>
-@property (nonatomic, strong)   IBOutlet IDPUsersView     *usersView;
-//@property (nonatomic, strong)   IDPPreLaunchView          *preLaunchUsersView;
+@property (nonatomic, strong)   IBOutlet UITableView      *usersView;
 @property (nonatomic, readonly) IDPArrayModel             *usersModel;
 
 @end

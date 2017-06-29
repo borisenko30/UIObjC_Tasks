@@ -66,8 +66,8 @@ static const CGFloat IDPShowAlpha = 0.5;
         _animatedLoading = animatedLoading;
         
         if (animatedLoading) {
-            [self showLoading];
             [self bringSubviewToFront:self.loadingView];
+            [self showLoading];
         } else {
             [self hideLoading];
         }

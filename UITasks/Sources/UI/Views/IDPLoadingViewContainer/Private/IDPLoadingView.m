@@ -10,7 +10,7 @@
 
 #import "UINib+IDPExtensions.h"
 
-static const NSUInteger kIDPAnimationDuration = 1;
+static const CGFloat kIDPAnimationDuration = 1.0f;
 
 @implementation IDPLoadingView
 
@@ -31,9 +31,9 @@ static const NSUInteger kIDPAnimationDuration = 1;
     loadingView.frame = superView.bounds;
     [superView addSubview:loadingView];
     loadingView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin
-    | UIViewAutoresizingFlexibleLeftMargin
-    | UIViewAutoresizingFlexibleBottomMargin
-    | UIViewAutoresizingFlexibleRightMargin;
+                                    | UIViewAutoresizingFlexibleLeftMargin
+                                    | UIViewAutoresizingFlexibleBottomMargin
+                                    | UIViewAutoresizingFlexibleRightMargin;
     
     return loadingView;
 }

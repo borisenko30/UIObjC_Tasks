@@ -84,23 +84,27 @@ static NSString * const IDPFileName = @"arrayModel.plist";
 }
 
 - (void)addObject:(id)object {
-    [self.mutableObjects addObject:object];
-    
-    NSUInteger index = [self indexOfObject:object];
-    
-    IDPModificationModel *model = [IDPModificationModel insertionModelWithIndex:index];
-    
-    [self notifyOfState:IDPArrayModelDidChange withObject:model];
+    @synchronized (self) {
+        [self.mutableObjects addObject:object];
+        
+        NSUInteger index = [self indexOfObject:object];
+        
+        IDPModificationModel *model = [IDPModificationModel insertionModelWithIndex:index];
+        
+        [self notifyOfState:IDPArrayModelDidChange withObject:model];
+    }
 }
 
 - (void)removeObject:(id)object {
-    NSUInteger index = [self indexOfObject:object];
-    
-    [self.mutableObjects removeObject:object];
-    
-    IDPModificationModel *model = [IDPModificationModel deletionModelWithIndex:index];
-    
-    [self notifyOfState:IDPArrayModelDidChange withObject:model];
+    @synchronized (self) {
+        NSUInteger index = [self indexOfObject:object];
+        
+        [self.mutableObjects removeObject:object];
+        
+        IDPModificationModel *model = [IDPModificationModel deletionModelWithIndex:index];
+        
+        [self notifyOfState:IDPArrayModelDidChange withObject:model];
+    }
 }
 
 - (void)addObjects:(NSArray *)objects {
@@ -120,21 +124,15 @@ static NSString * const IDPFileName = @"arrayModel.plist";
 }
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index {
-    NSUInteger sourceIndex = [self indexOfObject:object];
-    
-    [self.mutableObjects moveObject:object toIndex:index];
-    
-    IDPModificationModel *model = [IDPModificationModel movementModelWithSourceIndex:sourceIndex destinationIndex:index];
-    
-    [self notifyOfState:IDPArrayModelDidChange withObject:model];
-}
-
-- (void)swapObjectAtIndex:(NSUInteger)indexOfObject withObjectAtIndex:(NSUInteger)anotherObjectIndex {
-    NSMutableArray *objects = self.mutableObjects;
-    id temporaryObject = objects[indexOfObject];
-    
-    objects[indexOfObject] = objects[anotherObjectIndex];
-    objects[anotherObjectIndex] = temporaryObject;
+    @synchronized (self) {
+        NSUInteger sourceIndex = [self indexOfObject:object];
+        
+        [self.mutableObjects moveObject:object toIndex:index];
+        
+        IDPModificationModel *model = [IDPModificationModel movementModelWithSourceIndex:sourceIndex destinationIndex:index];
+        
+        [self notifyOfState:IDPArrayModelDidChange withObject:model];
+    }
 }
 
 - (NSUInteger)count {

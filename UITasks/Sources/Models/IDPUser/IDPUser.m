@@ -8,6 +8,8 @@
 
 #import "IDPUser.h"
 
+#import "IDPImageModel.h"
+
 #import "NSString+IDPRandom.h"
 
 static NSString * const IDPUserName         = @"IDPUserName";
@@ -22,7 +24,7 @@ static NSString * const IDPImageExtension   = @"jpg";
 
 @implementation IDPUser
 
-@dynamic image;
+@dynamic imageModel;
 
 #pragma mark -
 #pragma mark Deallocations and initializations
@@ -38,10 +40,10 @@ static NSString * const IDPImageExtension   = @"jpg";
 #pragma mark -
 #pragma mark Accessors
 
-- (UIImage *)image {
-    NSURL *imageURL = [[NSBundle mainBundle] URLForResource:IDPImageName withExtension:IDPImageExtension];
+- (IDPImageModel *)imageModel {
+    NSURL *imageURL = [[NSBundle mainBundle] URLForResource:self.imageName withExtension:IDPImageExtension];
     
-    return [UIImage imageWithContentsOfFile:[imageURL path]];
+    return [IDPImageModel imageWithURL:imageURL];
 }
 
 #pragma mark -
