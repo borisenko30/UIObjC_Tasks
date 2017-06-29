@@ -62,7 +62,7 @@ static NSString * const IDPFileName = @"arrayModel.plist";
     [self saveObject:self.mutableObjects];
 }
 
-- (void)load {
+- (void)processLoading {
     IDPWeakify(self)
     IDPLoadingBlock block = ^id <NSCoding>{
         IDPStrongify(self)
@@ -155,7 +155,7 @@ static NSString * const IDPFileName = @"arrayModel.plist";
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
         case IDPArrayModelDidChange:
-            return @selector(modelDidChange:withModificationModel:);
+            return @selector(arrayModelDidChange:withModificationModel:);
             
         default:
             return [super selectorForState:state];

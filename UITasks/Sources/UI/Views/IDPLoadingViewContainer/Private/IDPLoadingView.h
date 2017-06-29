@@ -1,17 +1,18 @@
 //
-//  IDPPreLaunchView.h
+//  IDPLoadingView.h
 //  UITask01
 //
-//  Created by Student003 on 6/21/17.
+//  Created by Student003 on 6/28/17.
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface IDPPreLaunchView : UIView
+#import "IDPLoading.h"
+
+@interface IDPLoadingView : UIView <IDPLoading>
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 
-- (void)startLoadingAnimation;
-- (void)stopLoadingAnimation;
++ (instancetype)loadingViewInSuperView:(UIView *)superView;
 
 @end

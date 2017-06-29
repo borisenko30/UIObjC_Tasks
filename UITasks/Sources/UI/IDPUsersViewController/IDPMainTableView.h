@@ -10,16 +10,17 @@
 
 #import "IDPUsersView.h"
 
-#import "IDPPreLaunchView.h"
+//#import "IDPPreLaunchView.h"
+#import "IDPLoadingViewContainer.h"
 
 #import "IDPModelObserver.h"
 #import "IDPArrayModelObserver.h"
 
 @class IDPArrayModel;
 
-@interface IDPMainTableView : UIView <IDPArrayModelObserver>
+@interface IDPMainTableView : IDPLoadingViewContainer <IDPArrayModelObserver>
 @property (nonatomic, strong)   IBOutlet IDPUsersView     *usersView;
-@property (nonatomic, strong)   IDPPreLaunchView          *preLaunchUsersView;
+//@property (nonatomic, strong)   IDPPreLaunchView          *preLaunchUsersView;
 @property (nonatomic, readonly) IDPArrayModel             *usersModel;
 
 @end

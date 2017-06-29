@@ -19,6 +19,24 @@
 }
 
 - (void)load {
+    @synchronized (self) {
+        if (IDPModelWillLoad == self.state) {
+            [self notifyOfState:IDPModelWillLoad];
+            return;
+        }
+        
+        if (IDPModelDidLoad == self.state) {
+            [self notifyOfState:IDPModelDidLoad];
+            return;
+        }
+        
+        self.state = IDPModelWillLoad;
+    }
+    
+    [self processLoading];
+}
+
+- (void)processLoading {
     
 }
 

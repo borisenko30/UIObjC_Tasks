@@ -51,7 +51,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 - (IBAction)onTouchEdit:(id)sender {
     IDPUsersView *view = self.mainView.usersView;
     self.canEdit = !self.canEdit;
-    
+     
     [view setEditing:self.canEdit animated:YES];
 }
 

@@ -57,10 +57,6 @@ static CGFloat const IDPAnimationDuration = 2.0f;
 
 - (void)initMain {
     self.usersModel = [IDPArrayModel new];
-    IDPPreLaunchView *preLaunchUsersView = [UINib objectWithClass:[IDPPreLaunchView class]];
-    
-    self.preLaunchUsersView = preLaunchUsersView;
-    [self addSubview:preLaunchUsersView];
 }
 
 #pragma mark -
@@ -82,17 +78,12 @@ static CGFloat const IDPAnimationDuration = 2.0f;
 #pragma mark ModelObserver methods
 
 - (void)modelWillLoad {
-    [self.preLaunchUsersView startLoadingAnimation];
+    self.animatedLoading = YES;
 }
 
 - (void)modelDidLoad {
-    IDPPreLaunchView *view = self.preLaunchUsersView;
-    
-    [UIView animateWithDuration:IDPAnimationDuration animations:^{
-        view.alpha = 0;
-        [view stopLoadingAnimation];
-        [self.usersView reloadData];
-    }];
+    self.animatedLoading = NO;
+    [self.usersView reloadData];
 }
 
 #pragma mark -
