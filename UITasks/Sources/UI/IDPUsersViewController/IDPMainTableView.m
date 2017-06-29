@@ -17,8 +17,6 @@
 
 #import "IDPMacro.h"
 
-static CGFloat const IDPAnimationDuration = 2.0f;
-
 @interface IDPMainTableView ()
 @property (nonatomic, strong) IDPArrayModel *usersModel;
 

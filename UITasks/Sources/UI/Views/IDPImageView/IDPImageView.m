@@ -75,6 +75,8 @@
     if (_imageModel != imageModel) {
         [_imageModel removeObserver:self];
         
+        [_imageModel dump];
+        
         _imageModel = imageModel;
         
         [_imageModel addObserver:self];
