@@ -8,7 +8,7 @@
 
 #import "IDPDeletionModel.h"
 
-#import "IDPModificationModel+Extension.h"
+#import "IDPModificationModel+IDPExtensions.h"
 
 @implementation IDPDeletionModel
 

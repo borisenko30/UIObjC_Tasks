@@ -12,7 +12,7 @@
 #import "IDPDeletionModel.h"
 #import "IDPMovementModel.h"
 
-#import "IDPModificationModel+Extension.h"
+#import "IDPModificationModel+IDPExtensions.h"
 
 @implementation IDPModificationModel
 

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "IDPModelObserver.h"
+
 @protocol IDPArrayModelObserver <IDPModelObserver>
 
 @optional

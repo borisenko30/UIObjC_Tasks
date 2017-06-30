@@ -29,7 +29,7 @@ void IDPDispatchOnMainQueue(IDPBlock block) {
     if ([NSThread isMainThread]) {
         block();
     } else {
-        dispatch_sync(dispatch_get_main_queue(), block);
+        dispatch_async(dispatch_get_main_queue(), block);
     }
 }
 

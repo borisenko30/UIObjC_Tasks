@@ -10,6 +10,19 @@
 
 @implementation NSArray (IDPExtensions)
 
++ (instancetype)objectsWithCount:(NSInteger)count factoryBlock:(id(^)(void))block {
+    if (!block) {
+        return nil;
+    }
+    
+    NSMutableArray *objects = [NSMutableArray new];
+    for (int i = 0; i < count; i++) {
+        [objects addObject:block()];
+    }
+    
+    return objects;
+}
+
 - (id)objectWithClass:(Class)objectClass {
     for (id object in self) {
         if ([object isKindOfClass:objectClass]) {

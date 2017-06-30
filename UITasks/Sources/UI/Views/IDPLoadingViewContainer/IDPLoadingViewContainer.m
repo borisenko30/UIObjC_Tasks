@@ -67,9 +67,9 @@ static const CGFloat IDPShowAlpha = 0.5;
         
         if (animatedLoading) {
             [self bringSubviewToFront:self.loadingView];
-            [self showLoading];
+            [self setLoading:animatedLoading withAlpha:IDPShowAlpha];
         } else {
-            [self hideLoading];
+            [self setLoading:animatedLoading withAlpha:IDPHideAlpha];
         }
     }
 }
@@ -89,14 +89,6 @@ static const CGFloat IDPShowAlpha = 0.5;
 
 - (IDPLoadingView *)defaultLoadingView {
     return [IDPLoadingView loadingViewInSuperView:self];
-}
-
-- (void)showLoading {
-    [self setLoading:YES withAlpha:IDPShowAlpha];
-}
-
-- (void)hideLoading {
-    [self setLoading:NO withAlpha:IDPHideAlpha];
 }
 
 - (void)setLoading:(BOOL)loading withAlpha:(CGFloat)alpha {

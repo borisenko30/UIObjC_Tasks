@@ -102,10 +102,12 @@
 }
 
 - (void)performBlock:(void(^)())block shouldNotify:(BOOL)shouldNotify {
-    BOOL doesNotify = self.shouldNotify;
-    self.shouldNotify = shouldNotify;
-    block();
-    self.shouldNotify = doesNotify;
+    @synchronized (self) {
+        BOOL doesNotify = self.shouldNotify;
+        self.shouldNotify = shouldNotify;
+        block();
+        self.shouldNotify = doesNotify;
+    }
 }
 
 #pragma mark -

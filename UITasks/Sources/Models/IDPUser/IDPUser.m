@@ -49,17 +49,27 @@ static NSString * const IDPImageExtension   = @"jpg";
 #pragma mark -
 #pragma mark NSCoding methods
 
+#define IDPEncodeObjectForKey(object, key) \
+    [aCoder encodeObject:object forKey:key];
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:self.name forKey:IDPUserName];
-    [aCoder encodeObject:self.imageName forKey:IDPImageName];
+    IDPEncodeObjectForKey(self.name, IDPUserName)
+    IDPEncodeObjectForKey(self.imageName, IDPImageName)
 }
+
+#undef IDPEncodeObjectForKey
+
+#define IDPDecodeObjectForKey(object, key) \
+    object = [aDecoder decodeObjectForKey:key];
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
-    self.name = [aDecoder decodeObjectForKey:IDPUserName];
-    self.imageName = [aDecoder decodeObjectForKey:IDPImageName];
+    IDPDecodeObjectForKey(self.name, IDPUserName)
+    IDPDecodeObjectForKey(self.imageName, IDPImageName)
     
     return self;
 }
+
+#undef IDPDecodeObjectForKey
 
 @end

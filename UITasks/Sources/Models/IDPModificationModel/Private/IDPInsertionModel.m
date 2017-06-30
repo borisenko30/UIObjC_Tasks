@@ -8,7 +8,7 @@
 
 #import "IDPInsertionModel.h"
 
-#import "IDPModificationModel+Extension.h"
+#import "IDPModificationModel+IDPExtensions.h"
 
 @implementation IDPInsertionModel
 

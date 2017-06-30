@@ -11,6 +11,8 @@
 #import "IDPSquareViewController.h"
 #import "IDPUsersViewController.h"
 
+#import "IDPUsersModel.h"
+
 #import "UIWindow+IDPExtensions.h"
 #import "UIViewController+IDPExtensions.h"
 
@@ -33,13 +35,11 @@
     
     // Task03
     // Task04
-    // Task05
-    // Task06
-    // Task07
         
     window.rootViewController = viewController;
     self.controller = viewController;
-    
+    viewController.usersModel = [IDPUsersModel new];
+
     [window makeKeyAndVisible];
     
     return YES;

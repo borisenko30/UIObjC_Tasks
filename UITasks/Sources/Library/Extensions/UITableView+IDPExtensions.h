@@ -10,7 +10,7 @@
 
 @interface UITableView (IDPExtensions)
 
+- (UITableViewCell *)dequeueReusableCellWithClass:(Class)cellClass;
 - (UITableViewCell *)reusableCellWithClass:(Class)cellClass;
-- (UITableViewCell *)safeReusableCellWithClass:(Class)cellClass;
 
 @end

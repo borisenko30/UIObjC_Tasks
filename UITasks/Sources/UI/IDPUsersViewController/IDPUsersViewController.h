@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class IDPUsersModel;
+
 @interface IDPUsersViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) IDPUsersModel    *usersModel;
 
 - (void)saveModel;
 - (void)loadModel;

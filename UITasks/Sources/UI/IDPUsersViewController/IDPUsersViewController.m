@@ -8,8 +8,8 @@
 
 #import "IDPUsersViewController.h"
 
-#import "IDPMainTableView.h"
-#import "IDPArrayModel.h"
+#import "IDPUsersView.h"
+#import "IDPUsersModel.h"
 #import "IDPUser.h"
 #import "IDPUserCell.h"
 
@@ -18,10 +18,10 @@
 #import "UINib+IDPExtensions.h"
 #import "UITableView+IDPExtensions.h"
 
-IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTableView)
+IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPUsersView)
 
 @interface IDPUsersViewController ()
-@property (nonatomic, assign) BOOL canEdit;
+@property (nonatomic, assign) BOOL  canEdit;
 
 @end
 
@@ -30,17 +30,23 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 
 @implementation IDPUsersViewController
 
+- (void)viewDidLoad {
+    self.mainView.usersModel = self.usersModel;
+    
+    [self loadModel];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
 - (IBAction)onTouchAdd:(id)sender {
-    IDPMainTableView *view = self.mainView;
+    IDPUsersView *view = self.mainView;
     [view.usersModel addObject:[IDPUser new]];
 }
 
 - (IBAction)onTouchEdit:(id)sender {
-    UITableView *view = self.mainView.usersView;
+    UITableView *view = self.mainView.tableView;
     self.canEdit = !self.canEdit;
      
     [view setEditing:self.canEdit animated:YES];
@@ -62,7 +68,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPMainTable
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    IDPUserCell *cell = (IDPUserCell *)[tableView safeReusableCellWithClass:[IDPUserCell class]];
+    IDPUserCell *cell = (IDPUserCell *)[tableView reusableCellWithClass:[IDPUserCell class]];
     
     cell.user = self.mainView.usersModel[indexPath.row];
     
@@ -83,7 +89,7 @@ moveRowAtIndexPath:(nonnull NSIndexPath *)sourceIndexPath
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        IDPMainTableView *view = self.mainView;
+        IDPUsersView *view = self.mainView;
         [view.usersModel removeObject:view.usersModel[indexPath.row]];
     }
 }

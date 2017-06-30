@@ -10,22 +10,12 @@
 
 #import "IDPModificationModel.h"
 
+#import "IDPArrayModelObserver.h"
+
 #import "NSMutableArray+IDPExtensions.h"
-
-#import "IDPMacro.h"
-
-#import "IDPGCD.h"
-
-static NSString * const IDPFileName = @"arrayModel.plist";
 
 @interface IDPArrayModel ()
 @property (nonatomic, strong) NSMutableArray *mutableObjects;
-
-- (void)saveObject:(id <NSCoding>)object;
-
-- (void)loadWithBlock:(IDPLoadingBlock)block completion:(IDPCompletionBlock)completion;
-
-- (NSURL *)applicationDocumentsDirectory;
 
 @end
 
@@ -52,38 +42,19 @@ static NSString * const IDPFileName = @"arrayModel.plist";
 #pragma mark Accessors
 
 - (NSArray *)objects {
-    return [self.mutableObjects copy];
+    @synchronized (self) {
+        return [self.mutableObjects copy];
+    }
 }
 
 #pragma mark -
 #pragma mark Public
 
-- (void)save {
-    [self saveObject:self.mutableObjects];
-}
-
-- (void)processLoading {
-    IDPWeakify(self)
-    IDPLoadingBlock block = ^id <NSCoding>{
-        IDPStrongify(self)
-        NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
-        
-        NSLog(@"start loading");
-        
-        self.state = IDPModelWillLoad;
-        
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
-    };
-    
-    IDPCompletionBlock completion = ^(id <NSCoding> result) {
-        IDPStrongify(self)
-        [self.mutableObjects addObjectsFromArray:(NSArray *)result];
-    };
-    
-    [self loadWithBlock:block completion:completion];
-}
-
 - (void)addObject:(id)object {
+    if (!object) {
+        return;
+    }
+    
     @synchronized (self) {
         [self.mutableObjects addObject:object];
         
@@ -91,7 +62,7 @@ static NSString * const IDPFileName = @"arrayModel.plist";
         
         IDPModificationModel *model = [IDPModificationModel insertionModelWithIndex:index];
         
-        [self notifyOfState:IDPArrayModelDidChange withObject:model];
+        [self notifyOfChangeWithObject:model];
     }
 }
 
@@ -103,24 +74,20 @@ static NSString * const IDPFileName = @"arrayModel.plist";
         
         IDPModificationModel *model = [IDPModificationModel deletionModelWithIndex:index];
         
-        [self notifyOfState:IDPArrayModelDidChange withObject:model];
+        [self notifyOfChangeWithObject:model];
     }
 }
 
 - (void)addObjects:(NSArray *)objects {
-    [self performBlock:^{
-        for (id object in objects) {
-            [self addObject:object];
-        }
-    } shouldNotify:NO];
+    for (id object in objects) {
+        [self addObject:object];
+    }
 }
 
 - (void)removeObjects:(NSArray *)objects {
-    [self performBlock:^{
-        for (id object in objects) {
-            [self removeObject:object];
-        }
-    } shouldNotify:NO];
+    for (id object in objects) {
+        [self removeObject:object];
+    }
 }
 
 - (void)moveObject:(id)object toIndex:(NSUInteger)index {
@@ -131,24 +98,34 @@ static NSString * const IDPFileName = @"arrayModel.plist";
         
         IDPModificationModel *model = [IDPModificationModel movementModelWithSourceIndex:sourceIndex destinationIndex:index];
         
-        [self notifyOfState:IDPArrayModelDidChange withObject:model];
+        [self notifyOfChangeWithObject:model];
     }
 }
 
 - (NSUInteger)count {
-    return self.mutableObjects.count;
+    @synchronized (self) {
+        return self.mutableObjects.count;
+    }
 }
 
 - (NSUInteger)indexOfObject:(id)object {
-    return [self.mutableObjects indexOfObject:object];
+    @synchronized (self) {
+        return [self.mutableObjects indexOfObject:object];
+    }
 }
 
 - (id)objectAtIndexedSubscript:(NSUInteger)index {
-    return self.mutableObjects[index];
+    @synchronized (self) {
+        return self.mutableObjects[index];
+    }
 }
 
 #pragma mark -
 #pragma mark Observable object methods
+
+- (void)notifyOfChangeWithObject:(id)object {
+    [self notifyOfState:IDPArrayModelDidChange withObject:object];
+}
 
 - (SEL)selectorForState:(NSUInteger)state {
     switch (state) {
@@ -158,39 +135,6 @@ static NSString * const IDPFileName = @"arrayModel.plist";
         default:
             return [super selectorForState:state];
     }
-}
-
-#pragma mark -
-#pragma mark Private
-
-- (void)saveObject:(id <NSCoding>)object {
-    NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
-    
-    BOOL saved = [NSKeyedArchiver archiveRootObject:object toFile:url.path];
-    if (saved) {
-        NSLog(@"file was saved...");
-    } else {
-        NSLog(@"failed to save the file!");
-    }
-}
-
-- (void)loadWithBlock:(IDPLoadingBlock)block completion:(IDPCompletionBlock)completion {
-    IDPDispatchAsyncInBackground(^{
-        id result = block();
-        
-        if (completion) {
-            completion(result);
-            
-            IDPDispatchOnMainQueue(^{
-                self.state = IDPModelDidLoad;
-                NSLog(@"loaded model");
-            });
-        }
-    });
-}
-
-- (NSURL *)applicationDocumentsDirectory {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

@@ -8,6 +8,11 @@
 
 #import "IDPArrayModel.h"
 
+typedef void(^IDPCompletionBlock)(id <NSCoding>);
+typedef id <NSCoding>(^IDPLoadingBlock)();
+
 @interface IDPUsersModel : IDPArrayModel
+
+- (void)save;
 
 @end

@@ -13,12 +13,12 @@
 
 @implementation UITableView (IDPExtensions)
 
-- (UITableViewCell *)reusableCellWithClass:(Class)cellClass {
+- (UITableViewCell *)dequeueReusableCellWithClass:(Class)cellClass {
     return [self dequeueReusableCellWithIdentifier:NSStringFromClass(cellClass)];
 }
 
-- (UITableViewCell *)safeReusableCellWithClass:(Class)cellClass {
-    id cell = [self reusableCellWithClass:cellClass];
+- (UITableViewCell *)reusableCellWithClass:(Class)cellClass {
+    id cell = [self dequeueReusableCellWithClass:cellClass];
     
     if (!cell) {
         cell = [UINib objectWithClass:cellClass];

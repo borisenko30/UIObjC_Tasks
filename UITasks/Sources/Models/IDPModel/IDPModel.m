@@ -7,6 +7,8 @@
 //
 #import <UIKit/UIKit.h>
 
+#import "IDPModelObserver.h"
+
 #import "IDPModel.h"
 
 @implementation IDPModel
@@ -14,19 +16,12 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)save {
-    
-}
-
 - (void)load {
     @synchronized (self) {
-        if (IDPModelWillLoad == self.state) {
-            [self notifyOfState:IDPModelWillLoad];
-            return;
-        }
+        NSUInteger state = self.state;
         
-        if (IDPModelDidLoad == self.state) {
-            [self notifyOfState:IDPModelDidLoad];
+        if (IDPModelWillLoad == state || IDPModelDidLoad == state) {
+            [self notifyOfState:state];
             return;
         }
         

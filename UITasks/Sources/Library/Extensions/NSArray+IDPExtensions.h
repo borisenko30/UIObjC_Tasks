@@ -10,6 +10,8 @@
 
 @interface NSArray (IDPExtensions)
 
++ (instancetype)objectsWithCount:(NSInteger)count factoryBlock:(id (^)(void))block;
+
 - (id)objectWithClass:(Class)objectClass;
 
 @end

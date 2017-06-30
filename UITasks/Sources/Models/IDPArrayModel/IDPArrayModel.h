@@ -12,9 +12,6 @@ typedef NS_ENUM(NSUInteger, IDPArrayModelState) {
     IDPArrayModelDidChange = IDPModelStateCount
 };
 
-typedef void(^IDPCompletionBlock)(id <NSCoding>);
-typedef id <NSCoding>(^IDPLoadingBlock)();
-
 @interface IDPArrayModel : IDPModel
 @property (nonatomic, readonly, copy)   NSArray     *objects;
 @property (nonatomic, readonly)         NSUInteger  count;

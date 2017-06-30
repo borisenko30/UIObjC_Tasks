@@ -8,7 +8,7 @@
 
 #import "IDPMovementModel.h"
 
-#import "IDPModificationModel+Extension.h"
+#import "IDPModificationModel+IDPExtensions.h"
 
 @interface IDPMovementModel ()
 @property (nonatomic, assign) NSUInteger destinationIndex;
