@@ -93,7 +93,7 @@
 } 
 
 - (void)modelWillLoad:(IDPImageModel *)model {
-    self.animatedLoading = YES;
+    self.loading = YES;
 }
 
 - (void)modelDidFailedLoading:(IDPImageModel *)model {
@@ -102,7 +102,7 @@
 
 - (void)modelDidLoad:(IDPImageModel *)model {
     IDPDispatchOnMainQueue(^{
-        self.animatedLoading = NO;
+        self.loading = NO;
         self.contentImageView.image = model.image;
     });
 

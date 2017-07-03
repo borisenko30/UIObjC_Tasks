@@ -14,4 +14,6 @@
 + (NSURL *)libraryDirectory;
 + (NSURL *)libraryDirectoryWithName:(NSString *)name;
 
++ (NSString *)pathWithFileName:(NSString *)name ;
+
 @end

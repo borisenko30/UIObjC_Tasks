@@ -31,4 +31,8 @@
     return nil;
 }
 
++ (NSString *)pathWithFileName:(NSString *)name {
+    return [NSString stringWithFormat:@"%@/%@", [NSFileManager documentsDirectory].path, name];
+}
+
 @end

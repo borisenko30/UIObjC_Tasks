@@ -24,7 +24,7 @@ static const CGFloat IDPShowAlpha = 1.0;
 
 @implementation IDPLoadingViewContainer
 
-@synthesize animatedLoading = _animatedLoading;
+@synthesize loading = _loading;
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -53,25 +53,25 @@ static const CGFloat IDPShowAlpha = 1.0;
 #pragma mark -
 #pragma mark Accessors
 
-- (BOOL)isAnimatedLoading {
+- (BOOL)isLoading {
     return self.loadingView.isLoading;
 }
 
-- (void)setAnimatedLoading:(BOOL)animatedLoading {
-    if (_animatedLoading != animatedLoading) {
+- (void)setLoading:(BOOL)loading {
+    if (_loading != loading) {
         
-        _animatedLoading = animatedLoading;
+        _loading = loading;
         
         CGFloat alpha;
         
-        if (animatedLoading) {
+        if (loading) {
             [self bringSubviewToFront:self.loadingView];
             alpha = IDPShowAlpha;
         } else {
             alpha = IDPHideAlpha;
         }
         
-        [self setLoading:animatedLoading withAlpha:alpha];
+        [self setLoading:loading withAlpha:alpha];
     }
 }
 

@@ -12,8 +12,16 @@
 #import "IDPModel.h"
 
 #import "IDPGCD.h"
+#import "NSFileManager+IDPExtensions.h"
 
 @implementation IDPModel
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (NSString *)pathWithFileName:(NSString *)name {
+    return [NSString stringWithFormat:@"%@/%@", [NSFileManager documentsDirectory].path, name];
+}
 
 #pragma mark -
 #pragma mark Public

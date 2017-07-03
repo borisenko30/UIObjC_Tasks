@@ -21,6 +21,7 @@ static NSString * const IDPFileName     = @"arrayModel.plist";
 static NSUInteger const IDPUsersCount   = 10;
 
 @interface IDPUsersModel ()
+@property (nonatomic, strong) NSString *filePath;
 
 - (void)saveObject:(id <NSCoding>)object;
 
@@ -31,19 +32,13 @@ static NSUInteger const IDPUsersCount   = 10;
 @implementation IDPUsersModel
 
 #pragma mark -
-#pragma mark Class Methods
+#pragma mark Accessors
 
-+ (NSString *)filePath {
-    static dispatch_once_t onceToken;
-    static id filePath = nil;
+- (instancetype)init {
+    self = [super init];
+    self.filePath = [NSFileManager pathWithFileName:IDPFileName];
     
-    dispatch_once(&onceToken, ^{
-        filePath =  [NSString stringWithFormat:@"%@/%@",
-                          [NSFileManager documentsDirectory].path,
-                          IDPFileName];
-    });
-    
-    return filePath;
+    return self;
 }
 
 #pragma mark -
@@ -62,7 +57,7 @@ static NSUInteger const IDPUsersCount   = 10;
         
         self.state = IDPModelWillLoad;
         
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:[IDPUsersModel filePath]];
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:self.filePath];
     };
     
     IDPCompletionBlock completion = ^(id <NSCoding> result) {
@@ -85,7 +80,7 @@ static NSUInteger const IDPUsersCount   = 10;
 #pragma mark Private
 
 - (void)saveObject:(id <NSCoding>)object {
-    BOOL saved = [NSKeyedArchiver archiveRootObject:object toFile:[IDPUsersModel filePath]];
+    BOOL saved = [NSKeyedArchiver archiveRootObject:object toFile:self.filePath];
     if (saved) {
         NSLog(@"file was saved...");
     } else {

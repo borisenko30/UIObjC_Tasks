@@ -39,11 +39,11 @@
 #pragma mark ModelObserver methods
 
 - (void)modelWillLoad:(id)model {
-    self.animatedLoading = YES;
+    self.loading = YES;
 }
 
 - (void)modelDidLoad:(id)model {
-    self.animatedLoading = NO;
+    self.loading = NO;
     [self.tableView reloadData];
 }
 

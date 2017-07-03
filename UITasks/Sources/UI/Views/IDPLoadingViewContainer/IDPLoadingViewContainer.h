@@ -13,7 +13,7 @@
 @class IDPLoadingView;
 
 @interface IDPLoadingViewContainer : UIView
-@property (nonatomic, assign, getter=isAnimatedLoading)   BOOL    animatedLoading;
+@property (nonatomic, assign, getter=isLoading)   BOOL    loading;
 
 @property (nonatomic, strong) IDPLoadingView  *loadingView;
 
