@@ -13,6 +13,8 @@ typedef id <NSCoding>(^IDPLoadingBlock)();
 
 @interface IDPUsersModel : IDPArrayModel
 
++ (NSString *)filePath;
+
 - (void)save;
 
 @end

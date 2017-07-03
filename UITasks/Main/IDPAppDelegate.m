@@ -31,7 +31,7 @@
 //    IDPSquareViewController *viewController = [IDPSquareViewController defaultViewController];
     
     // Task 02
-    IDPUsersViewController *viewController = [IDPUsersViewController defaultViewController];
+    IDPUsersViewController *viewController = [IDPUsersViewController viewController];
     
     // Task03
     // Task04

@@ -15,6 +15,7 @@
 #import "IDPUser.h"
 
 #import "NSArray+IDPExtensions.h"
+#import "NSFileManager+IDPExtensions.h"
 
 static NSString * const IDPFileName     = @"arrayModel.plist";
 static NSUInteger const IDPUsersCount   = 10;
@@ -25,11 +26,25 @@ static NSUInteger const IDPUsersCount   = 10;
 
 - (void)loadWithBlock:(IDPLoadingBlock)block completion:(IDPCompletionBlock)completion;
 
-- (NSURL *)applicationDocumentsDirectory;
-
 @end
 
 @implementation IDPUsersModel
+
+#pragma mark -
+#pragma mark Class Methods
+
++ (NSString *)filePath {
+    static dispatch_once_t onceToken;
+    static id filePath = nil;
+    
+    dispatch_once(&onceToken, ^{
+        filePath =  [NSString stringWithFormat:@"%@/%@",
+                          [NSFileManager documentsDirectory].path,
+                          IDPFileName];
+    });
+    
+    return filePath;
+}
 
 #pragma mark -
 #pragma mark Public
@@ -42,13 +57,12 @@ static NSUInteger const IDPUsersCount   = 10;
     IDPWeakify(self)
     IDPLoadingBlock block = ^id <NSCoding>{
         IDPStrongify(self)
-        NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
         
         NSLog(@"start loading");
         
         self.state = IDPModelWillLoad;
         
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:url.path];
+        return [NSKeyedUnarchiver unarchiveObjectWithFile:[IDPUsersModel filePath]];
     };
     
     IDPCompletionBlock completion = ^(id <NSCoding> result) {
@@ -71,9 +85,7 @@ static NSUInteger const IDPUsersCount   = 10;
 #pragma mark Private
 
 - (void)saveObject:(id <NSCoding>)object {
-    NSURL *url = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:IDPFileName];
-    
-    BOOL saved = [NSKeyedArchiver archiveRootObject:object toFile:url.path];
+    BOOL saved = [NSKeyedArchiver archiveRootObject:object toFile:[IDPUsersModel filePath]];
     if (saved) {
         NSLog(@"file was saved...");
     } else {
@@ -94,10 +106,6 @@ static NSUInteger const IDPUsersCount   = 10;
             });
         }
     });
-}
-
-- (NSURL *)applicationDocumentsDirectory {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

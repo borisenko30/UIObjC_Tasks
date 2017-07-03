@@ -10,7 +10,9 @@
 
 @interface UIViewController (IDPExtensions)
 
-+ (instancetype)defaultViewController;
-+ (instancetype)viewControllerWithName:(NSString *)name;
++ (instancetype)viewController;
+
+// Override this method to provide custom nib name;
++ (NSString *)nibName;
 
 @end

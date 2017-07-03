@@ -12,14 +12,11 @@
 #import "IDPMacro.h"
 
 static const CGFloat IDPHideAlpha = 0;
-static const CGFloat IDPShowAlpha = 0.5;
+static const CGFloat IDPShowAlpha = 1.0;
 
 @interface IDPLoadingViewContainer ()
 
 - (IDPLoadingView *)defaultLoadingView;
-
-- (void)showLoading;
-- (void)hideLoading;
 
 - (void)setLoading:(BOOL)loading withAlpha:(CGFloat)alpha;
 
@@ -65,12 +62,16 @@ static const CGFloat IDPShowAlpha = 0.5;
         
         _animatedLoading = animatedLoading;
         
+        CGFloat alpha;
+        
         if (animatedLoading) {
             [self bringSubviewToFront:self.loadingView];
-            [self setLoading:animatedLoading withAlpha:IDPShowAlpha];
+            alpha = IDPShowAlpha;
         } else {
-            [self setLoading:animatedLoading withAlpha:IDPHideAlpha];
+            alpha = IDPHideAlpha;
         }
+        
+        [self setLoading:animatedLoading withAlpha:alpha];
     }
 }
 
