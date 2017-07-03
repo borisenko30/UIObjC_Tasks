@@ -24,8 +24,6 @@
 @property (nonatomic, strong)     NSString          *filePath;
 @property (nonatomic, strong)     IDPImageCache     *cache;
 
-- (void)initModelWithUrl:(NSURL *)url;
-
 - (NSOperation *)imageLoadingOperation;
 
 @end
@@ -47,25 +45,16 @@
 
     self.url = url;
     self.imageName = [url lastPathComponent];
-    [self initModelWithUrl:url];
+    IDPImageCache *cache = self.cache;
+    self.cache = [IDPImageCache sharedCache];
+    
+    if ([cache.imageModels objectForKey:url]) {
+        self = nil;
+    } else {
+        [cache setImageModel:self URL:url];
+    }
     
     return self;
-}
-
-- (void)initModelWithUrl:(NSURL *)url {
-    IDPImageCache *sharedCache = [IDPImageCache sharedCache];
-    NSDictionary *models = sharedCache.imageModels;
-    id model = [models objectForKey:url];
-    
-    if (model) {
-        [self performBlock:^{
-            [self dump];
-        } shouldNotify:NO];
-        
-        [sharedCache setImageModel:model URL:url];
-    } else {
-        [sharedCache setImageModel:self URL:url];
-    }
 }
 
 #pragma mark -
@@ -98,8 +87,8 @@
 - (UIImage *)imageWithUrl:(NSURL *)url {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *filePath = self.filePath;
-    __block NSData *data;
-    __block UIImage *image = nil;
+    NSData *data;
+    UIImage *image = nil;
     
     if ([fileManager fileExistsAtPath:filePath]) {
         data = [NSData dataWithContentsOfFile:filePath];
@@ -138,7 +127,6 @@
     IDPWeakify(self);
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
         IDPStrongifyAndReturnIfNil(self);
-        //self.image = [UIImage imageWithContentsOfFile:self.url.path];
         self.image = [self imageWithUrl:self.url];
     }];
     
