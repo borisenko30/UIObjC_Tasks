@@ -11,6 +11,8 @@
 
 #import "IDPModel.h"
 
+#import "IDPGCD.h"
+
 @implementation IDPModel
 
 #pragma mark -
@@ -28,7 +30,9 @@
         self.state = IDPModelWillLoad;
     }
     
-    [self processLoading];
+    IDPDispatchAsyncInBackground(^{
+        [self processLoading];
+    });
 }
 
 - (void)processLoading {

@@ -11,6 +11,8 @@
 #import "IDPMacro.h"
 #import "IDPImageModelDispatcher.h"
 
+#import "IDPGCD.h"
+
 @interface IDPImageModel ()
 @property (nonatomic, strong)     UIImage           *image;
 @property (nonatomic, strong)     NSURL             *url;
@@ -75,6 +77,20 @@
 
 #pragma mark -
 #pragma mark Private
+
+- (void)loadImage{
+    IDPWeakify(self);
+    IDPDispatchAsyncInBackground(^{
+        IDPStrongify(self);
+        NSData *data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: @"http://myurl/mypic.jpg"]];
+        
+        if (data) {
+            IDPDispatchOnMainQueue(^{
+                self.image = [UIImage imageWithData: data];
+            });
+        }
+    });
+}
 
 - (NSOperation *)imageLoadingOperation {
     IDPWeakify(self);
