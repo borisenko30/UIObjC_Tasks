@@ -15,12 +15,11 @@
 @interface IDPImageModel : IDPModel<NSURLSessionDownloadDelegate>
 @property (nonatomic, readonly)     UIImage         *image;
 @property (nonatomic, readonly)     NSURL           *url;
+@property (nonatomic, readonly)     NSString        *filePath;
 @property (nonatomic, readonly)     IDPImageCache   *cache;
 
 + (instancetype)imageWithURL:(NSURL *)url;
 
 - (instancetype)initWithURL:(NSURL *)url;
-
-- (void)dump;
 
 @end

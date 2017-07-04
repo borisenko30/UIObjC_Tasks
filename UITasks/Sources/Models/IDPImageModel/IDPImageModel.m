@@ -66,13 +66,7 @@
 #pragma mark Accessors
 
 - (IDPImageCache *)cache {
-    static IDPImageCache *cache;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        cache = [IDPImageCache sharedCache];
-    });
-    
-    return cache;
+    return [IDPImageCache sharedCache];
 }
 
 - (NSString *)filePath {
@@ -133,7 +127,6 @@
 }
 
 - (void)processLoading  {
-    self.state = IDPModelWillLoad;
     
     NSURL *url = [NSURL URLWithString:@"https://img-9gag-fun.9cache.com/photo/aL8PBM5_700b.jpg"];
     
@@ -150,12 +143,6 @@
     [task resume];
 }
 
-
-- (void)dump {
-    self.image = nil;
-    self.state = IDPModelDidUnload;
-}
-
 #pragma mark -
 #pragma mark NSURLSessionDownloadDelegate
 
@@ -166,6 +153,7 @@ didFinishDownloadingToURL:(NSURL *)location {
     if (data) {
         self.image = [UIImage imageWithData:data];
         self.state = IDPModelDidLoad;
+        [data writeToFile:self.filePath atomically:YES];
     }
 }
 
