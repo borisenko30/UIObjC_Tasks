@@ -12,7 +12,10 @@
 #import "IDPDeletionModel.h"
 #import "IDPMovementModel.h"
 
-#import "IDPModificationModel+IDPExtensions.h"
+@interface IDPModificationModel ()
+@property (nonatomic, assign) NSUInteger index;
+
+@end
 
 @implementation IDPModificationModel
 
@@ -29,6 +32,16 @@
 
 + (instancetype)movementModelWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex {
     return [[IDPMovementModel alloc] initWithSourceIndex:sourceIndex destinationIndex:destinationIndex];
+}
+
+#pragma mark -
+#pragma mark Accessors
+
+- (instancetype)initWithIndex:(NSUInteger)index {
+    self = [super init];
+    self.index = index;
+    
+    return self;
 }
 
 @end

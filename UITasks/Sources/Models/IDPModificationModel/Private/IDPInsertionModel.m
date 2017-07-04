@@ -8,18 +8,6 @@
 
 #import "IDPInsertionModel.h"
 
-#import "IDPModificationModel+IDPExtensions.h"
-
 @implementation IDPInsertionModel
-
-#pragma mark -
-#pragma mark Accessors
-
-- (instancetype)initWithIndex:(NSUInteger)index {
-    self = [super init];
-    self.index = index;
-    
-    return self;
-}
 
 @end

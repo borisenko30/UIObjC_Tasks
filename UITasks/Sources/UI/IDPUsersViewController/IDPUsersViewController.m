@@ -31,6 +31,7 @@ IDPViewControllerBaseViewProperty(IDPUsersViewController, mainView, IDPUsersView
 @implementation IDPUsersViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.mainView.usersModel = self.usersModel;
     
     [self loadModel];

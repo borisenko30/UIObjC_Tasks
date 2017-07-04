@@ -26,7 +26,6 @@
     
     dispatch_once(&onceToken, ^{
         sharedCache = [self new];
-        sharedCache.models = [NSMapTable strongToWeakObjectsMapTable];
     });
     
     return sharedCache;
@@ -63,6 +62,12 @@
 - (void)removeImageModelForURL:(NSURL *)url {
     @synchronized (self) {
         [self.models removeObjectForKey:url];
+    }
+}
+
+- (IDPImageModel *)imageModelForURL:(NSURL *)url {
+    @synchronized (self) {
+        return [self.models objectForKey:url];
     }
 }
 

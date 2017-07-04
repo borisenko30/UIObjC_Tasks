@@ -12,10 +12,7 @@
 
 
 + (instancetype)viewController {
-    NSString *viewControllerClass = NSStringFromClass([self class]);
-    NSString *nibName = [self nibName];
-
-    return [[self alloc] initWithNibName:nibName ? nibName : viewControllerClass bundle:nil];
+    return [[self alloc] initWithNibName:[self nibName] bundle:nil];
 }
 
 + (NSString *)nibName {

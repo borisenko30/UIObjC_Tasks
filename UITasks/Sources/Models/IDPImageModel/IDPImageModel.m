@@ -9,22 +9,19 @@
 #import "IDPImageModel.h"
 
 #import "IDPImageCache.h"
-#import "IDPImageModelDispatcher.h"
 
 #import "IDPMacro.h"
 #import "IDPGCD.h"
 
 #import "NSFileManager+IDPExtensions.h"
+#import "IDPModel+Extensions.h"
 
 @interface IDPImageModel ()
 @property (nonatomic, strong)     UIImage           *image;
 @property (nonatomic, strong)     NSURL             *url;
-@property (nonatomic, strong)     NSOperation       *operation;
 @property (nonatomic, strong)     NSString          *imageName;
 @property (nonatomic, strong)     NSString          *filePath;
 @property (nonatomic, strong)     IDPImageCache     *cache;
-
-- (NSOperation *)imageLoadingOperation;
 
 @end
 
@@ -45,11 +42,19 @@
 
     self.url = url;
     self.imageName = [url lastPathComponent];
-    IDPImageCache *cache = self.cache;
-    self.cache = [IDPImageCache sharedCache];
     
-    if ([cache.imageModels objectForKey:url]) {
-        self = nil;
+    self = [self initFromCacheWithURL:url];
+    
+    return self;
+}
+
+- (instancetype)initFromCacheWithURL:(NSURL *)url {
+    IDPImageCache *cache = self.cache;
+    
+    id model = [cache.imageModels objectForKey:url];
+    
+    if (model) {
+        self = model;
     } else {
         [cache setImageModel:self URL:url];
     }
@@ -60,29 +65,45 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (NSString *)filePath {
-    return [NSFileManager pathWithFileName:self.imageName];
+- (IDPImageCache *)cache {
+    static IDPImageCache *cache;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        cache = [IDPImageCache sharedCache];
+    });
+    
+    return cache;
 }
 
-- (void)setOperation:(NSOperation *)operation {
-    if (_operation != operation) {
-        [_operation cancel];
-        
-        _operation = operation;
-        
-        if (operation) {
-            IDPImageModelDispatcher *dispatcher = [IDPImageModelDispatcher sharedDispatcher];
-            [dispatcher.queue addOperation:operation];
-        }
-    }
+- (NSString *)filePath {
+    return [NSFileManager pathWithFileName:self.imageName];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (void)processLoading {
-    self.operation = [self imageLoadingOperation];
-}
+//- (void)processLoading {
+//    IDPWeakify(self)
+//    IDPLoadingBlock block = ^id <NSCoding>{
+//        IDPStrongify(self)
+//        
+//        self.state = IDPModelWillLoad;
+//        
+//        self.image = [self imageWithUrl:self.url];
+//        
+//        return nil;
+//    };
+//    
+//    IDPCompletionBlock completion = ^(id <NSCoding> result) {
+//        IDPStrongify(self)
+//        
+//        IDPDispatchOnMainQueue(^{
+//            self.state = self.image ? IDPModelDidLoad : IDPModelDidFailLoading;
+//        });
+//    };
+//    
+//    [self loadWithBlock:block completion:completion];
+//}
 
 - (UIImage *)imageWithUrl:(NSURL *)url {
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -111,31 +132,46 @@
     return image;
 }
 
+- (void)processLoading  {
+    self.state = IDPModelWillLoad;
+    
+    NSURL *url = [NSURL URLWithString:@"https://img-9gag-fun.9cache.com/photo/aL8PBM5_700b.jpg"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration
+                                                backgroundSessionConfigurationWithIdentifier:@"backgroundSession"];
+    configuration.timeoutIntervalForResource = 3.0;
+    
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration
+                                                          delegate:self
+                                                     delegateQueue:[NSOperationQueue mainQueue]];
+    
+    NSURLSessionDownloadTask *task = [session downloadTaskWithURL:url];
+                                      
+    [task resume];
+}
+
+
 - (void)dump {
-    self.image = nil;
-    self.imageName = nil;
-    self.filePath = nil;
-    self.operation = nil;
     self.image = nil;
     self.state = IDPModelDidUnload;
 }
 
 #pragma mark -
-#pragma mark Private
+#pragma mark NSURLSessionDownloadDelegate
 
-- (NSOperation *)imageLoadingOperation {
-    IDPWeakify(self);
-    NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
-        IDPStrongifyAndReturnIfNil(self);
-        self.image = [self imageWithUrl:self.url];
-    }];
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
+didFinishDownloadingToURL:(NSURL *)location {
+    NSData *data = [NSData dataWithContentsOfURL:location];
     
-    operation.completionBlock = ^{
-        IDPStrongifyAndReturnIfNil(self);
-        self.state = self.image ? IDPModelDidLoad : IDPModelDidFailLoading;
-    };
+    if (data) {
+        self.image = [UIImage imageWithData:data];
+        self.state = IDPModelDidLoad;
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
+didCompleteWithError:(nullable NSError *)error {
     
-    return operation;
 }
 
 @end

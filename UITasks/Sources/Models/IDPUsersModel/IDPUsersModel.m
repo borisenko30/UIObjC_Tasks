@@ -9,13 +9,13 @@
 #import "IDPUsersModel.h"
 
 #import "IDPMacro.h"
-
 #import "IDPGCD.h"
 
 #import "IDPUser.h"
 
 #import "NSArray+IDPExtensions.h"
 #import "NSFileManager+IDPExtensions.h"
+#import "IDPModel+Extensions.h"
 
 static NSString * const IDPFileName     = @"arrayModel.plist";
 static NSUInteger const IDPUsersCount   = 10;
@@ -24,8 +24,6 @@ static NSUInteger const IDPUsersCount   = 10;
 @property (nonatomic, strong) NSString *filePath;
 
 - (void)saveObject:(id <NSCoding>)object;
-
-- (void)loadWithBlock:(IDPLoadingBlock)block completion:(IDPCompletionBlock)completion;
 
 @end
 
@@ -68,9 +66,14 @@ static NSUInteger const IDPUsersCount   = 10;
             }];
         }
         
-        [self performBlock:^{
+        [self performBlockWithoutNotification:^{
             [self addObjects:(NSArray *)result];
-        } shouldNotify:NO];
+        }];
+        
+        IDPDispatchOnMainQueue(^{
+            self.state = IDPModelDidLoad;
+            NSLog(@"loaded model");
+        });
     };
     
     [self loadWithBlock:block completion:completion];
@@ -86,21 +89,6 @@ static NSUInteger const IDPUsersCount   = 10;
     } else {
         NSLog(@"failed to save the file!");
     }
-}
-
-- (void)loadWithBlock:(IDPLoadingBlock)block completion:(IDPCompletionBlock)completion {
-    IDPDispatchAsyncInBackground(^{
-        id result = block();
-        
-        if (completion) {
-            completion(result);
-            
-            IDPDispatchOnMainQueue(^{
-                self.state = IDPModelDidLoad;
-                NSLog(@"loaded model");
-            });
-        }
-    });
 }
 
 @end

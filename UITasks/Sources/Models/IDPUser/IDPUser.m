@@ -15,6 +15,7 @@
 static NSString * const IDPUserName         = @"IDPUserName";
 static NSString * const IDPImageName        = @"image";
 static NSString * const IDPImageExtension   = @"jpg";
+static NSString * const IDPImageURL         = @"https://img-9gag-fun.9cache.com/photo/aADrry0_700b.jpg";
 
 @interface IDPUser ()
 @property (nonatomic, strong) NSString  *name;
@@ -41,15 +42,7 @@ static NSString * const IDPImageExtension   = @"jpg";
 #pragma mark Accessors
 
 - (IDPImageModel *)imageModel {
-    //NSURL *imageURL = [[NSBundle mainBundle] URLForResource:self.imageName withExtension:IDPImageExtension];
-    NSArray *strings = @[@"https://img-9gag-fun.9cache.com/photo/aADrry0_700b.jpg",
-                         @"https://img-9gag-fun.9cache.com/photo/aWqWYjA_700b.jpg"];
-    int index = arc4random_uniform(2);
-    
-    NSURL *imageURL = [NSURL URLWithString:
-                       strings[index]];
-    
-    return [IDPImageModel imageWithURL:imageURL];
+    return [IDPImageModel imageWithURL:[NSURL URLWithString:IDPImageURL]];
 }
 
 #pragma mark -

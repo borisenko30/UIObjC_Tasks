@@ -18,4 +18,6 @@
 + (instancetype)deletionModelWithIndex:(NSUInteger)index;
 + (instancetype)movementModelWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
 
+- (instancetype)initWithIndex:(NSUInteger)index;
+
 @end

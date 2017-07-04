@@ -47,13 +47,8 @@
 
 - (void)initSubviews {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    imageView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin
-    | UIViewAutoresizingFlexibleLeftMargin
-    | UIViewAutoresizingFlexibleWidth
-    | UIViewAutoresizingFlexibleRightMargin
-    | UIViewAutoresizingFlexibleTopMargin
-    | UIViewAutoresizingFlexibleHeight
-    | UIViewAutoresizingFlexibleBottomMargin;
+    
+    imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     self.contentImageView = imageView;
 }
@@ -75,7 +70,7 @@
     if (_imageModel != imageModel) {
         [_imageModel removeObserver:self];
         
-        [_imageModel dump];
+        self.contentImageView.image = nil;
         
         _imageModel = imageModel;
         
@@ -87,10 +82,6 @@
 
 #pragma mark -
 #pragma mark IDPImageModelObserver
-
-- (void)modelDidUnload:(IDPImageModel *)model {
-    
-} 
 
 - (void)modelWillLoad:(IDPImageModel *)model {
     self.loading = YES;

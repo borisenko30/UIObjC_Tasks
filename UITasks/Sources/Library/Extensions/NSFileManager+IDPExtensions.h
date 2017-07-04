@@ -10,9 +10,9 @@
 
 @interface NSFileManager (IDPExtensions)
 
-+ (NSURL *)documentsDirectory;
-+ (NSURL *)libraryDirectory;
-+ (NSURL *)libraryDirectoryWithName:(NSString *)name;
++ (NSURL *)documentsDirectoryUrl;
++ (NSURL *)libraryDirectoryUrl;
++ (NSURL *)libraryDirectoryUrlWithName:(NSString *)name;
 
 + (NSString *)pathWithFileName:(NSString *)name ;
 

@@ -17,5 +17,6 @@
 
 - (void)setImageModel:(IDPImageModel *)model URL:(NSURL *)url;
 - (void)removeImageModelForURL:(NSURL *)url;
+- (IDPImageModel *)imageModelForURL:(NSURL *)url;
 
 @end

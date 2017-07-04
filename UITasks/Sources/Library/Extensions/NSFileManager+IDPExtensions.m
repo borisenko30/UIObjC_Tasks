@@ -10,17 +10,17 @@
 
 @implementation NSFileManager (IDPExtensions)
 
-+ (NSURL *)documentsDirectory {
++ (NSURL *)documentsDirectoryUrl {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-+ (NSURL *)libraryDirectory {
++ (NSURL *)libraryDirectoryUrl {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-+ (NSURL *)libraryDirectoryWithName:(NSString *)name {
++ (NSURL *)libraryDirectoryUrlWithName:(NSString *)name {
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *libraryPath = [self libraryDirectory].path;
+    NSString *libraryPath = [self libraryDirectoryUrl].path;
     NSString *namePath = [libraryPath stringByAppendingPathComponent:name];
     if (![fileManager fileExistsAtPath:namePath]) {
         if ([fileManager createDirectoryAtPath:namePath withIntermediateDirectories:NO attributes:nil error:nil]) {
@@ -32,7 +32,7 @@
 }
 
 + (NSString *)pathWithFileName:(NSString *)name {
-    return [NSString stringWithFormat:@"%@/%@", [NSFileManager documentsDirectory].path, name];
+    return [NSString stringWithFormat:@"%@/%@", [self documentsDirectoryUrl].path, name];
 }
 
 @end

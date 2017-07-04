@@ -12,6 +12,10 @@
 @property (nonatomic, retain) NSHashTable *mutableObservers;
 @property (nonatomic, assign) BOOL        shouldNotify;
 
+- (void)notifyOfStateWithSelector:(SEL)selector;
+- (void)notifyOfStateWithSelector:(SEL)selector withObject:(id)object;
+- (void)performBlock:(void(^)())block shouldNotify:(BOOL)shouldNotify;
+
 @end
 
 @implementation IDPObservableObject
@@ -101,13 +105,14 @@
     [self notifyOfStateWithSelector:[self selectorForState:state] withObject:object];
 }
 
-- (void)performBlock:(void(^)())block shouldNotify:(BOOL)shouldNotify {
-    @synchronized (self) {
-        BOOL doesNotify = self.shouldNotify;
-        self.shouldNotify = shouldNotify;
-        block();
-        self.shouldNotify = doesNotify;
-    }
+
+
+- (void)performBlockWithNotification:(void(^)())block {
+    [self performBlock:block shouldNotify:YES];
+}
+
+- (void)performBlockWithoutNotification:(void(^)())block {
+    [self performBlock:block shouldNotify:NO];
 }
 
 #pragma mark -
@@ -129,6 +134,15 @@
                 [observer performSelector:selector withObject:self withObject:object];
             }
         }
+    }
+}
+
+- (void)performBlock:(void(^)())block shouldNotify:(BOOL)shouldNotify {
+    @synchronized (self) {
+        BOOL doesNotify = self.shouldNotify;
+        self.shouldNotify = shouldNotify;
+        block();
+        self.shouldNotify = doesNotify;
     }
 }
 

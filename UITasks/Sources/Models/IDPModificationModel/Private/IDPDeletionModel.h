@@ -10,6 +10,4 @@
 
 @interface IDPDeletionModel : IDPModificationModel
 
-- (instancetype)initWithIndex:(NSUInteger)index;
-
 @end

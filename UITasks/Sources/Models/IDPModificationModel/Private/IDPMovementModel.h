@@ -6,11 +6,8 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPModificationModel.h"
+#import "IDPDoubleIndexModificationModel.h"
 
-@interface IDPMovementModel : IDPModificationModel
-@property (nonatomic, readonly) NSUInteger destinationIndex;
-
-- (instancetype)initWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex;
+@interface IDPMovementModel : IDPDoubleIndexModificationModel
 
 @end

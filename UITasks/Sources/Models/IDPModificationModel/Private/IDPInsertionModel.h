@@ -10,6 +10,4 @@
 
 @interface IDPInsertionModel : IDPModificationModel
 
-- (instancetype)initWithIndex:(NSUInteger)index;
-
 @end

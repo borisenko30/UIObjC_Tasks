@@ -8,24 +8,6 @@
 
 #import "IDPMovementModel.h"
 
-#import "IDPModificationModel+IDPExtensions.h"
-
-@interface IDPMovementModel ()
-@property (nonatomic, assign) NSUInteger destinationIndex;
-
-@end
-
 @implementation IDPMovementModel
-
-#pragma mark -
-#pragma mark Accessors
-
-- (instancetype)initWithSourceIndex:(NSUInteger)sourceIndex destinationIndex:(NSUInteger)destinationIndex; {
-    self = [super init];
-    self.index = sourceIndex;
-    self.destinationIndex = destinationIndex;
-    
-    return self;
-}
 
 @end
