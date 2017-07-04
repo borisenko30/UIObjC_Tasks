@@ -17,13 +17,6 @@
 @implementation IDPModel
 
 #pragma mark -
-#pragma mark Class Methods
-
-+ (NSString *)pathWithFileName:(NSString *)name {
-    return [NSString stringWithFormat:@"%@/%@", [NSFileManager documentsDirectoryUrl].path, name];
-}
-
-#pragma mark -
 #pragma mark Public
 
 - (void)load {
