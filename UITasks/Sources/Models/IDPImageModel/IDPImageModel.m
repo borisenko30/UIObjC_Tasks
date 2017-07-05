@@ -8,30 +8,46 @@
 
 #import "IDPImageModel.h"
 
-#import "IDPImageCache.h"
+#import "IDPFileSystemImageModel.h"
+#import "IDPInternetImageModel.h"
 
 #import "IDPMacro.h"
 #import "IDPGCD.h"
 
 #import "NSFileManager+IDPExtensions.h"
-#import "IDPModel+Extensions.h"
 
 @interface IDPImageModel ()
 @property (nonatomic, strong)     UIImage           *image;
 @property (nonatomic, strong)     NSURL             *url;
-@property (nonatomic, strong)     NSString          *imageName;
-@property (nonatomic, strong)     NSString          *filePath;
-@property (nonatomic, strong)     IDPImageCache     *cache;
+@property (nonatomic, strong)     NSURL             *localUrl;
+@property (nonatomic, strong)     IDPCache          *cache;
 
 @end
 
 @implementation IDPImageModel
 
+@dynamic cache;
+@dynamic localUrl;
+
 #pragma mark -
 #pragma mark Class Methods
 
-+ (instancetype)imageWithURL:(NSURL *)url {
-    return [[self alloc] initWithURL:url];
+#pragma mark -
+#pragma mark Class Methods
+
++ (instancetype)modelWithURL:(NSURL *)url {
+    IDPCache *cache = [IDPCache sharedCache];
+    id model = [cache modelForKey:url];
+    if (model) {
+        return model;
+    }
+    
+    Class class = [url isFileURL] ? [IDPFileSystemImageModel class] : [IDPInternetImageModel class];
+    model = [class alloc] initWithURL:url];
+    [cache setObject:model forKey:url];
+    
+    return model;
+    
 }
 
 #pragma mark -
@@ -41,23 +57,6 @@
     self = [super init];
 
     self.url = url;
-    self.imageName = [url lastPathComponent];
-    
-    self = [self initFromCacheWithURL:url];
-    
-    return self;
-}
-
-- (instancetype)initFromCacheWithURL:(NSURL *)url {
-    IDPImageCache *cache = self.cache;
-    
-    id model = [cache.imageModels objectForKey:url];
-    
-    if (model) {
-        self = model;
-    } else {
-        [cache setImageModel:self URL:url];
-    }
     
     return self;
 }
@@ -69,100 +68,26 @@
     return [IDPImageCache sharedCache];
 }
 
-- (NSString *)filePath {
-    return [NSFileManager pathWithFileName:self.imageName];
+- (NSURL *)localUrl {
+    return [NSFileManager localUrlWithFileName:[self.url lastPathComponent]];
 }
 
 #pragma mark -
 #pragma mark Public Methods
 
-//- (void)processLoading {
-//    IDPWeakify(self)
-//    IDPLoadingBlock block = ^id <NSCoding>{
-//        IDPStrongify(self)
-//        
-//        
-//        self.image = [self imageWithUrl:self.url];
-//        
-//        return nil;
-//    };
-//    
-//    IDPCompletionBlock completion = ^(id <NSCoding> result) {
-//        IDPStrongify(self)
-//        
-//        IDPDispatchOnMainQueue(^{
-//            self.state = self.image ? IDPModelDidLoad : IDPModelDidFailLoading;
-//        });
-//    };
-//    
-//    [self loadWithBlock:block completion:completion];
-//}
-
-- (UIImage *)imageWithUrl:(NSURL *)url {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *filePath = self.filePath;
-    NSData *data;
-    UIImage *image = nil;
-    
-    if ([fileManager fileExistsAtPath:filePath]) {
-        data = [NSData dataWithContentsOfFile:filePath];
-        
-        if (data) {
-            image = [UIImage imageWithData:data];
+- (void)performLoading {
+    [self loadWithCompletion:^(UIImage *image, NSError *error) {
+        self.image = image;
+        if (error) {
+            //[self setState:IDPModelDidFailLoading withObject:error];
         } else {
-            //handle error
+            self.state = IDPModelDidLoad;
         }
-    } else {
-        data = [[NSData alloc] initWithContentsOfURL:url];
-        
-        if (data) {
-            [data writeToFile:filePath atomically:YES];
-        }
-        
-        image = [UIImage imageWithData:data];
-    }
-    
-    return image;
+    }];
 }
 
-- (void)processLoading  {
-    //NSString *urlString = @"http://img1.joyreactor.cc/pics/post/%D0%BA%D0%BE%D1%82%D1%8D-%D0%B6%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D1%8C-3934357.jpeg";
+- (void)loadWithCompletion:(IDPCompletionBlock)block {
     
-    //@"https://img-9gag-fun.9cache.com/photo/a88YdDZ_700b.jpg";
-    
-    
-    NSURL *url = [NSURL URLWithString:@"http://img1.joyreactor.cc/pics/post/%D0%BA%D0%BE%D1%82%D1%8D-%D0%B6%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D1%8C-3934357.jpeg"];
-    
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration
-                                                backgroundSessionConfigurationWithIdentifier:@"backgroundSession"];
-    configuration.timeoutIntervalForResource = 3.0;
-    
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration
-                                                          delegate:self
-                                                     delegateQueue:[NSOperationQueue mainQueue]];
-    
-    NSURLSessionDownloadTask *task = [session downloadTaskWithURL:url];
-                                      
-    [task resume];
-}
-
-#pragma mark -
-#pragma mark NSURLSessionDownloadDelegate
-
-- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
-didFinishDownloadingToURL:(NSURL *)location {
-    NSData *data = [NSData dataWithContentsOfURL:location];
-    
-    if (data) {
-        self.image = [UIImage imageWithData:data];
-        self.state = IDPModelDidLoad;
-        //[data writeToFile:self.filePath atomically:YES];
-    }
-}
-
-- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
-didCompleteWithError:(nullable NSError *)error {
-    NSLog(@"error %ld", error.code);
 }
 
 @end

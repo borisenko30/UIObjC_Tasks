@@ -12,7 +12,6 @@
 #import "IDPModel.h"
 
 #import "IDPGCD.h"
-#import "NSFileManager+IDPExtensions.h"
 
 @implementation IDPModel
 
@@ -32,11 +31,11 @@
     }
     
     IDPDispatchAsyncInBackground(^{
-        [self processLoading];
+        [self performLoading];
     });
 }
 
-- (void)processLoading {
+- (void)performLoading {
     
 }
 
@@ -50,7 +49,7 @@
         case IDPModelDidUnload:
             return @selector(modelDidUnload:);
         case IDPModelDidFailLoading:
-            return @selector(modelDidFailLoading:);
+            return @selector(model:didFailLoadingWithError:);
         case IDPModelWillLoad:
             return @selector(modelWillLoad:);
             

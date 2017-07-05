@@ -13,7 +13,7 @@
 @optional
 - (void)modelDidLoad:(id)model;
 - (void)modelDidUnload:(id)model;
-- (void)modelDidFailLoading:(id)model;
+- (void)model:(id)model didFailLoadingWithError:(NSError *)error;
 - (void)modelWillLoad:(id)model;
 
 @end

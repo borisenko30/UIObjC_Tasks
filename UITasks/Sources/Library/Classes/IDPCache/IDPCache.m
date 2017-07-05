@@ -6,11 +6,11 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPImageCache.h"
+#import "IDPCache.h"
 
 #import "IDPImageModel.h"
 
-@interface IDPImageCache ()
+@interface IDPCache ()
 @property (nonatomic, strong) NSMapTable *models;
 
 @end
@@ -53,19 +53,19 @@
 #pragma mark -
 #pragma mark Public
 
-- (void)setImageModel:(IDPImageModel *)model URL:(NSURL *)url {
+- (void)setModel:(IDPImageModel *)model URL:(NSURL *)url {
     @synchronized (self) {
         [self.models setObject:model forKey:url];
     }
 }
 
-- (void)removeImageModelForURL:(NSURL *)url {
+- (void)removeModelForURL:(NSURL *)url {
     @synchronized (self) {
         [self.models removeObjectForKey:url];
     }
 }
 
-- (IDPImageModel *)imageModelForURL:(NSURL *)url {
+- (IDPImageModel *)modelForURL:(NSURL *)url {
     @synchronized (self) {
         return [self.models objectForKey:url];
     }

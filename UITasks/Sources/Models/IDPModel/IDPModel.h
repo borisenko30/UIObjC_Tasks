@@ -21,6 +21,6 @@ typedef NS_ENUM(NSUInteger, IDPModelState) {
 - (void)load;
 
 // should be overriden in subclasses
-- (void)processLoading;
+- (void)performLoading;
 
 @end

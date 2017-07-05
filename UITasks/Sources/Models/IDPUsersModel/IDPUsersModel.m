@@ -15,7 +15,6 @@
 
 #import "NSArray+IDPExtensions.h"
 #import "NSFileManager+IDPExtensions.h"
-#import "IDPModel+Extensions.h"
 
 static NSString * const IDPFileName     = @"arrayModel.plist";
 static NSUInteger const IDPUsersCount   = 10;
@@ -34,7 +33,7 @@ static NSUInteger const IDPUsersCount   = 10;
 
 - (instancetype)init {
     self = [super init];
-    self.filePath = [NSFileManager pathWithFileName:IDPFileName];
+    self.filePath = [NSFileManager localUrlWithFileName:IDPFileName].path;
     
     return self;
 }
@@ -46,37 +45,24 @@ static NSUInteger const IDPUsersCount   = 10;
     [self saveObject:self.objects];
 }
 
-- (void)processLoading {
-    IDPWeakify(self)
-    IDPLoadingBlock block = ^id <NSCoding>{
-        IDPStrongify(self)
-        
-        NSLog(@"start loading");
-        
-        self.state = IDPModelWillLoad;
-        
-        return [NSKeyedUnarchiver unarchiveObjectWithFile:self.filePath];
-    };
+- (void)performLoading {
+    NSLog(@"start loading");
+    NSArray *result = [NSKeyedUnarchiver unarchiveObjectWithFile:self.filePath];
     
-    IDPCompletionBlock completion = ^(id <NSCoding> result) {
-        IDPStrongify(self)
-        if (!result) {
-            result = [NSArray objectsWithCount:IDPUsersCount factoryBlock:^id{
-                return [IDPUser new];
-            }];
-        }
-        
-        [self performBlockWithoutNotification:^{
-            [self addObjects:(NSArray *)result];
+    if (!result) {
+        result = [NSArray objectsWithCount:IDPUsersCount factoryBlock:^id{
+            return [IDPUser new];
         }];
-        
-        IDPDispatchOnMainQueue(^{
-            self.state = IDPModelDidLoad;
-            NSLog(@"loaded model");
-        });
-    };
+    }
     
-    [self loadWithBlock:block completion:completion];
+    [self performBlockWithoutNotification:^{
+        [self addObjects:(NSArray *)result];
+    }];
+    
+    IDPDispatchOnMainQueue(^{
+        self.state = IDPModelDidLoad;
+        NSLog(@"loaded model");
+    });
 }
 
 #pragma mark -

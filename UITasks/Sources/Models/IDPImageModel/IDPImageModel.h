@@ -9,17 +9,16 @@
 #import <UIKit/UIKit.h>
 
 #import "IDPModel.h"
+#import "IDPCache.h"
 
-@class IDPImageCache;
+typedef void(^IDPCompletionBlock)(UIImage *, NSError *);
 
-@interface IDPImageModel : IDPModel<NSURLSessionDownloadDelegate>
+@interface IDPImageModel : IDPModel
 @property (nonatomic, readonly)     UIImage         *image;
 @property (nonatomic, readonly)     NSURL           *url;
-@property (nonatomic, readonly)     NSString        *filePath;
-@property (nonatomic, readonly)     IDPImageCache   *cache;
+@property (nonatomic, readonly)     NSURL           *localUrl;
+@property (nonatomic, readonly)     IDPCache        *cache;
 
-+ (instancetype)imageWithURL:(NSURL *)url;
-
-- (instancetype)initWithURL:(NSURL *)url;
++ (instancetype)modelWithURL:(NSURL *)url;
 
 @end

@@ -8,6 +8,6 @@
 
 #import "IDPFileSystemImageModel.h"
 
-@interface IDPInternetImageModel : IDPFileSystemImageModel
+@interface IDPInternetImageModel : IDPImageModel
 
 @end

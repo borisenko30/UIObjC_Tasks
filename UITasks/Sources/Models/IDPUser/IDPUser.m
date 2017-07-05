@@ -15,7 +15,7 @@
 static NSString * const IDPUserName         = @"IDPUserName";
 static NSString * const IDPImageName        = @"image";
 static NSString * const IDPImageExtension   = @"jpg";
-static NSString * const IDPImageURL         = @"http://img1.joyreactor.cc/pics/post/%D0%BA%D0%BE%D1%82%D1%8D-%D0%B6%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D1%8C-3934357.jpeg";
+static NSString * const IDPImageURL         = @"https://sinst.fwdcdn.com/img/weatherImg/b/d200.jpg";
 
 @interface IDPUser ()
 @property (nonatomic, strong) NSString  *name;
@@ -42,7 +42,7 @@ static NSString * const IDPImageURL         = @"http://img1.joyreactor.cc/pics/p
 #pragma mark Accessors
 
 - (IDPImageModel *)imageModel {
-    return [IDPImageModel imageWithURL:[NSURL URLWithString:IDPImageURL]];
+    return [IDPImageModel modelWithURL:[NSURL URLWithString:IDPImageURL]];
 }
 
 #pragma mark -

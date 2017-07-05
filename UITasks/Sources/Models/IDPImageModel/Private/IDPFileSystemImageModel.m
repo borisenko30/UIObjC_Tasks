@@ -10,4 +10,12 @@
 
 @implementation IDPFileSystemImageModel
 
+#pragma mark -
+#pragma mark Public Methods
+
+- (void)loadWithCompletion:(IDPCompletionBlock)block {
+    UIImage *image = [UIImage imageWithContentsOfFile:self.url.path];
+    block(image, nil);
+}
+
 @end

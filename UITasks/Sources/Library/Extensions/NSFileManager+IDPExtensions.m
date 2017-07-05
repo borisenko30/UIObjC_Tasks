@@ -8,31 +8,54 @@
 
 #import "NSFileManager+IDPExtensions.h"
 
+#define IDPSingletonDirectory(tokenName, urlName, block)\
+    static dispatch_once_t tokenName;\
+    static NSURL *urlName = nil;\
+    dispatch_once(&tokenName, block);
+
 @implementation NSFileManager (IDPExtensions)
 
 + (NSURL *)documentsDirectoryUrl {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    IDPSingletonDirectory(onceToken, url, ^{url = [self urlForDirectory:NSDocumentDirectory];})
+
+    return url;
 }
 
 + (NSURL *)libraryDirectoryUrl {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
+    IDPSingletonDirectory(onceToken, url, ^{url = [self urlForDirectory:NSLibraryDirectory];})
+
+    return url;
 }
 
 + (NSURL *)libraryDirectoryUrlWithName:(NSString *)name {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *libraryPath = [self libraryDirectoryUrl].path;
-    NSString *namePath = [libraryPath stringByAppendingPathComponent:name];
-    if (![fileManager fileExistsAtPath:namePath]) {
-        if ([fileManager createDirectoryAtPath:namePath withIntermediateDirectories:NO attributes:nil error:nil]) {
-            return [NSURL fileURLWithPath:namePath];
+    IDPSingletonDirectory(onceToken, url, ^{
+        NSURL *libraryURL = [NSFileManager libraryDirectoryUrl];
+        NSError *error;
+        NSString *filePath = [libraryURL.path stringByAppendingPathComponent:name];
+        BOOL result = [[NSFileManager defaultManager] createDirectoryAtPath:filePath
+                                                withIntermediateDirectories:YES
+                                                                 attributes:nil
+                                                                      error:&error];
+        if (!result) {
+            NSLog(@"Create directory error: %@", error);
         }
-    }
+        
+        url = [NSURL URLWithString:filePath];
+    })
     
-    return nil;
+    return url;
 }
 
-+ (NSString *)pathWithFileName:(NSString *)name {
-    return [NSString stringWithFormat:@"%@/%@", [self documentsDirectoryUrl].path, name];
++ (NSURL *)localUrlWithFileName:(NSString *)name {
+    return [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [self documentsDirectoryUrl].path, name]];
+}
+
+#pragma mark -
+#pragma mark Private
+
++ (NSURL *)urlForDirectory:(NSSearchPathDirectory)directory {
+    NSString *url = [NSSearchPathForDirectoriesInDomains(directory, NSUserDomainMask, YES) firstObject];
+    return  [NSURL URLWithString:url];
 }
 
 @end

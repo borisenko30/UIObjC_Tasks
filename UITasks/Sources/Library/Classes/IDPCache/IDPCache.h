@@ -10,13 +10,13 @@
 
 @class IDPImageModel;
 
-@interface IDPImageCache : NSObject
+@interface IDPCache : NSObject
 @property (nonatomic, readonly) NSDictionary *imageModels;
 
 + (instancetype)sharedCache;
 
-- (void)setImageModel:(IDPImageModel *)model URL:(NSURL *)url;
-- (void)removeImageModelForURL:(NSURL *)url;
-- (IDPImageModel *)imageModelForURL:(NSURL *)url;
+- (void)setModel:(IDPImageModel *)model URL:(NSURL *)url;
+- (void)removeModelForURL:(NSURL *)url;
+- (IDPImageModel *)modelForURL:(NSURL *)url;
 
 @end
