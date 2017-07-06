@@ -6,8 +6,8 @@
 //  Copyright © 2017 Student003. All rights reserved.
 //
 
-#import "IDPImageModel.h"
+#import "IDPFileSystemImageModel.h"
 
-@interface IDPInternetImageModel : IDPImageModel
+@interface IDPInternetImageModel : IDPFileSystemImageModel
 
 @end

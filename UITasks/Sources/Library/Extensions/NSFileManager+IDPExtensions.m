@@ -8,24 +8,27 @@
 
 #import "NSFileManager+IDPExtensions.h"
 
-#define IDPSingletonDirectory(urlName, block)\
+#define IDPSingletonDirectory(block)\
     static dispatch_once_t onceToken;\
-    static NSURL *urlName = nil;\
+    static NSURL *url = nil;\
     dispatch_once(&onceToken, block);\
     return url;
+
+#define IDPUrlForDirectory(directory)\
+    IDPSingletonDirectory(^{url = [self urlForDirectory:directory];})
 
 @implementation NSFileManager (IDPExtensions)
 
 + (NSURL *)documentsDirectoryUrl {
-    IDPSingletonDirectory(url, ^{url = [self urlForDirectory:NSDocumentDirectory];})
+    IDPUrlForDirectory(NSDocumentDirectory)
 }
 
 + (NSURL *)libraryDirectoryUrl {
-    IDPSingletonDirectory(url, ^{url = [self urlForDirectory:NSLibraryDirectory];})
+    IDPUrlForDirectory(NSLibraryDirectory)
 }
 
 + (NSURL *)libraryDirectoryUrlWithName:(NSString *)name {
-    IDPSingletonDirectory(url, ^{
+    IDPSingletonDirectory(^{
         NSURL *libraryURL = [NSFileManager libraryDirectoryUrl];
         NSError *error;
         NSString *filePath = [libraryURL.path stringByAppendingPathComponent:name];

@@ -13,15 +13,14 @@
 @implementation NSURL (IDPExtensions)
 
 - (instancetype)fileSystemURL {
-    NSString *relativePath = self.relativePath;
-    
-    NSCharacterSet *unallowedSymbols = [NSCharacterSet characterSetWithCharactersInString:@"#%;:?,/|\[]{}@$%^*"];
-    relativePath = [[relativePath componentsSeparatedByCharactersInSet:unallowedSymbols] componentsJoinedByString: @""];
+    NSString *fileName = [self.relativePath
+                              stringByAddingPercentEncodingWithAllowedCharacters:
+                              [NSCharacterSet alphanumericCharacterSet]];
 
     NSString *path =[NSString stringWithFormat:@"%@/%@%@",
                                 [NSFileManager documentsDirectoryUrl].path,
                                 self.host,
-                                relativePath];
+                                fileName];
     
     return [NSURL fileURLWithPath:path];
 }

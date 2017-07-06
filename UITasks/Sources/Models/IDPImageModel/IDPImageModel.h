@@ -23,4 +23,7 @@ typedef void(^IDPCompletionBlock)(UIImage *, NSError *);
 
 - (instancetype)initWithURL:(NSURL *)url;
 
+// should be overriden in subclasses
+- (void)loadWithCompletion:(IDPCompletionBlock)block;
+
 @end
