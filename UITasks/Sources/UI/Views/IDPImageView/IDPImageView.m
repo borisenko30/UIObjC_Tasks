@@ -87,7 +87,7 @@
     self.loading = YES;
 }
 
-- (void)modelDidFailedLoading:(IDPImageModel *)model {
+- (void)model:(id)model didFailLoadingWithError:(NSError *)error {
     [self.imageModel load];
 }
 

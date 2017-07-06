@@ -15,14 +15,14 @@
 
 @end
 
-@implementation IDPImageCache
+@implementation IDPCache
 
 #pragma mark -
 #pragma mark Singleton method
 
 + (instancetype)sharedCache {
     static dispatch_once_t onceToken;
-    static IDPImageCache *sharedCache = nil;
+    static IDPCache *sharedCache = nil;
     
     dispatch_once(&onceToken, ^{
         sharedCache = [self new];

@@ -15,6 +15,7 @@
 #import "IDPGCD.h"
 
 #import "NSFileManager+IDPExtensions.h"
+#import "NSURL+IDPExtensions.h"
 
 @interface IDPImageModel ()
 @property (nonatomic, strong)     UIImage           *image;
@@ -37,14 +38,14 @@
 
 + (instancetype)modelWithURL:(NSURL *)url {
     IDPCache *cache = [IDPCache sharedCache];
-    id model = [cache modelForKey:url];
+    id model = [cache modelForURL:url];
     if (model) {
         return model;
     }
     
     Class class = [url isFileURL] ? [IDPFileSystemImageModel class] : [IDPInternetImageModel class];
-    model = [class alloc] initWithURL:url];
-    [cache setObject:model forKey:url];
+    model = [[class alloc] initWithURL:url];
+    [cache setModel:model URL:url];
     
     return model;
     
@@ -64,12 +65,12 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (IDPImageCache *)cache {
-    return [IDPImageCache sharedCache];
+- (IDPCache *)cache {
+    return [IDPCache sharedCache];
 }
 
 - (NSURL *)localUrl {
-    return [NSFileManager localUrlWithFileName:[self.url lastPathComponent]];
+    return [self.url fileSystemURL];
 }
 
 #pragma mark -
@@ -79,7 +80,7 @@
     [self loadWithCompletion:^(UIImage *image, NSError *error) {
         self.image = image;
         if (error) {
-            //[self setState:IDPModelDidFailLoading withObject:error];
+            [self setState:IDPModelDidFailLoading withObject:error];
         } else {
             self.state = IDPModelDidLoad;
         }

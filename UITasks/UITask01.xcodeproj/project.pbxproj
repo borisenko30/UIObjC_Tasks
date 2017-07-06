@@ -54,6 +54,7 @@
 		566BCD8E1EF7F3AC002531C4 /* IDPUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 566BCD871EF7F3AC002531C4 /* IDPUserCell.m */; };
 		566BCD8F1EF7F3AC002531C4 /* IDPUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 566BCD881EF7F3AC002531C4 /* IDPUserCell.xib */; };
 		567450B21F02A34A00103897 /* IDPGCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 567450B11F02A34A00103897 /* IDPGCD.m */; };
+		5696A7501F0E20A600C3A6DC /* NSURL+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5696A74F1F0E20A600C3A6DC /* NSURL+IDPExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +148,8 @@
 		566BCD881EF7F3AC002531C4 /* IDPUserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPUserCell.xib; sourceTree = "<group>"; };
 		567450B01F02A34A00103897 /* IDPGCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPGCD.h; sourceTree = "<group>"; };
 		567450B11F02A34A00103897 /* IDPGCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPGCD.m; sourceTree = "<group>"; };
+		5696A74E1F0E20A600C3A6DC /* NSURL+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+IDPExtensions.h"; sourceTree = "<group>"; };
+		5696A74F1F0E20A600C3A6DC /* NSURL+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+IDPExtensions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +369,8 @@
 				564967EE1F0BD0E500A0EFA3 /* UIViewController+IDPExtensions.m */,
 				564967EF1F0BD0E500A0EFA3 /* UIWindow+IDPExtensions.h */,
 				564967F01F0BD0E500A0EFA3 /* UIWindow+IDPExtensions.m */,
+				5696A74E1F0E20A600C3A6DC /* NSURL+IDPExtensions.h */,
+				5696A74F1F0E20A600C3A6DC /* NSURL+IDPExtensions.m */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				564967D51F0BD0AB00A0EFA3 /* IDPInsertionModel.m in Sources */,
 				564967CF1F0BD0AB00A0EFA3 /* IDPFileSystemImageModel.m in Sources */,
 				5656421B1F03E0760023B3EE /* IDPImageView.m in Sources */,
+				5696A7501F0E20A600C3A6DC /* NSURL+IDPExtensions.m in Sources */,
 				5617775E1EF27750001C16B7 /* IDPTableViewCell.m in Sources */,
 				564967D61F0BD0AB00A0EFA3 /* IDPMovementModel.m in Sources */,
 				564967D41F0BD0AB00A0EFA3 /* IDPDoubleIndexModificationModel.m in Sources */,

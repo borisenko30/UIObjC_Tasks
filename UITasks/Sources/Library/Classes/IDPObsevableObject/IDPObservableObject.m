@@ -105,7 +105,13 @@
     [self notifyOfStateWithSelector:[self selectorForState:state] withObject:object];
 }
 
-
+- (void)setState:(NSUInteger)state withObject:(id)object {
+    @synchronized (self) {
+        _state = state;
+        
+        [self notifyOfState:state withObject:object];
+    }
+}
 
 - (void)performBlockWithNotification:(void(^)())block {
     [self performBlock:block shouldNotify:YES];

@@ -42,7 +42,7 @@
                                           
                                           NSURL *moveError;
                                           
-                                          [fileManager moveItemAtURL:location toURL:self.localUrl error:&moveError];
+                                          [fileManager moveItemAtURL:location toURL:self.localUrl error:nil];
                                           
                                           NSLog(@"moveError : %@", moveError);
                                           

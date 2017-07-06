@@ -21,4 +21,6 @@ typedef void(^IDPCompletionBlock)(UIImage *, NSError *);
 
 + (instancetype)modelWithURL:(NSURL *)url;
 
+- (instancetype)initWithURL:(NSURL *)url;
+
 @end

@@ -33,7 +33,9 @@ static NSUInteger const IDPUsersCount   = 10;
 
 - (instancetype)init {
     self = [super init];
-    self.filePath = [NSFileManager localUrlWithFileName:IDPFileName].path;
+    self.filePath = [NSString stringWithFormat:@"%@/%@",
+                                      [NSFileManager documentsDirectoryUrl].path,
+                                      IDPFileName];
     
     return self;
 }
